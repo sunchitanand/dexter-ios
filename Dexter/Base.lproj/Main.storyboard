@@ -125,7 +125,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Sign Up" leftItemsSupplementBackButton="YES" id="ojM-Tg-p8R"/>
                     <connections>
-                        <outlet property="emalTextField" destination="DFE-3q-hkB" id="ilu-hx-fD6"/>
+                        <outlet property="emailTextField" destination="DFE-3q-hkB" id="ilu-hx-fD6"/>
                         <outlet property="errorLabel" destination="EfB-Yc-b4C" id="7jb-eb-PIu"/>
                         <outlet property="fullNameTextField" destination="BKS-fl-s0Q" id="UIA-ra-xpA"/>
                         <outlet property="passwordTextField" destination="MMf-4R-Kda" id="yYD-gb-ZU9"/>
@@ -151,18 +151,28 @@
                                 <state key="normal" title="Log out">
                                     <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="signOutTapped:" destination="N81-6V-V5L" eventType="touchUpInside" id="Dd1-Jz-gpi"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iq6-5G-dwi">
                                 <rect key="frame" x="127" y="431" width="161" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <state key="normal" title="Create DUMMY Post"/>
+                                <connections>
+                                    <action selector="createDummyPostTapped:" destination="N81-6V-V5L" eventType="touchUpInside" id="eYZ-2B-gRA"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Af-6k-VOR"/>
                     </view>
                     <tabBarItem key="tabBarItem" tag="1" title="" image="plus.app" catalog="system" id="PUg-64-BPp"/>
+                    <connections>
+                        <outlet property="createDummyPostButton" destination="Iq6-5G-dwi" id="iZa-sX-WKN"/>
+                        <outlet property="signOutButton" destination="fMm-ef-P6C" id="Z8d-14-l31"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D1h-M4-lA7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -199,7 +209,7 @@
                                             <action selector="signInTapped:" destination="FBJ-8U-XTf" eventType="touchUpInside" id="S2w-6x-CcB"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7K-oY-pKO">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7K-oY-pKO">
                                         <rect key="frame" x="0.0" y="238" width="334" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -219,14 +229,14 @@
                     <navigationItem key="navigationItem" id="7gU-SW-kEV"/>
                     <connections>
                         <outlet property="emailTextField" destination="YuK-dh-8hC" id="5ZY-1V-NBe"/>
-                        <outlet property="errorLabel" destination="n72-fR-Tha" id="HZi-BR-6qa"/>
+                        <outlet property="errorLabel" destination="F7K-oY-pKO" id="jVl-4T-5vZ"/>
                         <outlet property="passwordTextField" destination="vnB-Zz-3Ac" id="5qq-nV-XPv"/>
                         <outlet property="signInButton" destination="l4A-1l-WdR" id="U5z-R6-EXj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ya9-kr-ddX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1983" y="891"/>
+            <point key="canvasLocation" x="1982.608695652174" y="890.625"/>
         </scene>
         <!--Splash View Controller-->
         <scene sceneID="4jP-B7-wkb">
@@ -269,7 +279,7 @@
         <!--Confirm Sign Up View Controller-->
         <scene sceneID="1l9-ux-iJx">
             <objects>
-                <viewController storyboardIdentifier="ConfirmSignUpVC" id="JlP-zZ-Th6" customClass="ConfirmSignUpViewController" customModule="Dexter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConfirmSignUpViewController" id="JlP-zZ-Th6" customClass="ConfirmSignUpViewController" customModule="Dexter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ePt-o4-lpu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

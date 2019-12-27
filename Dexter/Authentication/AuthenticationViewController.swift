@@ -11,24 +11,17 @@ import UIKit
 class AuthenticationViewController: UIViewController {
 
     @IBOutlet weak var signUpButton: UIButton!
-    
     @IBOutlet weak var signInButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupElements()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // Style the views
+    func setupElements() {
+        Styles.styleFilledButton(signUpButton)
+        Styles.styleHollowButton(signInButton)
     }
-    */
 
 }
