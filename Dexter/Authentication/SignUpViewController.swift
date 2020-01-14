@@ -21,7 +21,6 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupElements()
-        
     }
     
     @IBAction func signUpTapped(_ sender: Any) {
@@ -54,6 +53,7 @@ class SignUpViewController: UIViewController {
                         "userId": authResult!.user.uid
                     ]
                     
+                    // TODO: Modify following to add document with documentId = uid
                     db.collection("users").addDocument(data: userData) { (error) in
                         if error != nil {
                             self.showError("Error saving user data")

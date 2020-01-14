@@ -18,6 +18,9 @@
 		B94AF31623A75416008BE764 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B94AF31523A75416008BE764 /* GoogleService-Info.plist */; };
 		B94AF31923A8B942008BE764 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF31823A8B942008BE764 /* Styles.swift */; };
 		B94AF31B23A8BB3C008BE764 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF31A23A8BB3C008BE764 /* Constants.swift */; };
+		B94AF31E23B59AAD008BE764 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF31D23B59AAD008BE764 /* User.swift */; };
+		B94AF32023B818F4008BE764 /* DocumentSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF31F23B818F4008BE764 /* DocumentSerializable.swift */; };
+		B94AF32423B81940008BE764 /* FirestoreSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF32323B81940008BE764 /* FirestoreSchema.swift */; };
 		B94B1ACA23A62508001FC054 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94B1AC923A62508001FC054 /* AppDelegate.swift */; };
 		B94B1ACC23A62508001FC054 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94B1ACB23A62508001FC054 /* SceneDelegate.swift */; };
 		B94B1AD123A62508001FC054 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B94B1ACF23A62508001FC054 /* Main.storyboard */; };
@@ -26,6 +29,8 @@
 		B94B1AD923A6250D001FC054 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B94B1AD723A6250C001FC054 /* LaunchScreen.storyboard */; };
 		B94B1AE423A6250D001FC054 /* DexterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94B1AE323A6250D001FC054 /* DexterTests.swift */; };
 		B94B1AEF23A6250D001FC054 /* DexterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94B1AEE23A6250D001FC054 /* DexterUITests.swift */; };
+		B969E8B423BB23CE0096AF29 /* UserModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B969E8B323BB23CD0096AF29 /* UserModelController.swift */; };
+		B9EB16CD23CDA16B00757817 /* DiscoveryToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EB16CC23CDA16B00757817 /* DiscoveryToggleButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +63,9 @@
 		B94AF31523A75416008BE764 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B94AF31823A8B942008BE764 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		B94AF31A23A8BB3C008BE764 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B94AF31D23B59AAD008BE764 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B94AF31F23B818F4008BE764 /* DocumentSerializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentSerializable.swift; sourceTree = "<group>"; };
+		B94AF32323B81940008BE764 /* FirestoreSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreSchema.swift; sourceTree = "<group>"; };
 		B94B1AC623A62508001FC054 /* Dexter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dexter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B94B1AC923A62508001FC054 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B94B1ACB23A62508001FC054 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +80,9 @@
 		B94B1AEA23A6250D001FC054 /* DexterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DexterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B94B1AEE23A6250D001FC054 /* DexterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DexterUITests.swift; sourceTree = "<group>"; };
 		B94B1AF023A6250D001FC054 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B969E8B323BB23CD0096AF29 /* UserModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelController.swift; sourceTree = "<group>"; };
+		B9EB16B523CA6A0900757817 /* imports.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imports.h; sourceTree = SOURCE_ROOT; };
+		B9EB16CC23CDA16B00757817 /* DiscoveryToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryToggleButton.swift; sourceTree = "<group>"; };
 		E715ADBDEED75C04A2456CD5 /* Pods-Dexter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dexter.debug.xcconfig"; path = "Target Support Files/Pods-Dexter/Pods-Dexter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +141,16 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		B94AF31C23B59A51008BE764 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B94AF31F23B818F4008BE764 /* DocumentSerializable.swift */,
+				B94AF32323B81940008BE764 /* FirestoreSchema.swift */,
+				B94AF31D23B59AAD008BE764 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		B94B1ABD23A62507001FC054 = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +176,9 @@
 		B94B1AC823A62508001FC054 /* Dexter */ = {
 			isa = PBXGroup;
 			children = (
+				B9EB16CB23CDA13A00757817 /* Subclasses */,
+				B969E8B523BB4ADA0096AF29 /* ModelControllers */,
+				B94AF31C23B59A51008BE764 /* Models */,
 				B94B1AC923A62508001FC054 /* AppDelegate.swift */,
 				B94B1ACB23A62508001FC054 /* SceneDelegate.swift */,
 				B94AF31323A63C42008BE764 /* Podfile */,
@@ -168,6 +192,7 @@
 				B94AF31523A75416008BE764 /* GoogleService-Info.plist */,
 				B94B1ADA23A6250D001FC054 /* Info.plist */,
 				B94B1AD223A62508001FC054 /* Dexter.xcdatamodeld */,
+				B9EB16B523CA6A0900757817 /* imports.h */,
 			);
 			path = Dexter;
 			sourceTree = "<group>";
@@ -190,6 +215,22 @@
 			path = DexterUITests;
 			sourceTree = "<group>";
 		};
+		B969E8B523BB4ADA0096AF29 /* ModelControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B969E8B323BB23CD0096AF29 /* UserModelController.swift */,
+			);
+			path = ModelControllers;
+			sourceTree = "<group>";
+		};
+		B9EB16CB23CDA13A00757817 /* Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				B9EB16CC23CDA16B00757817 /* DiscoveryToggleButton.swift */,
+			);
+			path = Subclasses;
+			sourceTree = "<group>";
+		};
 		D89C8A3CE6FDD398E3609D1C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +251,7 @@
 				B94B1AC323A62507001FC054 /* Frameworks */,
 				B94B1AC423A62507001FC054 /* Resources */,
 				A29426E1C963B032EA8C7EFF /* [CP] Embed Pods Frameworks */,
+				081FCF201780AABE2C132537 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -329,6 +371,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		081FCF201780AABE2C132537 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Dexter/Pods-Dexter-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Dexter/Pods-Dexter-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Dexter/Pods-Dexter-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4BD494E3B57D2A8FE5FF072F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -379,13 +438,18 @@
 				B94AF31B23A8BB3C008BE764 /* Constants.swift in Sources */,
 				B94AF31923A8B942008BE764 /* Styles.swift in Sources */,
 				B94B1ACA23A62508001FC054 /* AppDelegate.swift in Sources */,
+				B94AF32423B81940008BE764 /* FirestoreSchema.swift in Sources */,
 				B94AF30923A62FEA008BE764 /* SplashViewController.swift in Sources */,
 				B94AF30723A62F1B008BE764 /* AuthenticationViewController.swift in Sources */,
+				B94AF32023B818F4008BE764 /* DocumentSerializable.swift in Sources */,
 				B94AF31223A63196008BE764 /* HomeViewController.swift in Sources */,
 				B94AF31023A6311C008BE764 /* SignInViewController.swift in Sources */,
+				B94AF31E23B59AAD008BE764 /* User.swift in Sources */,
 				B94B1ACC23A62508001FC054 /* SceneDelegate.swift in Sources */,
+				B9EB16CD23CDA16B00757817 /* DiscoveryToggleButton.swift in Sources */,
 				B94B1AD423A62508001FC054 /* Dexter.xcdatamodeld in Sources */,
 				B94AF30E23A630C4008BE764 /* ConfirmSignUpViewController.swift in Sources */,
+				B969E8B423BB23CE0096AF29 /* UserModelController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +624,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 74R563DASM;
 				INFOPLIST_FILE = Dexter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -567,6 +632,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.Dexter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_OBJC_INTERFACE_HEADER_NAME[arch=*]" = "$(SWIFT_MODULE_NAME)-imports.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -578,6 +644,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 74R563DASM;
 				INFOPLIST_FILE = Dexter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -585,6 +652,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.Dexter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_OBJC_INTERFACE_HEADER_NAME[arch=*]" = "$(SWIFT_MODULE_NAME)-imports.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

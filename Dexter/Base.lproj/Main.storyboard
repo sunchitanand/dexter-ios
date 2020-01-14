@@ -75,6 +75,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BKS-fl-s0Q">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="40"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" constant="334" id="3pR-V0-gnn"/>
                                             <constraint firstAttribute="height" constant="40" id="llk-q1-10J"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -110,6 +111,7 @@
                                     </label>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="tgc-Q1-dhu" firstAttribute="top" secondItem="MMf-4R-Kda" secondAttribute="bottom" constant="40" id="6YF-oC-3py"/>
                                     <constraint firstItem="DFE-3q-hkB" firstAttribute="height" secondItem="BKS-fl-s0Q" secondAttribute="height" id="eHF-3Y-8xg"/>
                                     <constraint firstItem="MMf-4R-Kda" firstAttribute="height" secondItem="BKS-fl-s0Q" secondAttribute="height" id="rqm-EX-ees"/>
                                 </constraints>
@@ -155,28 +157,47 @@
                                     <action selector="signOutTapped:" destination="N81-6V-V5L" eventType="touchUpInside" id="Dd1-Jz-gpi"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iq6-5G-dwi">
-                                <rect key="frame" x="127" y="431" width="161" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iq6-5G-dwi">
+                                <rect key="frame" x="141" y="162" width="132" height="35"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <state key="normal" title="Create DUMMY Post"/>
+                                <state key="normal" title="Get Current User"/>
                                 <connections>
                                     <action selector="createDummyPostTapped:" destination="N81-6V-V5L" eventType="touchUpInside" id="eYZ-2B-gRA"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzs-CB-4gx" customClass="DiscoveryToggleButton" customModule="Dexter" customModuleProvider="target">
+                                <rect key="frame" x="113" y="403" width="188" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="188" id="G5V-Kr-kEh"/>
+                                    <constraint firstAttribute="height" constant="61" id="roH-ll-SI4"/>
+                                </constraints>
+                                <state key="normal" title="Discovery On"/>
+                                <connections>
+                                    <action selector="discoveryToggled:" destination="N81-6V-V5L" eventType="touchUpInside" id="8XQ-FH-0Yr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Af-6k-VOR" firstAttribute="trailing" secondItem="Iq6-5G-dwi" secondAttribute="trailing" constant="141" id="0Nn-8s-ZGh"/>
+                            <constraint firstItem="6Af-6k-VOR" firstAttribute="bottom" secondItem="mzs-CB-4gx" secondAttribute="bottom" constant="349" id="GWT-n5-X5V"/>
+                            <constraint firstItem="Iq6-5G-dwi" firstAttribute="leading" secondItem="6Af-6k-VOR" secondAttribute="leading" constant="141" id="HS5-ek-8Q1"/>
+                            <constraint firstItem="mzs-CB-4gx" firstAttribute="leading" secondItem="6Af-6k-VOR" secondAttribute="leading" constant="113" id="LUy-hf-Pxg"/>
+                            <constraint firstItem="mzs-CB-4gx" firstAttribute="top" secondItem="Iq6-5G-dwi" secondAttribute="bottom" constant="206" id="X0k-By-hL8"/>
+                            <constraint firstItem="6Af-6k-VOR" firstAttribute="trailing" secondItem="mzs-CB-4gx" secondAttribute="trailing" constant="113" id="lWA-GS-96Z"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Af-6k-VOR"/>
                     </view>
                     <tabBarItem key="tabBarItem" tag="1" title="" image="plus.app" catalog="system" id="PUg-64-BPp"/>
                     <connections>
                         <outlet property="createDummyPostButton" destination="Iq6-5G-dwi" id="iZa-sX-WKN"/>
+                        <outlet property="discoveryToggleButton" destination="mzs-CB-4gx" id="N05-qR-kAJ"/>
                         <outlet property="signOutButton" destination="fMm-ef-P6C" id="Z8d-14-l31"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D1h-M4-lA7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5598.5507246376819" y="474.77678571428567"/>
+            <point key="canvasLocation" x="5569.5652173913049" y="474.77678571428567"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="FSU-hb-vmC">
@@ -216,6 +237,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="l4A-1l-WdR" firstAttribute="top" secondItem="vnB-Zz-3Ac" secondAttribute="bottom" constant="40" id="AF4-7V-3cB"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

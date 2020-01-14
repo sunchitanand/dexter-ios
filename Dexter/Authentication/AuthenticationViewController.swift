@@ -21,7 +21,7 @@ class AuthenticationViewController: UIViewController {
     // Style the views
     func setupElements() {
         Styles.styleFilledButton(signUpButton)
-        Styles.styleHollowButton(signInButton)
+        Styles.styleFilledButton(signInButton)
     }
 
 }
