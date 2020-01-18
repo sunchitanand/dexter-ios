@@ -146,9 +146,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fMm-ef-P6C">
-                                <rect key="frame" x="319" y="30" width="88" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fMm-ef-P6C">
+                                <rect key="frame" x="281" y="28" width="133" height="35"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <state key="normal" title="Log out">
                                     <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -158,33 +157,55 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iq6-5G-dwi">
-                                <rect key="frame" x="141" y="162" width="132" height="35"/>
+                                <rect key="frame" x="59" y="162" width="297" height="35"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <state key="normal" title="Get Current User"/>
                                 <connections>
-                                    <action selector="createDummyPostTapped:" destination="N81-6V-V5L" eventType="touchUpInside" id="eYZ-2B-gRA"/>
+                                    <action selector="getCurrentUserTapped:" destination="N81-6V-V5L" eventType="touchUpInside" id="eYZ-2B-gRA"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzs-CB-4gx" customClass="DiscoveryToggleButton" customModule="Dexter" customModuleProvider="target">
-                                <rect key="frame" x="113" y="403" width="188" height="61"/>
+                                <rect key="frame" x="113" y="366" width="188" height="61"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="188" id="G5V-Kr-kEh"/>
                                     <constraint firstAttribute="height" constant="61" id="roH-ll-SI4"/>
                                 </constraints>
-                                <state key="normal" title="Discovery On"/>
+                                <state key="normal" title="DISCOVERY"/>
                                 <connections>
                                     <action selector="discoveryToggled:" destination="N81-6V-V5L" eventType="touchUpInside" id="8XQ-FH-0Yr"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="No Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Au9-Wh-aGP">
+                                <rect key="frame" x="59" y="553" width="297" height="91"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tk3-yx-4ZF" customClass="DiscoveryToggleButton" customModule="Dexter" customModuleProvider="target">
+                                <rect key="frame" x="131" y="693" width="153" height="30"/>
+                                <state key="normal" title="PERMISSION"/>
+                                <connections>
+                                    <action selector="permissionToggled:" destination="N81-6V-V5L" eventType="touchUpInside" id="d1h-bS-ijW"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="6Af-6k-VOR" firstAttribute="trailing" secondItem="Iq6-5G-dwi" secondAttribute="trailing" constant="141" id="0Nn-8s-ZGh"/>
-                            <constraint firstItem="6Af-6k-VOR" firstAttribute="bottom" secondItem="mzs-CB-4gx" secondAttribute="bottom" constant="349" id="GWT-n5-X5V"/>
-                            <constraint firstItem="Iq6-5G-dwi" firstAttribute="leading" secondItem="6Af-6k-VOR" secondAttribute="leading" constant="141" id="HS5-ek-8Q1"/>
-                            <constraint firstItem="mzs-CB-4gx" firstAttribute="leading" secondItem="6Af-6k-VOR" secondAttribute="leading" constant="113" id="LUy-hf-Pxg"/>
-                            <constraint firstItem="mzs-CB-4gx" firstAttribute="top" secondItem="Iq6-5G-dwi" secondAttribute="bottom" constant="206" id="X0k-By-hL8"/>
-                            <constraint firstItem="6Af-6k-VOR" firstAttribute="trailing" secondItem="mzs-CB-4gx" secondAttribute="trailing" constant="113" id="lWA-GS-96Z"/>
+                            <constraint firstItem="6Af-6k-VOR" firstAttribute="trailing" secondItem="mzs-CB-4gx" secondAttribute="trailing" constant="113" id="1Pc-sE-IR2"/>
+                            <constraint firstItem="6Af-6k-VOR" firstAttribute="trailing" secondItem="Au9-Wh-aGP" secondAttribute="trailing" constant="58" id="7nD-X0-Nli"/>
+                            <constraint firstItem="6Af-6k-VOR" firstAttribute="bottom" secondItem="Tk3-yx-4ZF" secondAttribute="bottom" constant="90" id="8Hg-SG-TGJ"/>
+                            <constraint firstItem="6Af-6k-VOR" firstAttribute="trailing" secondItem="Iq6-5G-dwi" secondAttribute="trailing" constant="58" id="DJw-AA-XXo"/>
+                            <constraint firstItem="Au9-Wh-aGP" firstAttribute="leading" secondItem="6Af-6k-VOR" secondAttribute="leading" constant="59" id="GcM-8C-EVT"/>
+                            <constraint firstItem="Tk3-yx-4ZF" firstAttribute="leading" secondItem="6Af-6k-VOR" secondAttribute="leading" constant="131" id="I1o-dK-7SE"/>
+                            <constraint firstItem="fMm-ef-P6C" firstAttribute="top" secondItem="fRS-Fk-pNA" secondAttribute="top" constant="28" id="PyW-T9-weT"/>
+                            <constraint firstItem="mzs-CB-4gx" firstAttribute="leading" secondItem="6Af-6k-VOR" secondAttribute="leading" constant="113" id="VGY-OX-Xhd"/>
+                            <constraint firstItem="Iq6-5G-dwi" firstAttribute="top" secondItem="fMm-ef-P6C" secondAttribute="bottom" constant="99" id="YwC-zh-yo5"/>
+                            <constraint firstItem="6Af-6k-VOR" firstAttribute="trailing" secondItem="Tk3-yx-4ZF" secondAttribute="trailing" constant="130" id="ans-a7-C5F"/>
+                            <constraint firstItem="fMm-ef-P6C" firstAttribute="leading" secondItem="6Af-6k-VOR" secondAttribute="leading" constant="281" id="lFc-6B-CXa"/>
+                            <constraint firstItem="Au9-Wh-aGP" firstAttribute="top" secondItem="mzs-CB-4gx" secondAttribute="bottom" constant="126" id="lVV-Pp-T42"/>
+                            <constraint firstItem="mzs-CB-4gx" firstAttribute="top" secondItem="Iq6-5G-dwi" secondAttribute="bottom" constant="169" id="oaE-e7-zKT"/>
+                            <constraint firstItem="fMm-ef-P6C" firstAttribute="trailing" secondItem="6Af-6k-VOR" secondAttribute="trailing" id="tJp-Vg-SJL"/>
+                            <constraint firstItem="Iq6-5G-dwi" firstAttribute="leading" secondItem="6Af-6k-VOR" secondAttribute="leading" constant="59" id="uzx-VE-PvU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Af-6k-VOR"/>
                     </view>
@@ -192,6 +213,8 @@
                     <connections>
                         <outlet property="createDummyPostButton" destination="Iq6-5G-dwi" id="iZa-sX-WKN"/>
                         <outlet property="discoveryToggleButton" destination="mzs-CB-4gx" id="N05-qR-kAJ"/>
+                        <outlet property="messageLabel" destination="Au9-Wh-aGP" id="bpE-EA-vb3"/>
+                        <outlet property="permissionToggleButton" destination="Tk3-yx-4ZF" id="NpN-ki-SJJ"/>
                         <outlet property="signOutButton" destination="fMm-ef-P6C" id="Z8d-14-l31"/>
                     </connections>
                 </viewController>

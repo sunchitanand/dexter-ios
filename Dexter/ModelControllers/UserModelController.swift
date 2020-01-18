@@ -38,6 +38,10 @@ class UserModelController {
         }
     }
     
+    func getStoredUser() -> Dictionary<String, Any> {
+        return user!.dictionary
+    }
+    
     
 //    func queryAllUsers(completion: @escaping (Result<[User], Error>) -> ()) {
 //        let usersRef = Firestore.firestore().collection("users")
