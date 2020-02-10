@@ -7,14 +7,26 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import Firebase
 
 struct User {
+    
     /// NOTE: private (set) - private setter but getter access from outside this class
-    private(set) var uid: String?
-    private(set) var firstName: String
-    private(set) var lastName: String
-    private(set) var email: String
-
+    let uid: String?
+    let firstName: String
+    let lastName: String
+    let email: String
+    
+    private static var _current: User?
+    
+    static var current: User {
+        guard let currentUser = _current else {
+            fatalError("Error: current user doesn't exist")
+        }
+        return currentUser
+    }
+    
     var dictionary: [String: Any] {
         return [
             Fields.User.uid: uid!,
@@ -27,15 +39,34 @@ struct User {
 
 extension User: DocumentSerializable {
     init?(documentData: [String : Any]) {
-        let uid = documentData[Fields.User.uid] as? String ?? ""
-        let firstName = documentData[ Fields.User.firstName] as? String ?? "cNull"
-        let lastName = documentData[Fields.User.lastName] as? String ?? "cNull"
-        let email = documentData[Fields.User.email] as? String ?? "cNull"
+        print(documentData[Fields.User.firstName])
+        let uid = documentData[Fields.User.uid] as? String ?? "null"
+        let firstName = documentData[Fields.User.firstName] as? String ?? "null"
+        let lastName = documentData[Fields.User.lastName] as? String ?? "null"
+        let email = documentData[Fields.User.email] as? String ?? "null"
         
         self.init(uid: uid,
                   firstName: firstName,
                   lastName: lastName,
                   email: email)
+    }
+    
+//    init?(snapshot: DocumentSnapshot) {
+//        if let documentData = snapshot.data() {
+//            let uid = documentData[Fields.User.uid] as? String ?? ""
+//            let firstName = documentData[ Fields.User.firstName] as? String ?? ""
+//            let lastName = documentData[Fields.User.lastName] as? String ?? ""
+//            let email = documentData[Fields.User.email] as? String ?? ""
+//
+//            self.init(uid: uid,
+//                      firstName: firstName,
+//                      lastName: lastName,
+//                      email: email)
+//        }
+//    }
+    
+    static func setCurrent(_ user: User) {
+        _current = user
     }
 }
 
@@ -50,7 +81,3 @@ extension User: CustomStringConvertible {
         return "User email: [[\(email)]]"
     }
 }
-
-
-
-

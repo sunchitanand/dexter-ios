@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>30088070696-u59muqiui2jplpcbp8k8f4lasjmkdoqc.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.30088070696-u59muqiui2jplpcbp8k8f4lasjmkdoqc</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAU-NO3VLhi9xF2sDLA66WqYX94dOAvfMo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>30088070696</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.app.Dexter</string>
+	<key>PROJECT_ID</key>
+	<string>dexter-ios-1573292835261</string>
+	<key>STORAGE_BUCKET</key>
+	<string>dexter-ios-1573292835261.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:30088070696:ios:8bfd2e4c8916e4bf06971d</string>
+	<key>DATABASE_URL</key>
+	<string>https://dexter-ios-1573292835261.firebaseio.com</string>
+</dict>
+</plist>

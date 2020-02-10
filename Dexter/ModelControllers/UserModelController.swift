@@ -12,35 +12,55 @@ import FirebaseFirestore
 
 class UserModelController {
     
-    static let sharedInstance = UserModelController()
-    private var user: User?
+//    private var user: User?
+    let db = Firestore.firestore()
     
-    init() {
-        self.user = nil
-    }
+//    init() {
+//        self.user = nil
+//    }
+//
+//    func getUser(uid: String, completion: @escaping (Result<User, Error>) -> ()) {
+//        let usersByUid = Firestore.firestore().collection("users").document(uid)
+//
+//        usersByUid.getDocument { (snapshot, err) in
+//            if let err = err {
+//                completion(.failure(err))
+//                return
+//            }
+//            guard let snapshot = snapshot else {return}
+//            let userDoc = snapshot.data()
+//            if let newUser = User(documentData: userDoc!) {
+//                self.user = newUser
+//                print(self.user!.firstName)
+//                print(newUser.firstName)
+//                completion(.success(newUser))
+//            }
+//        }
+//    }
     
-    func getUser(uid: String, completion: @escaping (Result<User, Error>) -> ()) {
-        let usersByUid = Firestore.firestore().collection("users").document(uid)
-        
-        usersByUid.getDocument { (snapshot, err) in
-            if let err = err {
-                completion(.failure(err))
+    static func createUser(user: User?, current: Bool, completion: @escaping (Result<User, Error>) -> ()) {
+        if let user = user {
+            let newUserRef = Firestore.firestore().collection("users").document(user.uid!)
+            newUserRef.setData(user.dictionary) { (err) in
+                if let err = err {
+                    completion(.failure(err))
+                    return
+                }
+                if current {
+                    User.setCurrent(user)
+                    completion(.success(User.current))
+                    return
+                }
+                completion(.success(user))
                 return
-            }
-            guard let snapshot = snapshot else {return}
-            let userDoc = snapshot.data()
-            if let newUser = User(documentData: userDoc!) {
-                self.user = newUser
-                print(self.user!.firstName)
-                print(newUser.firstName)
-                completion(.success(newUser))
             }
         }
     }
     
-    func getStoredUser() -> Dictionary<String, Any> {
-        return user!.dictionary
-    }
+//
+//    func getStoredUser() -> Dictionary<String, Any> {
+//        return user!.dictionary
+//    }
     
     
 //    func queryAllUsers(completion: @escaping (Result<[User], Error>) -> ()) {

@@ -8,19 +8,23 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class SplashViewController: UIViewController {
     
+    var container: NSPersistentContainer!
+    var toHome: Bool!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
         if Auth.auth().currentUser != nil {
+            toHome = true
             navigateToHome()
         } else {
+            toHome = false
             navigateToAuth()
         }
     }
@@ -39,18 +43,20 @@ class SplashViewController: UIViewController {
             self.view.window?.rootViewController = authNavigationController
             self.view.window?.makeKeyAndVisible()
         }
-        
         // self.present(homeViewController, animated: true, completion: nil)
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if toHome {
+            if let homeVC = segue.destination as? HomeViewController {
+                homeVC.container = container
+            }
+        }
+        else {
+            if let authVC = segue.destination as? AuthenticationViewController {
+                authVC.container = container
+            }
+        }
+    }
     
 }
