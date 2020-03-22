@@ -10,11 +10,13 @@
 		A134BA585BBDFD3B2D825F02 /* Pods_Dexter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 024756971A4871AB1C77B386 /* Pods_Dexter.framework */; };
 		B90D685B23FFBD1A00BC06E8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = B90D685A23FFBD1A00BC06E8 /* Podfile */; };
 		B918D47123D6A78F00864C94 /* UserContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B918D47023D6A78F00864C94 /* UserContactCell.swift */; };
+		B9285B60241463430077F3BD /* SocialHandlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9285B5F241463430077F3BD /* SocialHandlesViewController.swift */; };
+		B9285B642423368C0077F3BD /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9285B632423368C0077F3BD /* MainTabBarController.swift */; };
 		B92B0EB623FE3406008D1933 /* AlignedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92B0EB523FE3406008D1933 /* AlignedTextView.swift */; };
 		B94AF30723A62F1B008BE764 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF30623A62F1B008BE764 /* AuthenticationViewController.swift */; };
 		B94AF30923A62FEA008BE764 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF30823A62FEA008BE764 /* SplashViewController.swift */; };
 		B94AF30C23A63094008BE764 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF30B23A63094008BE764 /* SignUpViewController.swift */; };
-		B94AF30E23A630C4008BE764 /* ConfirmSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF30D23A630C4008BE764 /* ConfirmSignUpViewController.swift */; };
+		B94AF30E23A630C4008BE764 /* AboutUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF30D23A630C4008BE764 /* AboutUserViewController.swift */; };
 		B94AF31023A6311C008BE764 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF30F23A6311C008BE764 /* SignInViewController.swift */; };
 		B94AF31223A63196008BE764 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF31123A63196008BE764 /* HomeViewController.swift */; };
 		B94AF31623A75416008BE764 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B94AF31523A75416008BE764 /* GoogleService-Info.plist */; };
@@ -30,7 +32,6 @@
 		B94B1AD923A6250D001FC054 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B94B1AD723A6250C001FC054 /* LaunchScreen.storyboard */; };
 		B94B1AE423A6250D001FC054 /* DexterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94B1AE323A6250D001FC054 /* DexterTests.swift */; };
 		B94B1AEF23A6250D001FC054 /* DexterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94B1AEE23A6250D001FC054 /* DexterUITests.swift */; };
-		B94ED84123F11E6700423D6A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94ED84023F11E6700423D6A /* ViewController.swift */; };
 		B955A05323DD30BE0033AD51 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B955A05223DD30BE0033AD51 /* SettingsViewController.swift */; };
 		B955A05523DD500E0033AD51 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B955A05423DD500E0033AD51 /* Theme.swift */; };
 		B969E8B423BB23CE0096AF29 /* UserModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B969E8B323BB23CD0096AF29 /* UserModelController.swift */; };
@@ -140,6 +141,7 @@
 		B97ADCF023FA8CE100AB27AE /* SF-Pro-Display-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B97ADCC323FA8CE000AB27AE /* SF-Pro-Display-ThinItalic.otf */; };
 		B97ADCF123FA8CE100AB27AE /* SF-Pro-Rounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B97ADCC423FA8CE000AB27AE /* SF-Pro-Rounded-Bold.otf */; };
 		B97ADCF223FA8CE100AB27AE /* SF-Pro-Display-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B97ADCC523FA8CE100AB27AE /* SF-Pro-Display-MediumItalic.otf */; };
+		B98148C124031D32005E0429 /* TableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98148C024031D32005E0429 /* TableViewExtensions.swift */; };
 		B9B548EE23D063D100D69C38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B548ED23D063D100D69C38 /* SceneDelegate.swift */; };
 		B9EB16CD23CDA16B00757817 /* DiscoveryToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EB16CC23CDA16B00757817 /* DiscoveryToggleButton.swift */; };
 		B9EC9BCA23FE845D00C26055 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EC9BC923FE845D00C26055 /* UserProfileViewController.swift */; };
@@ -177,11 +179,13 @@
 		B90D685423FFAB4900BC06E8 /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B90D685A23FFBD1A00BC06E8 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		B918D47023D6A78F00864C94 /* UserContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContactCell.swift; sourceTree = "<group>"; };
+		B9285B5F241463430077F3BD /* SocialHandlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialHandlesViewController.swift; sourceTree = "<group>"; };
+		B9285B632423368C0077F3BD /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		B92B0EB523FE3406008D1933 /* AlignedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignedTextView.swift; sourceTree = "<group>"; };
 		B94AF30623A62F1B008BE764 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		B94AF30823A62FEA008BE764 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		B94AF30B23A63094008BE764 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		B94AF30D23A630C4008BE764 /* ConfirmSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmSignUpViewController.swift; sourceTree = "<group>"; };
+		B94AF30D23A630C4008BE764 /* AboutUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUserViewController.swift; sourceTree = "<group>"; };
 		B94AF30F23A6311C008BE764 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		B94AF31123A63196008BE764 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B94AF31523A75416008BE764 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -203,7 +207,6 @@
 		B94B1AEA23A6250D001FC054 /* DexterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DexterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B94B1AEE23A6250D001FC054 /* DexterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DexterUITests.swift; sourceTree = "<group>"; };
 		B94B1AF023A6250D001FC054 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B94ED84023F11E6700423D6A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B955A05223DD30BE0033AD51 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B955A05423DD500E0033AD51 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		B969E8B323BB23CD0096AF29 /* UserModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelController.swift; sourceTree = "<group>"; };
@@ -313,6 +316,7 @@
 		B97ADCC323FA8CE000AB27AE /* SF-Pro-Display-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-ThinItalic.otf"; sourceTree = "<group>"; };
 		B97ADCC423FA8CE000AB27AE /* SF-Pro-Rounded-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Bold.otf"; sourceTree = "<group>"; };
 		B97ADCC523FA8CE100AB27AE /* SF-Pro-Display-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-MediumItalic.otf"; sourceTree = "<group>"; };
+		B98148C024031D32005E0429 /* TableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExtensions.swift; sourceTree = "<group>"; };
 		B9B548EA23CDB22700D69C38 /* imports.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imports.h; sourceTree = "<group>"; };
 		B9B548ED23D063D100D69C38 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = "Dexter/Supporting Files/SceneDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		B9EB16CC23CDA16B00757817 /* DiscoveryToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryToggleButton.swift; sourceTree = "<group>"; };
@@ -367,9 +371,10 @@
 			isa = PBXGroup;
 			children = (
 				B94AF30623A62F1B008BE764 /* AuthenticationViewController.swift */,
-				B94AF30B23A63094008BE764 /* SignUpViewController.swift */,
-				B94AF30D23A630C4008BE764 /* ConfirmSignUpViewController.swift */,
 				B94AF30F23A6311C008BE764 /* SignInViewController.swift */,
+				B94AF30B23A63094008BE764 /* SignUpViewController.swift */,
+				B94AF30D23A630C4008BE764 /* AboutUserViewController.swift */,
+				B9285B5F241463430077F3BD /* SocialHandlesViewController.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -424,9 +429,10 @@
 				B94AF30823A62FEA008BE764 /* SplashViewController.swift */,
 				B9EC9BCF23FE9E9900C26055 /* DiscoveryNavigationController.swift */,
 				B94AF30A23A62FF1008BE764 /* Authentication */,
-				B94AF31123A63196008BE764 /* HomeViewController.swift */,
+				B9285B632423368C0077F3BD /* MainTabBarController.swift */,
 				B9EC9BC923FE845D00C26055 /* UserProfileViewController.swift */,
 				B955A05223DD30BE0033AD51 /* SettingsViewController.swift */,
+				B94AF31123A63196008BE764 /* HomeViewController.swift */,
 				B955A05A23E161080033AD51 /* Views */,
 				B969E8B523BB4ADA0096AF29 /* ModelControllers */,
 				B94AF31C23B59A51008BE764 /* Models */,
@@ -435,7 +441,6 @@
 				B94B1AD223A62508001FC054 /* Dexter.xcdatamodeld */,
 				B94B1ADA23A6250D001FC054 /* Info.plist */,
 				B9B548EA23CDB22700D69C38 /* imports.h */,
-				B94ED84023F11E6700423D6A /* ViewController.swift */,
 			);
 			path = Dexter;
 			sourceTree = "<group>";
@@ -478,6 +483,7 @@
 				B918D47023D6A78F00864C94 /* UserContactCell.swift */,
 				B97ADC1E23FA543D00AB27AE /* DiscoverySwitch.swift */,
 				B92B0EB523FE3406008D1933 /* AlignedTextView.swift */,
+				B98148C024031D32005E0429 /* TableViewExtensions.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1009,7 +1015,6 @@
 				B94AF30723A62F1B008BE764 /* AuthenticationViewController.swift in Sources */,
 				B9B548EE23D063D100D69C38 /* SceneDelegate.swift in Sources */,
 				B94AF32023B818F4008BE764 /* DocumentSerializable.swift in Sources */,
-				B94ED84123F11E6700423D6A /* ViewController.swift in Sources */,
 				B94AF31223A63196008BE764 /* HomeViewController.swift in Sources */,
 				B97ADC1F23FA543D00AB27AE /* DiscoverySwitch.swift in Sources */,
 				B94AF31023A6311C008BE764 /* SignInViewController.swift in Sources */,
@@ -1017,8 +1022,11 @@
 				B94AF31E23B59AAD008BE764 /* User.swift in Sources */,
 				B9EB16CD23CDA16B00757817 /* DiscoveryToggleButton.swift in Sources */,
 				B94B1AD423A62508001FC054 /* Dexter.xcdatamodeld in Sources */,
-				B94AF30E23A630C4008BE764 /* ConfirmSignUpViewController.swift in Sources */,
+				B9285B642423368C0077F3BD /* MainTabBarController.swift in Sources */,
+				B98148C124031D32005E0429 /* TableViewExtensions.swift in Sources */,
+				B94AF30E23A630C4008BE764 /* AboutUserViewController.swift in Sources */,
 				B969E8B423BB23CE0096AF29 /* UserModelController.swift in Sources */,
+				B9285B60241463430077F3BD /* SocialHandlesViewController.swift in Sources */,
 				B955A05323DD30BE0033AD51 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
