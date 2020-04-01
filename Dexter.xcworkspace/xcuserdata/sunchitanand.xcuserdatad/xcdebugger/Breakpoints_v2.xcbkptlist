@@ -3,4 +3,342 @@
    uuid = "3F7478D9-B7F7-4F0B-905C-F7D20CCA98AF"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "448FE3BD-B845-4EAC-81EE-862A21BD685B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dexter/SettingsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "restoreUserDetails()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "448FE3BD-B845-4EAC-81EE-862A21BD685B - 7cb8d2afadd2bc7e"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dexter.SettingsViewController.restoreUserDetails() -&gt; ()"
+                  moduleName = "Dexter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunchitanand/Documents/Dexter/Dexter/Dexter/SettingsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "139"
+                  endingLineNumber = "139"
+                  offsetFromSymbolStart = "2385">
+               </Location>
+               <Location
+                  uuid = "448FE3BD-B845-4EAC-81EE-862A21BD685B - 87490934c3ad9291"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Foundation.URL, Swift.Error&gt;) -&gt; () in Dexter.SettingsViewController.restoreUserDetails() -&gt; ()"
+                  moduleName = "Dexter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunchitanand/Documents/Dexter/Dexter/Dexter/SettingsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "140"
+                  endingLineNumber = "140"
+                  offsetFromSymbolStart = "374">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D5DCA11C-FA8C-48C4-94F7-64F4C8D62DB1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dexter/SettingsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "restoreUserDetails()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D5DCA11C-FA8C-48C4-94F7-64F4C8D62DB1 - e4ccc4a125f35a80"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Result&lt;Foundation.URL, Swift.Error&gt;) -&gt; () in Dexter.SettingsViewController.restoreUserDetails() -&gt; ()"
+                  moduleName = "Dexter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunchitanand/Documents/Dexter/Dexter/Dexter/SettingsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "169"
+                  endingLineNumber = "169"
+                  offsetFromSymbolStart = "42">
+               </Location>
+               <Location
+                  uuid = "D5DCA11C-FA8C-48C4-94F7-64F4C8D62DB1 - dbad0cb9e48433f4"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.UIImage) -&gt; () in closure #1 () -&gt; () in closure #1 (Swift.Result&lt;Foundation.URL, Swift.Error&gt;) -&gt; () in Dexter.SettingsViewController.restoreUserDetails() -&gt; ()"
+                  moduleName = "Dexter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunchitanand/Documents/Dexter/Dexter/Dexter/SettingsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "170"
+                  endingLineNumber = "170"
+                  offsetFromSymbolStart = "95">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2BE441F2-4B2A-4588-9EFA-B284A1352AB0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dexter/ModelControllers/UserModelController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "readFromFileSystem(relativePath:uid:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EBB8ABCD-9703-42A0-9171-3D8382387B10"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dexter/SettingsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "restoreUserDetails()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F75715F6-5503-4763-B658-B62EE1BB1CA8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dexter/ModelControllers/UserModelController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
+            landmarkName = "readFromFileSystem(relativePath:uid:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B49FD48D-F449-43B1-B783-85FD1A46801B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dexter/SettingsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "restoreUserDetails()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B49FD48D-F449-43B1-B783-85FD1A46801B - 7cb8d2afadd2bc7e"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dexter.SettingsViewController.restoreUserDetails() -&gt; ()"
+                  moduleName = "Dexter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunchitanand/Documents/Dexter/Dexter/Dexter/SettingsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "165"
+                  endingLineNumber = "165"
+                  offsetFromSymbolStart = "2385">
+               </Location>
+               <Location
+                  uuid = "B49FD48D-F449-43B1-B783-85FD1A46801B - 87490934c3ad9291"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Foundation.URL, Swift.Error&gt;) -&gt; () in Dexter.SettingsViewController.restoreUserDetails() -&gt; ()"
+                  moduleName = "Dexter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunchitanand/Documents/Dexter/Dexter/Dexter/SettingsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "166"
+                  endingLineNumber = "166"
+                  offsetFromSymbolStart = "344">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2D29E034-CFDB-4A79-B609-FB1619CDA69D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dexter/ModelControllers/UserModelController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "downloadProfilePhoto(uid:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AE2C62FC-235E-46E2-BDA4-6798B9AD853A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dexter/ModelControllers/UserModelController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "downloadProfilePhoto(uid:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4D015FAB-0D3A-4A1F-9776-FBD538928D64"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dexter/ModelControllers/UserModelController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "downloadProfilePhoto(uid:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4D015FAB-0D3A-4A1F-9776-FBD538928D64 - 214515a8af21b8ca"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static Dexter.UserModelController.downloadProfilePhoto(uid: Swift.String, completion: (Swift.Result&lt;Foundation.URL, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dexter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunchitanand/Documents/Dexter/Dexter/Dexter/ModelControllers/UserModelController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "187"
+                  endingLineNumber = "187"
+                  offsetFromSymbolStart = "1752">
+               </Location>
+               <Location
+                  uuid = "4D015FAB-0D3A-4A1F-9776-FBD538928D64 - 5d37e77322a684d2"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.URL&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static Dexter.UserModelController.downloadProfilePhoto(uid: Swift.String, completion: (Swift.Result&lt;Foundation.URL, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dexter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunchitanand/Documents/Dexter/Dexter/Dexter/ModelControllers/UserModelController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "182"
+                  endingLineNumber = "182"
+                  offsetFromSymbolStart = "342">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "74D361D5-031A-4D10-9086-1CB7E8E2639E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dexter/ModelControllers/UserModelController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
+            landmarkName = "readFromFileSystem(relativePath:uid:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B545BE7F-E960-44A3-9E0B-D0E6B33E99C0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dexter/HomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "startSharing(withName:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B545BE7F-E960-44A3-9E0B-D0E6B33E99C0 - a4ce6312e6ead943"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Optional&lt;__C.GNSMessage&gt;) -&gt; () in Dexter.HomeViewController.startSharing(withName: Swift.String) -&gt; ()"
+                  moduleName = "Dexter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunchitanand/Documents/Dexter/Dexter/Dexter/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
+                  offsetFromSymbolStart = "800">
+               </Location>
+               <Location
+                  uuid = "B545BE7F-E960-44A3-9E0B-D0E6B33E99C0 - f9dc98d017ef66a7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Dexter.User, Swift.Error&gt;) -&gt; () in closure #2 (Swift.Optional&lt;__C.GNSMessage&gt;) -&gt; () in Dexter.HomeViewController.startSharing(withName: Swift.String) -&gt; ()"
+                  moduleName = "Dexter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunchitanand/Documents/Dexter/Dexter/Dexter/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "188"
+                  endingLineNumber = "188"
+                  offsetFromSymbolStart = "136">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
