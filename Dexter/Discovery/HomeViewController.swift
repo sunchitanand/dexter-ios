@@ -47,43 +47,14 @@ class HomeViewController: UIViewController {
     let emptyViewControllerMessage = "People near you, right now, will appear here."
     let emptyViewControllerSubtitle = "Swipe <- to delete card."
     
-    /*
-     var centralManager: CBCentralManager!
-     var discoveredPeripheral: CBPeripheral?
-     var transferCharacteristic: CBCharacteristic?
-     var connectionIterationsComplete = 0
-     var defaultIterations = 5
-     */
-    
-    /*
-     private var bluetoothManager : BluetoothManager
-     
-     init(bluetoothManager: BluetoothManager) {
-     self.bluetoothManager = bluetoothManager
-     super.init(nibName: nil, bundle: nil)
-     }
-     
-     @available(*, unavailable)
-     required init?(coder: NSCoder) {
-     fatalError("init(coder:) has not been implemented")
-     }
-     */
     private var peripheralManager: CBPeripheralManager?
     private var centralManager: CBCentralManager?
     
     
     override func viewDidLoad() {
         
-        /*
-         let options = [CBCentralManagerOptionShowPowerAlertKey: true]
-         centralManager = CBCentralManager(delegate: self, queue: nil, options: options)
-         */
-        
         super.viewDidLoad()
-        
-        //        centralManager = CBCentralManager(delegate: self, queue: nil)
-        //        let options = [CBCentralManagerOptionRestoreIdentifierKey: "DexterCentralManager"]
-        
+
         setupElements()
         self.currentUserId = firebaseAuth.currentUser?.uid
 //        initializePermissionChangeListener()
