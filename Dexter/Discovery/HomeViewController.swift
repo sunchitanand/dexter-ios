@@ -86,8 +86,8 @@ class HomeViewController: UIViewController {
         
         setupElements()
         self.currentUserId = firebaseAuth.currentUser?.uid
-        initializePermissionChangeListener()
-        setupGNSMessageManager()
+//        initializePermissionChangeListener()
+//        setupGNSMessageManager()
         
         // persist uid and fetch from firestore
         print(currentUserId!)
@@ -173,86 +173,6 @@ class HomeViewController: UIViewController {
             //            stopSharing()
         }
         userContactTableViewHeaderView.backgroundColor = discoverySwitch.isOn ? Theme.Color.dGreen : Theme.Color.dRed
-    }
-    
-    /* MARK: Google Nearby */
-    
-    func initializePermissionChangeListener() {
-        /** Permission change listener */
-        nearbyPermission = GNSPermission(changedHandler: { [unowned self] (isGranted) in
-            print("granted: \(isGranted) ")
-        })
-    }
-    
-    func setupGNSMessageManager() {
-        GNSMessageManager.setDebugLoggingEnabled(true)
-        messageMgr = GNSMessageManager(apiKey: Constants.APIKey.nearbyMessages, paramsBlock: { (params) in
-            guard let params = params else {return}
-            
-            /** This is called when microphone permission is enabled or disabled by the user.*/
-            params.microphonePermissionErrorHandler = { hasError in
-                if (hasError) { print("Nearby works better if microphone use is allowed") }
-            }
-            /** This is called when Bluetooth permission is enabled or disabled by the user. */
-            params.bluetoothPermissionErrorHandler = { hasError in
-                if (hasError) { print("Nearby works better if Bluetooth use is allowed") }
-            }
-            /** This is called when Bluetooth is powered on or off by the user. */
-            params.bluetoothPowerErrorHandler = { hasError in
-                if (hasError) { print("Nearby works better if Bluetooth is turned on") }
-            }
-        })
-    }
-    
-    func startSharing(withName name: String) {
-        print("SHARING!!!!")
-        if let messageMgr = self.messageMgr {
-            //            messageLabel.text = name
-            /** Publish the name to nearby devices. */
-            let pubMessage: GNSMessage = GNSMessage(content: name.data(using: .utf8, allowLossyConversion: true))
-            
-            publication = messageMgr.publication(with: pubMessage, paramsBlock: { (params: GNSPublicationParams?) in
-                let data = pubMessage.content!
-                print(String(decoding: data, as: UTF8.self))
-                guard let params = params else {return}
-                params.permissionRequestHandler = { (permissionHandler: GNSPermissionHandler?) in
-                    print("show dialogue")
-                }
-            })
-            /** Subscribe to messages from nearby devices and display them in the message view. */
-            subscription = messageMgr.subscription(messageFoundHandler: { (message: GNSMessage?) in
-                guard let message = message else {return}
-                print("MESSAGE RECEIVED!")
-                let data = message.content!
-                let newIncomingUserId = String(decoding: data, as: UTF8.self)
-                self.incomingUserIds.append(newIncomingUserId)
-                
-                /// Fetch from Firestore and append into nearbyUsers[]
-                UserModelController.getCurrentUser() { (response) in
-                    switch response {
-                    case .success(let newIncomingUser):
-                        print("added")
-                        self.nearbyUsers.append(newIncomingUser)
-                    case .failure(let err):
-                        print("Firestore Error: \(err.localizedDescription)")
-                    }
-                }
-                self.userContactTableView.reloadData()
-                
-            }, messageLostHandler: { (message: GNSMessage?) in
-                guard let message = message else {return}
-                print(message.content!)
-            },
-               paramsBlock:{ (params: GNSSubscriptionParams?) in
-                guard let params = params else { return }
-                params.strategy = GNSStrategy(paramsBlock: { (params: GNSStrategyParams?) in
-                    guard let params = params else { return }
-                    print("Google Nearby: Background Mode Turned On")
-                    params.allowInBackground = true
-                    params.discoveryMediums = .BLE
-                })
-            })
-        }
     }
     
     /* MARK: UI Elements Setup */
