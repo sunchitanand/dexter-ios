@@ -46,10 +46,10 @@
 		B9A087B82427F41000ADC5E3 /* SelectPhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A087B72427F41000ADC5E3 /* SelectPhotoHelper.swift */; };
 		B9A087BC2429F6D200ADC5E3 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = B9A087BB2429F6D200ADC5E3 /* Podfile */; };
 		B9B548EE23D063D100D69C38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B548ED23D063D100D69C38 /* SceneDelegate.swift */; };
+		B9D49AA22443033800ADEF6C /* HomeVIewControllerBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D49AA12443033800ADEF6C /* HomeVIewControllerBackup.swift */; };
 		B9E589B224345A1900274A4E /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E589B124345A1900274A4E /* ExternalAccessory.framework */; };
 		B9E589B424345A2600274A4E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E589B324345A2600274A4E /* AudioToolbox.framework */; };
 		B9E58A0F243D841E00274A4E /* TransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E58A0E243D841D00274A4E /* TransferService.swift */; };
-		B9E58A11243DB32200274A4E /* HomeVIewControllerBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E58A10243DB32200274A4E /* HomeVIewControllerBackup.swift */; };
 		B9E58A13243E923600274A4E /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E58A12243E923600274A4E /* BluetoothManager.swift */; };
 		B9E58A15243E934900274A4E /* CoreBluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E58A14243E934900274A4E /* CoreBluetoothManager.swift */; };
 		B9EB16CD23CDA16B00757817 /* DiscoveryToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EB16CC23CDA16B00757817 /* DiscoveryToggleButton.swift */; };
@@ -131,10 +131,10 @@
 		B9A087BB2429F6D200ADC5E3 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		B9B548EA23CDB22700D69C38 /* imports.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imports.h; sourceTree = "<group>"; };
 		B9B548ED23D063D100D69C38 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = "Dexter/Supporting Files/SceneDelegate.swift"; sourceTree = SOURCE_ROOT; };
+		B9D49AA12443033800ADEF6C /* HomeVIewControllerBackup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeVIewControllerBackup.swift; path = ../../../../../.Trash/HomeVIewControllerBackup.swift; sourceTree = "<group>"; };
 		B9E589B124345A1900274A4E /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		B9E589B324345A2600274A4E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B9E58A0E243D841D00274A4E /* TransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferService.swift; sourceTree = "<group>"; };
-		B9E58A10243DB32200274A4E /* HomeVIewControllerBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVIewControllerBackup.swift; sourceTree = "<group>"; };
 		B9E58A12243E923600274A4E /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		B9E58A14243E934900274A4E /* CoreBluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreBluetoothManager.swift; sourceTree = "<group>"; };
 		B9E58A17243EE5F700274A4E /* Dexter.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Dexter.entitlements; sourceTree = "<group>"; };
@@ -338,8 +338,8 @@
 		B9E58A16243EE2A100274A4E /* Discovery */ = {
 			isa = PBXGroup;
 			children = (
+				B9D49AA12443033800ADEF6C /* HomeVIewControllerBackup.swift */,
 				B94AF31123A63196008BE764 /* HomeViewController.swift */,
-				B9E58A10243DB32200274A4E /* HomeVIewControllerBackup.swift */,
 				B918D47023D6A78F00864C94 /* UserContactCell.swift */,
 			);
 			path = Discovery;
@@ -660,12 +660,12 @@
 				B9B548EE23D063D100D69C38 /* SceneDelegate.swift in Sources */,
 				B94AF32023B818F4008BE764 /* DocumentSerializable.swift in Sources */,
 				B94AF31223A63196008BE764 /* HomeViewController.swift in Sources */,
+				B9D49AA22443033800ADEF6C /* HomeVIewControllerBackup.swift in Sources */,
 				B94AF31023A6311C008BE764 /* SignInViewController.swift in Sources */,
 				B9370D1C2440658A00AD83D2 /* ViewControViewController.swift in Sources */,
 				B955A05523DD500E0033AD51 /* Theme.swift in Sources */,
 				B94AF31E23B59AAD008BE764 /* User.swift in Sources */,
 				B9EB16CD23CDA16B00757817 /* DiscoveryToggleButton.swift in Sources */,
-				B9E58A11243DB32200274A4E /* HomeVIewControllerBackup.swift in Sources */,
 				B94B1AD423A62508001FC054 /* Dexter.xcdatamodeld in Sources */,
 				B9285B642423368C0077F3BD /* MainTabBarController.swift in Sources */,
 				B98148C124031D32005E0429 /* TableViewExtensions.swift in Sources */,
