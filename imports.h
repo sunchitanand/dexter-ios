@@ -10,5 +10,6 @@
 #define imports_h
 
 #import <GNSMessages.h>
+#import <CommonCrypto/CommonHMAC.h>
 
 #endif /* imports_h */

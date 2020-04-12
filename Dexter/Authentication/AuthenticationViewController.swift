@@ -13,6 +13,9 @@ class AuthenticationViewController: UIViewController {
 
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var greetingLabel: UILabel!
+    @IBOutlet weak var topMessageTextView: AlignedTextView!
+    @IBOutlet weak var humaansCoverImageView: UIImageView!
     
     var container: NSPersistentContainer!
     
@@ -23,8 +26,16 @@ class AuthenticationViewController: UIViewController {
     
     // Style the views
     func setupElements() {
-        Styles.styleFilledButton(signUpButton)
-        Styles.styleHollowButton(signInButton)
+        Style.styleFilledButton(signUpButton)
+        Style.styleBackButton(signInButton)
+        Style.labelTitle(greetingLabel)
+        Style.textViewMessage(topMessageTextView)
+        humaansCoverImageView.image = UIImage(named: "cover-dark")
+        humaansCoverImageView.contentMode = .scaleAspectFill
+        
+        /// Dark Mode
+        self.view.backgroundColor = Theme.Color.darkBg
+        topMessageTextView.backgroundColor = Theme.Color.darkBg
     }
 
 }

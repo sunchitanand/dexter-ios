@@ -21,9 +21,23 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Google Nearby</string>
+	<string>Bluetooth is required to discover and share information with other nearby devices. </string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>An anonymous token is advertised via Bluetooth to discover nearby devices.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Google Nearby</string>
+	<string>Microphone is required to produce near-ultrasonic sound to connect with other nearby devices. </string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Upload your profile photo.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SF-Pro-Display-Medium.otf</string>
+		<string>NewYorkExtraLarge-Semibold.otf</string>
+		<string>SF-Pro-Display-Heavy.otf</string>
+		<string>SF-Pro-Display-RegularItalic.otf</string>
+		<string>SF-Pro-Display-Regular.otf</string>
+		<string>SF-Pro-Display-Semibold.otf</string>
+		<string>NewYorkMedium-Heavy.otf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -43,6 +57,11 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-central</string>
+		<string>bluetooth-peripheral</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -62,5 +81,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

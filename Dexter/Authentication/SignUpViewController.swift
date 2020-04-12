@@ -13,12 +13,16 @@ import CoreData
 
 class SignUpViewController: UIViewController {
     
+    @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var fullNameTextField: UITextField!
+    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
-        
+    @IBOutlet weak var backButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupElements()
@@ -35,7 +39,6 @@ class SignUpViewController: UIViewController {
             showError(error!)
         }
         else {
-            
             let email = emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             let firstName = String((fullNameTextField.text?.split(separator: " ").first)!)
@@ -43,27 +46,29 @@ class SignUpViewController: UIViewController {
             
             /** Create user in Firebase Authentication */
             Auth.auth().createUser(withEmail: email!, password: password!) { (authResult, error) in
-                if error != nil {
+                if let error = error {
                     let message = "Error creating user"
                     self.showError(message)
-                    print(message)
+                    print(error.localizedDescription)
                 }
                 else {
-                    
-                    let userData: [String: Any] = [Fields.User.uid: authResult!.user.uid,
-                                    Fields.User.firstName: firstName,
-                                    Fields.User.lastName: lastName,
-                                    Fields.User.email: email!]
+                    /// Remove last two characters of Auth UID to store in Firestore
+                    var firestoreUID = authResult!.user.uid
+                    firestoreUID.removeLast(2)
+                    let userData: [String: Any] = [Fields.User.uid: firestoreUID,
+                                                   Fields.User.firstName: firstName,
+                                                   Fields.User.lastName: lastName,
+                                                   Fields.User.email: email!]
                     
                     let newUser = User(documentData: userData)!
-//                    print(Fields.User.firstName, userData[Fields.User.firstName], newUser.firstName, firstName)
+                    // print(Fields.User.firstName, userData[Fields.User.firstName], newUser.firstName, firstName)
                     
                     /** Create user in Firestore */
-                    UserModelController.createUser(user: newUser, current: true) { (result) in
+                    UserModelController.createUser(newDocumentId: authResult!.user.uid, user: newUser, current: true) { (result) in
                         switch (result) {
                         case .success(let user):
                             print("current user firstname ", user.firstName)
-                            self.transitionToHome()
+                            self.pushAboutUserVC()
                             
                         case .failure(let err):
                             self.showError("Error saving user data")
@@ -71,16 +76,18 @@ class SignUpViewController: UIViewController {
                         }
                     }
                 }
-                
             }
         }
     }
     
+    @IBAction func backTapped(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
     /** DON'T DELETE  */
     
     //    func pushConfirmSignUpVC() {
     //        // grab the navigation view controller and push confirmSignUpVC in that
-    //        let confirmSignUpViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.confirmSignUpViewController) as! ConfirmSignUpViewController
+    //        let confirmSignUpViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.confirmSignUpViewController) as! AboutUserViewController
     //        confirmSignUpViewController.email = emailTextField.text
     //        navigationController?.pushViewController(confirmSignUpViewController, animated: true)
     //    }
@@ -94,12 +101,17 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    func pushAboutUserVC() {
+        let aboutUserViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.aboutUserViewController) as! AboutUserViewController
+        navigationController?.pushViewController(aboutUserViewController, animated: true)
+    }
+    
     func validateFields() -> String? {
         // Check if all fields are filled in
         if fullNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-            return "Please fill in all fields"
+            return "Please fill in all the fields"
         }
         
         // Check if password is secure
@@ -108,7 +120,7 @@ class SignUpViewController: UIViewController {
     
     func showError(_ message: String) {
         errorLabel.text = message
-        errorLabel.alpha = 1
+        errorLabel.alpha = 0.7
     }
     
     func setupElements() {
@@ -116,10 +128,25 @@ class SignUpViewController: UIViewController {
         errorLabel.alpha = 0
         
         /** Style the elements */
-        Styles.styleTextField(fullNameTextField)
-        Styles.styleTextField(emailTextField)
-        Styles.styleTextField(passwordTextField)
-        Styles.styleFilledButton(signUpButton)
+        Style.styleTextField(fullNameTextField)
+        Style.styleTextField(emailTextField)
+        Style.styleTextField(passwordTextField)
+        Style.styleFilledButton(signUpButton)
+        Style.textFieldLabel(fullNameLabel)
+        Style.textFieldLabel(emailLabel)
+        Style.textFieldLabel(passwordLabel)
+        Style.styleBackButton(backButton)
+        errorLabel.textColor = Theme.Color.dRed
+    
+        
+        fullNameTextField.keyboardType = .default
+        fullNameTextField.autocapitalizationType = .words
+        fullNameTextField.autocorrectionType = .no
+        emailTextField.keyboardType = .emailAddress
+        passwordTextField.textContentType = .password
+        
+        /// Dark Mode
+        self.view.backgroundColor = Theme.Color.darkBg
     }
 }
 

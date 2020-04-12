@@ -10,16 +10,16 @@ target 'Dexter' do
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
-  pod 'FirebaseFirestoreSwift'
   pod 'NearbyMessages'
+  pod 'Firebase/Storage'
 
-#  target 'DexterTests' do
-#    inherit! :search_paths
-#    # Pods for testing
-#  end
-#
-#  target 'DexterUITests' do
-#    # Pods for testing
-#  end
+  target 'DexterTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'DexterUITests' do
+    # Pods for testing
+  end
 
 end

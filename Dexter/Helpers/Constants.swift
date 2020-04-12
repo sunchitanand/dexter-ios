@@ -13,11 +13,13 @@ struct Constants {
     struct Storyboard {
         static let homeTabBarController = "HomeTabBarController"
         static let authenticationNavigationController = "AuthenticationNavigationController"
-        static let confirmSignUpViewController = "ConfirmSignUpViewController"
+        static let aboutUserViewController = "AboutUserViewController"
+        static let socialHandlesViewController = "SocialHandlesViewController"
     }
     
     struct APIKey {
-        static let nearbyMessages = "AIzaSyAAL9SZlZKeh9FY7HGPqcRX9cR8GhEvJys"
+//        static let nearbyMessages = "AIzaSyAAL9SZlZKeh9FY7HGPqcRX9cR8GhEvJys"
+        static let nearbyMessages = "AIzaSyBHUwkZ4J3nH65FNM_wUDxhq88-xS7FeUk"
         
     }
 }

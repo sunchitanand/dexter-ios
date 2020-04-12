@@ -18,5 +18,9 @@ struct Fields {
         static let firstName = "firstName"
         static let lastName = "lastName"
         static let email = "email"
+        static let about = "about"
+        static let twitterHandle = "twitterHandle"
+        static let instagramHandle = "instagramHandle"
+        static let profilePhotoURL = "profilePhotoURL"
     }
 }

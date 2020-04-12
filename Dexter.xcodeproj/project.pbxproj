@@ -12,6 +12,7 @@
 		B9285B60241463430077F3BD /* SocialHandlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9285B5F241463430077F3BD /* SocialHandlesViewController.swift */; };
 		B9285B642423368C0077F3BD /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9285B632423368C0077F3BD /* MainTabBarController.swift */; };
 		B92B0EB623FE3406008D1933 /* AlignedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92B0EB523FE3406008D1933 /* AlignedTextView.swift */; };
+		B9370D1C2440658A00AD83D2 /* ViewControViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9370D1B2440658A00AD83D2 /* ViewControViewController.swift */; };
 		B94AF30723A62F1B008BE764 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF30623A62F1B008BE764 /* AuthenticationViewController.swift */; };
 		B94AF30923A62FEA008BE764 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF30823A62FEA008BE764 /* SplashViewController.swift */; };
 		B94AF30C23A63094008BE764 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF30B23A63094008BE764 /* SignUpViewController.swift */; };
@@ -34,7 +35,6 @@
 		B955A05323DD30BE0033AD51 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B955A05223DD30BE0033AD51 /* SettingsViewController.swift */; };
 		B955A05523DD500E0033AD51 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B955A05423DD500E0033AD51 /* Theme.swift */; };
 		B969E8B423BB23CE0096AF29 /* UserModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B969E8B323BB23CD0096AF29 /* UserModelController.swift */; };
-		B97ADC1F23FA543D00AB27AE /* DiscoverySwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97ADC1E23FA543D00AB27AE /* DiscoverySwitch.swift */; };
 		B97ADC5423FA8CA400AB27AE /* NewYorkMedium-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = B97ADC2423FA8C9D00AB27AE /* NewYorkMedium-Heavy.otf */; };
 		B97ADC5523FA8CA400AB27AE /* NewYorkExtraLarge-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B97ADC2523FA8C9D00AB27AE /* NewYorkExtraLarge-Semibold.otf */; };
 		B97ADCC623FA8CE100AB27AE /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B97ADC9923FA8CD900AB27AE /* SF-Pro-Display-Semibold.otf */; };
@@ -48,6 +48,10 @@
 		B9B548EE23D063D100D69C38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B548ED23D063D100D69C38 /* SceneDelegate.swift */; };
 		B9E589B224345A1900274A4E /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E589B124345A1900274A4E /* ExternalAccessory.framework */; };
 		B9E589B424345A2600274A4E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E589B324345A2600274A4E /* AudioToolbox.framework */; };
+		B9E58A0F243D841E00274A4E /* TransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E58A0E243D841D00274A4E /* TransferService.swift */; };
+		B9E58A11243DB32200274A4E /* HomeVIewControllerBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E58A10243DB32200274A4E /* HomeVIewControllerBackup.swift */; };
+		B9E58A13243E923600274A4E /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E58A12243E923600274A4E /* BluetoothManager.swift */; };
+		B9E58A15243E934900274A4E /* CoreBluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E58A14243E934900274A4E /* CoreBluetoothManager.swift */; };
 		B9EB16CD23CDA16B00757817 /* DiscoveryToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EB16CC23CDA16B00757817 /* DiscoveryToggleButton.swift */; };
 		B9EC9BCA23FE845D00C26055 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EC9BC923FE845D00C26055 /* UserProfileViewController.swift */; };
 		B9EC9BD023FE9E9A00C26055 /* DiscoveryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EC9BCF23FE9E9900C26055 /* DiscoveryNavigationController.swift */; };
@@ -86,6 +90,7 @@
 		B9285B5F241463430077F3BD /* SocialHandlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialHandlesViewController.swift; sourceTree = "<group>"; };
 		B9285B632423368C0077F3BD /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		B92B0EB523FE3406008D1933 /* AlignedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignedTextView.swift; sourceTree = "<group>"; };
+		B9370D1B2440658A00AD83D2 /* ViewControViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControViewController.swift; sourceTree = "<group>"; };
 		B94AF30623A62F1B008BE764 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		B94AF30823A62FEA008BE764 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		B94AF30B23A63094008BE764 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -114,7 +119,6 @@
 		B955A05223DD30BE0033AD51 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B955A05423DD500E0033AD51 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		B969E8B323BB23CD0096AF29 /* UserModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelController.swift; sourceTree = "<group>"; };
-		B97ADC1E23FA543D00AB27AE /* DiscoverySwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverySwitch.swift; sourceTree = "<group>"; };
 		B97ADC2423FA8C9D00AB27AE /* NewYorkMedium-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NewYorkMedium-Heavy.otf"; path = "Dexter/Fonts/NewYorkMedium-Heavy.otf"; sourceTree = SOURCE_ROOT; };
 		B97ADC2523FA8C9D00AB27AE /* NewYorkExtraLarge-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NewYorkExtraLarge-Semibold.otf"; sourceTree = "<group>"; };
 		B97ADC9923FA8CD900AB27AE /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
@@ -127,9 +131,13 @@
 		B9A087BB2429F6D200ADC5E3 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		B9B548EA23CDB22700D69C38 /* imports.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imports.h; sourceTree = "<group>"; };
 		B9B548ED23D063D100D69C38 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = "Dexter/Supporting Files/SceneDelegate.swift"; sourceTree = SOURCE_ROOT; };
-		B9E589B024345A0F00274A4E /* Dexter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dexter.entitlements; sourceTree = "<group>"; };
 		B9E589B124345A1900274A4E /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		B9E589B324345A2600274A4E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		B9E58A0E243D841D00274A4E /* TransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferService.swift; sourceTree = "<group>"; };
+		B9E58A10243DB32200274A4E /* HomeVIewControllerBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVIewControllerBackup.swift; sourceTree = "<group>"; };
+		B9E58A12243E923600274A4E /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
+		B9E58A14243E934900274A4E /* CoreBluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreBluetoothManager.swift; sourceTree = "<group>"; };
+		B9E58A17243EE5F700274A4E /* Dexter.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Dexter.entitlements; sourceTree = "<group>"; };
 		B9EB16CC23CDA16B00757817 /* DiscoveryToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryToggleButton.swift; sourceTree = "<group>"; };
 		B9EC9BC923FE845D00C26055 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		B9EC9BCF23FE9E9900C26055 /* DiscoveryNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryNavigationController.swift; sourceTree = "<group>"; };
@@ -188,6 +196,7 @@
 				B94AF30B23A63094008BE764 /* SignUpViewController.swift */,
 				B94AF30D23A630C4008BE764 /* AboutUserViewController.swift */,
 				B9285B5F241463430077F3BD /* SocialHandlesViewController.swift */,
+				B9370D1B2440658A00AD83D2 /* ViewControViewController.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -195,11 +204,14 @@
 		B94AF31723A8B8DA008BE764 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B9E58A12243E923600274A4E /* BluetoothManager.swift */,
+				B9E58A14243E934900274A4E /* CoreBluetoothManager.swift */,
 				B9A087B72427F41000ADC5E3 /* SelectPhotoHelper.swift */,
 				B94AF32323B81940008BE764 /* FirestoreSchema.swift */,
 				B94AF31823A8B942008BE764 /* Styles.swift */,
 				B94AF31A23A8BB3C008BE764 /* Constants.swift */,
 				B955A05423DD500E0033AD51 /* Theme.swift */,
+				B9E58A0E243D841D00274A4E /* TransferService.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -216,6 +228,7 @@
 		B94B1ABD23A62507001FC054 = {
 			isa = PBXGroup;
 			children = (
+				B9E58A17243EE5F700274A4E /* Dexter.entitlements */,
 				B94B1AC823A62508001FC054 /* Dexter */,
 				B94B1AE223A6250D001FC054 /* DexterTests */,
 				B94B1AED23A6250D001FC054 /* DexterUITests */,
@@ -238,16 +251,15 @@
 		B94B1AC823A62508001FC054 /* Dexter */ = {
 			isa = PBXGroup;
 			children = (
-				B9E589B024345A0F00274A4E /* Dexter.entitlements */,
 				B97ADC2023FA8C7000AB27AE /* Fonts */,
 				B94B1ACF23A62508001FC054 /* Main.storyboard */,
 				B94AF30823A62FEA008BE764 /* SplashViewController.swift */,
 				B9EC9BCF23FE9E9900C26055 /* DiscoveryNavigationController.swift */,
 				B94AF30A23A62FF1008BE764 /* Authentication */,
 				B9285B632423368C0077F3BD /* MainTabBarController.swift */,
+				B9E58A16243EE2A100274A4E /* Discovery */,
 				B9EC9BC923FE845D00C26055 /* UserProfileViewController.swift */,
 				B955A05223DD30BE0033AD51 /* SettingsViewController.swift */,
-				B94AF31123A63196008BE764 /* HomeViewController.swift */,
 				B955A05A23E161080033AD51 /* Views */,
 				B969E8B523BB4ADA0096AF29 /* ModelControllers */,
 				B94AF31C23B59A51008BE764 /* Models */,
@@ -295,8 +307,6 @@
 			isa = PBXGroup;
 			children = (
 				B9EB16CC23CDA16B00757817 /* DiscoveryToggleButton.swift */,
-				B918D47023D6A78F00864C94 /* UserContactCell.swift */,
-				B97ADC1E23FA543D00AB27AE /* DiscoverySwitch.swift */,
 				B92B0EB523FE3406008D1933 /* AlignedTextView.swift */,
 				B98148C024031D32005E0429 /* TableViewExtensions.swift */,
 			);
@@ -323,6 +333,16 @@
 				B97ADC2523FA8C9D00AB27AE /* NewYorkExtraLarge-Semibold.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B9E58A16243EE2A100274A4E /* Discovery */ = {
+			isa = PBXGroup;
+			children = (
+				B94AF31123A63196008BE764 /* HomeViewController.swift */,
+				B9E58A10243DB32200274A4E /* HomeVIewControllerBackup.swift */,
+				B918D47023D6A78F00864C94 /* UserContactCell.swift */,
+			);
+			path = Discovery;
 			sourceTree = "<group>";
 		};
 		D89C8A3CE6FDD398E3609D1C /* Frameworks */ = {
@@ -627,9 +647,12 @@
 				B94AF31B23A8BB3C008BE764 /* Constants.swift in Sources */,
 				B9EC9BD023FE9E9A00C26055 /* DiscoveryNavigationController.swift in Sources */,
 				B94AF31923A8B942008BE764 /* Styles.swift in Sources */,
+				B9E58A13243E923600274A4E /* BluetoothManager.swift in Sources */,
 				B918D47123D6A78F00864C94 /* UserContactCell.swift in Sources */,
 				B9EC9BCA23FE845D00C26055 /* UserProfileViewController.swift in Sources */,
+				B9E58A0F243D841E00274A4E /* TransferService.swift in Sources */,
 				B92B0EB623FE3406008D1933 /* AlignedTextView.swift in Sources */,
+				B9E58A15243E934900274A4E /* CoreBluetoothManager.swift in Sources */,
 				B94B1ACA23A62508001FC054 /* AppDelegate.swift in Sources */,
 				B94AF32423B81940008BE764 /* FirestoreSchema.swift in Sources */,
 				B94AF30923A62FEA008BE764 /* SplashViewController.swift in Sources */,
@@ -637,11 +660,12 @@
 				B9B548EE23D063D100D69C38 /* SceneDelegate.swift in Sources */,
 				B94AF32023B818F4008BE764 /* DocumentSerializable.swift in Sources */,
 				B94AF31223A63196008BE764 /* HomeViewController.swift in Sources */,
-				B97ADC1F23FA543D00AB27AE /* DiscoverySwitch.swift in Sources */,
 				B94AF31023A6311C008BE764 /* SignInViewController.swift in Sources */,
+				B9370D1C2440658A00AD83D2 /* ViewControViewController.swift in Sources */,
 				B955A05523DD500E0033AD51 /* Theme.swift in Sources */,
 				B94AF31E23B59AAD008BE764 /* User.swift in Sources */,
 				B9EB16CD23CDA16B00757817 /* DiscoveryToggleButton.swift in Sources */,
+				B9E58A11243DB32200274A4E /* HomeVIewControllerBackup.swift in Sources */,
 				B94B1AD423A62508001FC054 /* Dexter.xcdatamodeld in Sources */,
 				B9285B642423368C0077F3BD /* MainTabBarController.swift in Sources */,
 				B98148C124031D32005E0429 /* TableViewExtensions.swift in Sources */,
@@ -824,6 +848,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Dexter/Dexter.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 74R563DASM;
 				INFOPLIST_FILE = Dexter/Info.plist;
@@ -833,6 +858,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.Dexter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = imports.h;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 5.0;
@@ -846,6 +872,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Dexter/Dexter.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 74R563DASM;
 				INFOPLIST_FILE = Dexter/Info.plist;
@@ -855,6 +882,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.Dexter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = imports.h;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 5.0;

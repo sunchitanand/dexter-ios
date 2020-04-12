@@ -14,14 +14,15 @@ import Firebase
  class AppDelegate: UIResponder, UIApplicationDelegate {
         
     var window: UIWindow?
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+//        UITabBar.appearance().tintColor = .red
         FirebaseApp.configure()
+//        if let rootVC = window?.rootViewController as? SplashViewController {
+//            rootVC.container = persistentContainer
+//        }
         
-        if let rootVC = window?.rootViewController as? SplashViewController {
-            rootVC.container = persistentContainer
-        }
         return true
     }
 
@@ -63,9 +64,9 @@ import Firebase
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
-        if container != nil {
-            print("YES!!!!")
-        }
+//        if container != nil {
+//            print("YES!!!!")
+//        }
         return container
     }()
 
@@ -84,6 +85,14 @@ import Firebase
             }
         }
     }
+}
 
+extension UIView {
+    func pinEdges(to other: UIView) {
+        leadingAnchor.constraint(equalTo: other.leadingAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: other.trailingAnchor).isActive = true
+        topAnchor.constraint(equalTo: other.topAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: other.bottomAnchor).isActive = true
+    }
 }
 

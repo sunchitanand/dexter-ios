@@ -17,14 +17,15 @@ class SplashViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        /// DARK MODE
+        self.view.backgroundColor = Theme.Color.darkBg
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if Auth.auth().currentUser != nil {
-            toHome = true
+        if (Auth.auth().currentUser != nil) {
             navigateToHome()
         } else {
-            toHome = false
             navigateToAuth()
         }
     }
@@ -46,17 +47,8 @@ class SplashViewController: UIViewController {
         // self.present(homeViewController, animated: true, completion: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if toHome {
-            if let homeVC = segue.destination as? HomeViewController {
-                homeVC.container = container
-            }
-        }
-        else {
-            if let authVC = segue.destination as? AuthenticationViewController {
-                authVC.container = container
-            }
-        }
-    }
-    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//    }
+//
 }

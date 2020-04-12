@@ -12,9 +12,12 @@ import Firebase
 class SignInViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var backButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,19 +26,22 @@ class SignInViewController: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
-        //        NotificationCenter.default.addObserver(self, selector: #selector(SignInViewController.keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        //        NotificationCenter.default.addObserver(self, selector: #selector(SignInViewController.keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        /*
+         NotificationCenter.default.addObserver(self, selector: #selector(SignInViewController.keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+         NotificationCenter.default.addObserver(self, selector: #selector(SignInViewController.keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+         */
     }
     
-    
-    //    deinit {
-    //        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-    //        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    //        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-    //    }
+    /*
+     Slide up on keyboard show
+     deinit {
+     NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+     NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+     NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+     }
+     */
     
     @IBAction func signInTapped(_ sender: Any) {
-        
         let email = emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         
@@ -49,26 +55,38 @@ class SignInViewController: UIViewController {
             }
             else {
                 /// Transition to home
-                self.transitionToHome()
-                
+                UserModelController.getCurrentUser() { (response) in
+                    switch (response) {
+                    case .success(_):
+                        self.transitionToHome()
+                    case .failure(let err):
+                        print("Login Error: \(err.localizedDescription)")
+                    }
+                }
             }
         }
     }
     
-    //    @objc func keyboardWillShow(notification: NSNotification) {
-    //        guard let userInfo = notification.userInfo else {return}
-    //        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
-    //        let keyboardFrame = keyboardSize.cgRectValue
-    //        if self.view.frame.origin.y == 0 {
-    //            self.view.frame.origin.y -= keyboardFrame.height
-    //        }
-    //    }
-    //
-    //    @objc func keyboardWillHide(notification: NSNotification) {
-    //        if self.view.frame.origin.y != 0 {
-    //            self.view.frame.origin.y = 0
-    //        }
-    //    }
+    @IBAction func backTapped(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    /*
+     @objc func keyboardWillShow(notification: NSNotification) {
+     guard let userInfo = notification.userInfo else {return}
+     guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+     let keyboardFrame = keyboardSize.cgRectValue
+     if self.view.frame.origin.y == 0 {
+     self.view.frame.origin.y -= keyboardFrame.height
+     }
+     }
+     
+     @objc func keyboardWillHide(notification: NSNotification) {
+     if self.view.frame.origin.y != 0 {
+     self.view.frame.origin.y = 0
+     }
+     }
+     */
     
     func transitionToHome() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -76,6 +94,13 @@ class SignInViewController: UIViewController {
             let homeContainerVC = storyboard.instantiateViewController(identifier: Constants.Storyboard.homeTabBarController) as? UITabBarController
             self.view.window?.rootViewController = homeContainerVC
             self.view.window?.makeKeyAndVisible()
+            if let window = self.view.window {
+                UIView.transition(with: window,
+                duration: 0.3,
+                options: .transitionCrossDissolve,
+                animations: nil,
+                completion: nil)
+            }
         }
     }
     
@@ -85,14 +110,22 @@ class SignInViewController: UIViewController {
     }
     
     func setupElements() {
-        // Hide the error label
+        /// Hide the error label
         errorLabel.alpha = 0
         
-        // Style the elements
-        Styles.styleTextField(emailTextField)
-        Styles.styleTextField(passwordTextField)
-        Styles.styleFilledButton(signInButton)
-        Styles.messageLabel(errorLabel)
+        /// Style the elements
+        Style.styleTextField(emailTextField)
+        Style.styleTextField(passwordTextField)
+        Style.styleFilledButton(signInButton)
+        Style.setFontandSize(textView: nil, label: errorLabel, font: Theme.Font.sansSerifRegular, size: 15)
+        Style.styleBackButton(backButton)
+        Style.textFieldLabel(emailLabel)
+        Style.textFieldLabel(passwordLabel)
+        
+        emailTextField.keyboardType = .emailAddress
+        
+        /// Dark mode
+        self.view.backgroundColor = Theme.Color.darkBg
         
     }
     
