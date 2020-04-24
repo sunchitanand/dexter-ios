@@ -23,6 +23,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
     
+    var isTransitioningFromBio = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupElements()
@@ -30,6 +32,10 @@ class SignUpViewController: UIViewController {
         fullNameTextField.delegate = self
         passwordTextField.delegate = self
         emailTextField.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print(isTransitioningFromBio)
     }
     
     @IBAction func signUpTapped(_ sender: Any) {
@@ -95,7 +101,7 @@ class SignUpViewController: UIViewController {
     func transitionToHome() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         DispatchQueue.main.async {
-            let homeContainerVC = storyboard.instantiateViewController(identifier: Constants.Storyboard.homeTabBarController) as? UITabBarController
+            let homeContainerVC = storyboard.instantiateViewController(identifier: Constants.Storyboard.homeSidebarContainerController)
             self.view.window?.rootViewController = homeContainerVC
             self.view.window?.makeKeyAndVisible()
         }

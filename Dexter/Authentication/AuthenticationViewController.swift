@@ -14,7 +14,7 @@ class AuthenticationViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var greetingLabel: UILabel!
-    @IBOutlet weak var topMessageTextView: AlignedTextView!
+    @IBOutlet weak var topMessageTextView: DisplayTextView!
     @IBOutlet weak var humaansCoverImageView: UIImageView!
     
     var container: NSPersistentContainer!

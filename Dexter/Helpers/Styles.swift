@@ -16,7 +16,7 @@ class Style {
     }
     
     static func styleTextField(_ textField:UITextField) {
-//        textField.backgroundColor = Theme.Color.cardBg
+        //        textField.backgroundColor = Theme.Color.cardBg
         textField.backgroundColor = .black
         textField.textColor = .white
         
@@ -87,7 +87,7 @@ class Style {
     static func titleNewYork(_ textView: UITextView) {
         textView.font = UIFont(name: "NewYorkMedium-Heavy", size: 24)
         textView.alpha = 1
-//        textView.textColor = Theme.Color.title
+        //        textView.textColor = Theme.Color.title
     }
     
     /* MARK: Labels */
@@ -95,7 +95,7 @@ class Style {
     static func discoveryTitleLabel(_ label: UILabel) {
         label.font = UIFont(name: "NewYorkMedium-Heavy", size: 25)
         label.alpha = 1
-//        label.textColor = Theme.Color.title
+        //        label.textColor = Theme.Color.title
         label.textColor = Theme.Color.darkBg
     }
     
@@ -112,6 +112,7 @@ class Style {
     static func textViewSubtitle(_ textView: UITextView) {
         textView.font = UIFont(name: Theme.Font.sansSerifMedium, size: 20)
         textView.textColor = .white
+        textView.sizeToFit()
     }
     
     static func headerSubtitle(_ textView: UITextView) {
@@ -135,10 +136,12 @@ class Style {
     }
     
     static func aboutTextView(_ aboutTextView: UITextView) {
-//        aboutTextView.backgroundColor = Theme.Color.cardBg
+        //        aboutTextView.backgroundColor = Theme.Color.cardBg
         aboutTextView.backgroundColor = .black
-        //        aboutTextView.layer.borderWidth = 3
-        //        aboutTextView.layer.borderColor = Theme.Color.greenOn.cgColor
+        /*
+         aboutTextView.layer.borderWidth = 3
+         aboutTextView.layer.borderColor = Theme.Color.greenOn.cgColor
+         */
         aboutTextView.layer.cornerRadius = 10
         aboutTextView.textContainer.maximumNumberOfLines = 10
         aboutTextView.textAlignment = .center
@@ -148,15 +151,49 @@ class Style {
         
         aboutTextView.textColor = .white
         
-//        aboutTextView.layer.frame = CGRect(x: <#T##Double#>, y: <#T##Double#>, width: <#T##Double#>, height: <#T##Double#>)
-//        aboutTextView.translatesAutoresizingMaskIntoConstraints = true
-//        aboutTextView.sizeToFit()
-//        aboutTextView.isScrollEnabled = false
+        /*
+         aboutTextView.layer.frame = CGRect(x: <#T##Double#>, y: <#T##Double#>, width: <#T##Double#>, height: <#T##Double#>)
+         aboutTextView.translatesAutoresizingMaskIntoConstraints = true
+         aboutTextView.sizeToFit()
+         aboutTextView.isScrollEnabled = false
+         */
     }
     
     static func profilePhotoImageView(_ imageView: UIImageView) {
         imageView.contentMode = UIView.ContentMode.scaleAspectFill
         imageView.layer.cornerRadius = 5
+    }
+    
+    static func renderUserCardElements(cardContainer: UIView, separator: UIView, profilePhoto: UIImageView, twitterLogo: UIImageView, instagramLogo: UIImageView, fullName: UILabel, email: UILabel, bio: UITextView, twitterHandle: UILabel?, instagramUsername: UILabel?) {
+        
+        let cardBgColor = UIColor.black
+        
+        cardContainer.backgroundColor = cardBgColor
+        cardContainer.layer.cornerRadius = 10
+        cardContainer.layer.shadowOpacity = 0.3
+        cardContainer.layer.shadowOffset = CGSize(width: 1, height: 2)
+        
+        separator.backgroundColor = Theme.Color.darkBg
+        
+        Style.profilePhotoImageView(profilePhoto)
+        
+        let twitterLogoImg = UIImage(named: "twitter-logo-blue")
+        let instagramLogoImg = UIImage(named: "instagram-logo")
+        twitterLogo.image = twitterLogoImg
+        instagramLogo.image = instagramLogoImg
+        twitterLogo.contentMode = .scaleAspectFit
+        instagramLogo.contentMode = .scaleAspectFit
+        
+        fullName.font = UIFont(name: Theme.Font.sansSerifHeavy, size: 18)
+        fullName.textColor = .white
+        
+        email.textColor = Theme.Color.dGreen
+        email.font = UIFont(name: Theme.Font.sansSerifMedium, size: 17)
+        
+        bio.font = UIFont(name: Theme.Font.sansSerifMedium, size: 17)
+        bio.backgroundColor = cardBgColor
+        bio.textColor = .white
+        
     }
     
 }

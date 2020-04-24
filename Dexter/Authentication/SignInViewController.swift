@@ -91,7 +91,7 @@ class SignInViewController: UIViewController {
     func transitionToHome() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         DispatchQueue.main.async {
-            let homeContainerVC = storyboard.instantiateViewController(identifier: Constants.Storyboard.homeTabBarController) as? UITabBarController
+            let homeContainerVC = storyboard.instantiateViewController(identifier: Constants.Storyboard.homeSidebarContainerController)
             self.view.window?.rootViewController = homeContainerVC
             self.view.window?.makeKeyAndVisible()
             if let window = self.view.window {

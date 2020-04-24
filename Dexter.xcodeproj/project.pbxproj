@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		A134BA585BBDFD3B2D825F02 /* Pods_Dexter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 024756971A4871AB1C77B386 /* Pods_Dexter.framework */; };
+		B91313F124496E030074F9C1 /* SidebarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91313F024496E030074F9C1 /* SidebarCell.swift */; };
 		B918D47123D6A78F00864C94 /* UserContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B918D47023D6A78F00864C94 /* UserContactCell.swift */; };
+		B92686EC244BBEC40057A33E /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92686EB244BBEC40057A33E /* SidebarViewController.swift */; };
 		B9285B60241463430077F3BD /* SocialHandlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9285B5F241463430077F3BD /* SocialHandlesViewController.swift */; };
 		B9285B642423368C0077F3BD /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9285B632423368C0077F3BD /* MainTabBarController.swift */; };
-		B92B0EB623FE3406008D1933 /* AlignedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92B0EB523FE3406008D1933 /* AlignedTextView.swift */; };
+		B92B0EB623FE3406008D1933 /* DisplayTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92B0EB523FE3406008D1933 /* DisplayTextView.swift */; };
 		B9370D1C2440658A00AD83D2 /* ViewControViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9370D1B2440658A00AD83D2 /* ViewControViewController.swift */; };
 		B94AF30723A62F1B008BE764 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF30623A62F1B008BE764 /* AuthenticationViewController.swift */; };
 		B94AF30923A62FEA008BE764 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF30823A62FEA008BE764 /* SplashViewController.swift */; };
@@ -49,7 +51,6 @@
 		B9E589B224345A1900274A4E /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E589B124345A1900274A4E /* ExternalAccessory.framework */; };
 		B9E589B424345A2600274A4E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E589B324345A2600274A4E /* AudioToolbox.framework */; };
 		B9E58A0F243D841E00274A4E /* TransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E58A0E243D841D00274A4E /* TransferService.swift */; };
-		B9E58A11243DB32200274A4E /* HomeVIewControllerBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E58A10243DB32200274A4E /* HomeVIewControllerBackup.swift */; };
 		B9E58A13243E923600274A4E /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E58A12243E923600274A4E /* BluetoothManager.swift */; };
 		B9E58A15243E934900274A4E /* CoreBluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E58A14243E934900274A4E /* CoreBluetoothManager.swift */; };
 		B9EB16CD23CDA16B00757817 /* DiscoveryToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EB16CC23CDA16B00757817 /* DiscoveryToggleButton.swift */; };
@@ -86,10 +87,12 @@
 		AAE5A4C925C2107F166030C0 /* Pods-Dexter-DexterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dexter-DexterUITests.release.xcconfig"; path = "Target Support Files/Pods-Dexter-DexterUITests/Pods-Dexter-DexterUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B90D685023FFA93F00BC06E8 /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B90D685423FFAB4900BC06E8 /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B91313F024496E030074F9C1 /* SidebarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarCell.swift; sourceTree = "<group>"; };
 		B918D47023D6A78F00864C94 /* UserContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContactCell.swift; sourceTree = "<group>"; };
+		B92686EB244BBEC40057A33E /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		B9285B5F241463430077F3BD /* SocialHandlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialHandlesViewController.swift; sourceTree = "<group>"; };
 		B9285B632423368C0077F3BD /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		B92B0EB523FE3406008D1933 /* AlignedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignedTextView.swift; sourceTree = "<group>"; };
+		B92B0EB523FE3406008D1933 /* DisplayTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayTextView.swift; sourceTree = "<group>"; };
 		B9370D1B2440658A00AD83D2 /* ViewControViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControViewController.swift; sourceTree = "<group>"; };
 		B94AF30623A62F1B008BE764 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		B94AF30823A62FEA008BE764 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -134,7 +137,6 @@
 		B9E589B124345A1900274A4E /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		B9E589B324345A2600274A4E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B9E58A0E243D841D00274A4E /* TransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferService.swift; sourceTree = "<group>"; };
-		B9E58A10243DB32200274A4E /* HomeVIewControllerBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVIewControllerBackup.swift; sourceTree = "<group>"; };
 		B9E58A12243E923600274A4E /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		B9E58A14243E934900274A4E /* CoreBluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreBluetoothManager.swift; sourceTree = "<group>"; };
 		B9E58A17243EE5F700274A4E /* Dexter.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Dexter.entitlements; sourceTree = "<group>"; };
@@ -257,7 +259,8 @@
 				B9EC9BCF23FE9E9900C26055 /* DiscoveryNavigationController.swift */,
 				B94AF30A23A62FF1008BE764 /* Authentication */,
 				B9285B632423368C0077F3BD /* MainTabBarController.swift */,
-				B9E58A16243EE2A100274A4E /* Discovery */,
+				B92686EB244BBEC40057A33E /* SidebarViewController.swift */,
+				B94AF31123A63196008BE764 /* HomeViewController.swift */,
 				B9EC9BC923FE845D00C26055 /* UserProfileViewController.swift */,
 				B955A05223DD30BE0033AD51 /* SettingsViewController.swift */,
 				B955A05A23E161080033AD51 /* Views */,
@@ -307,8 +310,10 @@
 			isa = PBXGroup;
 			children = (
 				B9EB16CC23CDA16B00757817 /* DiscoveryToggleButton.swift */,
-				B92B0EB523FE3406008D1933 /* AlignedTextView.swift */,
+				B92B0EB523FE3406008D1933 /* DisplayTextView.swift */,
 				B98148C024031D32005E0429 /* TableViewExtensions.swift */,
+				B918D47023D6A78F00864C94 /* UserContactCell.swift */,
+				B91313F024496E030074F9C1 /* SidebarCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -333,16 +338,6 @@
 				B97ADC2523FA8C9D00AB27AE /* NewYorkExtraLarge-Semibold.otf */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		B9E58A16243EE2A100274A4E /* Discovery */ = {
-			isa = PBXGroup;
-			children = (
-				B94AF31123A63196008BE764 /* HomeViewController.swift */,
-				B9E58A10243DB32200274A4E /* HomeVIewControllerBackup.swift */,
-				B918D47023D6A78F00864C94 /* UserContactCell.swift */,
-			);
-			path = Discovery;
 			sourceTree = "<group>";
 		};
 		D89C8A3CE6FDD398E3609D1C /* Frameworks */ = {
@@ -644,6 +639,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B94AF30C23A63094008BE764 /* SignUpViewController.swift in Sources */,
+				B91313F124496E030074F9C1 /* SidebarCell.swift in Sources */,
 				B94AF31B23A8BB3C008BE764 /* Constants.swift in Sources */,
 				B9EC9BD023FE9E9A00C26055 /* DiscoveryNavigationController.swift in Sources */,
 				B94AF31923A8B942008BE764 /* Styles.swift in Sources */,
@@ -651,7 +647,7 @@
 				B918D47123D6A78F00864C94 /* UserContactCell.swift in Sources */,
 				B9EC9BCA23FE845D00C26055 /* UserProfileViewController.swift in Sources */,
 				B9E58A0F243D841E00274A4E /* TransferService.swift in Sources */,
-				B92B0EB623FE3406008D1933 /* AlignedTextView.swift in Sources */,
+				B92B0EB623FE3406008D1933 /* DisplayTextView.swift in Sources */,
 				B9E58A15243E934900274A4E /* CoreBluetoothManager.swift in Sources */,
 				B94B1ACA23A62508001FC054 /* AppDelegate.swift in Sources */,
 				B94AF32423B81940008BE764 /* FirestoreSchema.swift in Sources */,
@@ -665,7 +661,6 @@
 				B955A05523DD500E0033AD51 /* Theme.swift in Sources */,
 				B94AF31E23B59AAD008BE764 /* User.swift in Sources */,
 				B9EB16CD23CDA16B00757817 /* DiscoveryToggleButton.swift in Sources */,
-				B9E58A11243DB32200274A4E /* HomeVIewControllerBackup.swift in Sources */,
 				B94B1AD423A62508001FC054 /* Dexter.xcdatamodeld in Sources */,
 				B9285B642423368C0077F3BD /* MainTabBarController.swift in Sources */,
 				B98148C124031D32005E0429 /* TableViewExtensions.swift in Sources */,
@@ -673,6 +668,7 @@
 				B969E8B423BB23CE0096AF29 /* UserModelController.swift in Sources */,
 				B9285B60241463430077F3BD /* SocialHandlesViewController.swift in Sources */,
 				B955A05323DD30BE0033AD51 /* SettingsViewController.swift in Sources */,
+				B92686EC244BBEC40057A33E /* SidebarViewController.swift in Sources */,
 				B9A087B82427F41000ADC5E3 /* SelectPhotoHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

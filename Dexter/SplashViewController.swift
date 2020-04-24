@@ -28,10 +28,12 @@ class SplashViewController: UIViewController {
         } else {
             navigateToAuth()
         }
+        
+        
     }
     
     func navigateToHome() {
-        let homeViewController = storyboard?.instantiateViewController(identifier: "HomeTabBarController") as! UITabBarController
+        let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeSidebarContainerController)
         DispatchQueue.main.async {
             self.view.window?.rootViewController = homeViewController
             self.view.window?.makeKeyAndVisible()

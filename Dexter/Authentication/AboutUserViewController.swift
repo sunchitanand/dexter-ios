@@ -12,12 +12,12 @@ class AboutUserViewController: UIViewController {
     
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var greetingTitleLabel: UILabel!
-    @IBOutlet weak var greetingSubtitleTextView: AlignedTextView!
+    @IBOutlet weak var greetingSubtitleTextView: DisplayTextView!
     @IBOutlet weak var aboutTextView: UITextView!
     @IBOutlet weak var backButton: UIButton!
     
     public var email : String? = ""
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupElements()
@@ -39,6 +39,9 @@ class AboutUserViewController: UIViewController {
     }
     
     @IBAction func backTapped(_ sender: Any) {
+        /// Tell the SignUp page that back has been pressed
+        let signUpVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.signUpViewController) as! SignUpViewController
+        signUpVC.isTransitioningFromBio = true
         navigationController?.popViewController(animated: true)
     }
     

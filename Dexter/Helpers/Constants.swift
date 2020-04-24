@@ -11,10 +11,12 @@ import Foundation
 struct Constants {
     
     struct Storyboard {
-        static let homeTabBarController = "HomeTabBarController"
+        static let homeSidebarContainerController = "HomeSidebarContainer"
         static let authenticationNavigationController = "AuthenticationNavigationController"
         static let aboutUserViewController = "AboutUserViewController"
         static let socialHandlesViewController = "SocialHandlesViewController"
+        static let homeViewController = "HomeViewController"
+        static let signUpViewController = "SignUpViewController"
     }
     
     struct APIKey {

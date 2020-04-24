@@ -304,8 +304,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "222"
             endingLineNumber = "222"
-            landmarkName = "startSharing(withName:)"
-            landmarkType = "9">
+            landmarkName = "toggleStatusBarColor()"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "B545BE7F-E960-44A3-9E0B-D0E6B33E99C0 - a4ce6312e6ead943"
@@ -352,8 +352,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "178"
             endingLineNumber = "178"
-            landmarkName = "setupGNSMessageManager()"
-            landmarkType = "9">
+            landmarkName = "setupElements()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -368,8 +368,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "195"
             endingLineNumber = "195"
-            landmarkName = "setupGNSMessageManager()"
-            landmarkType = "9">
+            landmarkName = "setupElements()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -384,8 +384,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "199"
             endingLineNumber = "199"
-            landmarkName = "startSharing(withName:)"
-            landmarkType = "9">
+            landmarkName = "setupElements()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -400,8 +400,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "205"
             endingLineNumber = "205"
-            landmarkName = "startSharing(withName:)"
-            landmarkType = "9">
+            landmarkName = "setupNavigationBar()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -416,8 +416,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "216"
             endingLineNumber = "216"
-            landmarkName = "startSharing(withName:)"
-            landmarkType = "9">
+            landmarkName = "preferredStatusBarUpdateAnimation"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -20,6 +20,7 @@ extension UITableView {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = title
         titleLabel.textColor = UIColor.lightGray
+        titleLabel.alpha = 0.5
         
         emptyView.addSubview(titleLabel)
         emptyView.addSubview(messageLabel)
@@ -37,6 +38,7 @@ extension UITableView {
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.textColor = UIColor.lightGray
         messageLabel.font = UIFont(name: Theme.Font.sansSerifRegularItalic, size: 18)
+        messageLabel.alpha = 0.5
         messageLabel.centerXAnchor
             .constraint(equalTo: emptyView.centerXAnchor).isActive = true
         //        messageLabel

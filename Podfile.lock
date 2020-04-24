@@ -293,6 +293,7 @@ PODS:
     - GoogleSymbolUtilities (~> 1.1)
     - GoogleUtilitiesLegacy (~> 1.3)
   - PromisesObjC (1.2.8)
+  - SideMenuSwift (2.0.5)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -301,6 +302,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - NearbyMessages
+  - SideMenuSwift
 
 SPEC REPOS:
   trunk:
@@ -331,6 +333,7 @@ SPEC REPOS:
     - nanopb
     - NearbyMessages
     - PromisesObjC
+    - SideMenuSwift
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
@@ -360,7 +363,8 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   NearbyMessages: bd9e88f2df7fbab78be58fed58580d5d5bd62cbf
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
+  SideMenuSwift: c7d99c270e0fad922a14b81f1dcc7a84c764bcd5
 
-PODFILE CHECKSUM: 702611f97f0c8469767838adfa26d3834cc8a7ee
+PODFILE CHECKSUM: c8aa6a5b127c977f53c3d6bf56733a8e4927eee8
 
 COCOAPODS: 1.9.1

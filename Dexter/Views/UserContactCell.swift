@@ -11,8 +11,8 @@ import UIKit
 class UserContactCell: UITableViewCell {
     
     @IBOutlet weak var profilePhotoImageView: UIImageView!
-    @IBOutlet weak var nameTextView: AlignedTextView!
-    @IBOutlet weak var aboutTextView: AlignedTextView!
+    @IBOutlet weak var nameTextView: DisplayTextView!
+    @IBOutlet weak var aboutTextView: DisplayTextView!
     //    @IBOutlet weak var cardView: UIView!
     
     // TODO: pass User and update all views
@@ -20,19 +20,20 @@ class UserContactCell: UITableViewCell {
         self.nameTextView.text = user.firstName + " " + user.lastName
         self.aboutTextView.text = user.about
         
-        //        UserModelController.downloadProfilePhoto(uid: user.uid) { (result) in
-        //            switch result {
-        //            case .success(let imageFileURL):
-        //                let imageData = try! Data(contentsOf: imageFileURL)
-        //                let image = UIImage(data: imageData)
-        //
-        //                print("IMAGE: ", image!)
-        //                self.profilePhotoImageView.image = image
-        //            case .failure(let err):
-        //                print("Firebase Download Error: \(err.localizedDescription)")
-        //            }
-        //        }
-        
+        /*
+         UserModelController.downloadProfilePhoto(uid: user.uid) { (result) in
+         switch result {
+         case .success(let imageFileURL):
+         let imageData = try! Data(contentsOf: imageFileURL)
+         let image = UIImage(data: imageData)
+         
+         print("IMAGE: ", image!)
+         self.profilePhotoImageView.image = image
+         case .failure(let err):
+         print("Firebase Download Error: \(err.localizedDescription)")
+         }
+         }
+         */
         UserModelController.readFromFileSystem(relativePath: "profile-pictures", uid: user.uid) { (image) in
             print("image: ", image.debugDescription)
             self.profilePhotoImageView.image = image
@@ -58,8 +59,6 @@ class UserContactCell: UITableViewCell {
         nameTextView.textColor = .white
         aboutTextView.backgroundColor = Theme.Color.darkBg
         aboutTextView.textColor = .white
-        
-        
         
         /*
          cardView.backgroundColor = .white

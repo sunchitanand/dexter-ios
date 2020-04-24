@@ -1,5 +1,5 @@
 //
-//  AlignedTextView.swift
+//  DisplayTextView.swift
 //  Dexter
 //
 //  Created by Sunchit Anand on 2/19/20.
@@ -8,18 +8,18 @@
 
 import UIKit
 
-class AlignedTextView: UITextView {
+class DisplayTextView: UITextView {
     
     override func awakeFromNib() {
         self.isEditable = false
         self.isUserInteractionEnabled = false
+        self.isScrollEnabled = false
     }
     
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         if action == #selector(UIResponderStandardEditActions.paste(_:)) {
             return false
         }
-        
         if action == #selector(UIResponderStandardEditActions.copy(_:)) {
             return false
         }

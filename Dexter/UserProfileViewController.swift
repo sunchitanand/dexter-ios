@@ -17,7 +17,9 @@ class UserProfileViewController: UIViewController {
     @IBOutlet weak var aboutTextView: UITextView!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var twitterUsernameLabel: UILabel!
+    @IBOutlet weak var twitterLogo: UIImageView!
     @IBOutlet weak var instagramUsernameLabel: UILabel!
+    @IBOutlet weak var instagramLogo: UIImageView!
     @IBOutlet weak var container: UIView!
     
     public var temp : String = ""
@@ -26,6 +28,7 @@ class UserProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupElements()
+        setupDummyData()
     }
     
     @IBAction func backTapped(_ sender: Any) {
@@ -33,35 +36,23 @@ class UserProfileViewController: UIViewController {
     }
     
     func setupElements() {
-        if let selectedUser = selectedUser {
-            let first = selectedUser.firstName
-            let last = selectedUser.lastName
-            fullNameLabel.text = first + " " + last
-            aboutTextView.text = selectedUser.about
-            emailLabel.text = selectedUser.email
-            twitterUsernameLabel.text = selectedUser.twitterHandle
-            instagramUsernameLabel.text = selectedUser.instagramHandle
-        }
+        let backgroundColor = Theme.Color.darkBg
+        self.view.backgroundColor = backgroundColor
         
-        let cardColor = Theme.Color.cardBg
-        profilePhotoImageView.backgroundColor = Theme.Color.switchOnBlue
-        profilePhotoImageView.layer.cornerRadius = 10
-        
-        Style.setFontandSize(textView: nil, label: fullNameLabel, font: Theme.Font.sansSerifSemiBold, size: 18)
-        separator.backgroundColor = Theme.Color.switchOnBlue
-        Style.setFontandSize(textView: aboutTextView, label: nil, font: Theme.Font.sansSerifSemiBold, size: 15)
-        aboutTextView.backgroundColor = cardColor
-        Style.setFontandSize(textView: nil, label: emailLabel, font: Theme.Font.sansSerifRegular, size: 15)
-        Style.setFontandSize(textView: nil, label: twitterUsernameLabel, font: Theme.Font.sansSerifRegular, size: 15)
-        Style.setFontandSize(textView: nil, label: instagramUsernameLabel, font: Theme.Font.sansSerifRegular, size: 15)
+        /* MARK: Buttons */
         Style.styleBackButton(backButton)
-        container.backgroundColor = cardColor
-        container.layer.borderColor = Theme.Color.switchOnBlue.cgColor
-        container.layer.borderWidth = 0
-        container.layer.cornerRadius = 10
-        container.layer.shadowOpacity = 0.3
-        container.layer.shadowOffset = CGSize(width: 1, height: 2)
-
+        
+        /* MARK: Views */
+        Style.renderUserCardElements(cardContainer: container, separator: separator, profilePhoto: profilePhotoImageView, twitterLogo: twitterLogo, instagramLogo: instagramLogo, fullName: fullNameLabel, email: emailLabel, bio: aboutTextView, twitterHandle: twitterUsernameLabel, instagramUsername: instagramUsernameLabel)
+        
+    }
+    
+    func setupDummyData() {
+        fullNameLabel.text = "Sunchit Anand"
+        aboutTextView.text = "SWE at Oracle, Bay Area. Deep into skiing, chess and space. Looking to connect with PMs and professionals working on autonomous vehicles."
+        emailLabel.text = "sunchit.anand@gmail.com"
+        twitterUsernameLabel.text = "@sunchitanand"
+        instagramUsernameLabel.text = "@sunchitanand"
     }
     
     /*

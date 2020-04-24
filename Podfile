@@ -12,6 +12,7 @@ target 'Dexter' do
   pod 'Firebase/Firestore'
   pod 'NearbyMessages'
   pod 'Firebase/Storage'
+  pod 'SideMenuSwift'
 
   target 'DexterTests' do
     inherit! :search_paths

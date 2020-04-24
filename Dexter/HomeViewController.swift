@@ -12,8 +12,11 @@ import FirebaseFirestore
 import CoreData
 import CoreBluetooth
 import os
+import SideMenuSwift
 
 class HomeViewController: UIViewController {
+    
+    @IBOutlet weak var sideBarButton: UIButton!
     
     @IBOutlet weak var userContactTableView: UITableView!
     @IBOutlet weak var discoverySwitch: UISwitch!
@@ -44,8 +47,8 @@ class HomeViewController: UIViewController {
     
     let discoveryOffMessage = "Turn on to be discovered by people in the same room"
     let discoveryOnMessage = "Turn off to stop discovery"
-    let emptyViewControllerMessage = "People near you, right now, will appear here."
-    let emptyViewControllerSubtitle = "Swipe <- to delete card."
+    let emptyViewControllerMessage = "Okay, where is everyone?"
+    let emptyViewControllerSubtitle = "Swipe left to delete a card when it appears."
     
     private var peripheralManager: CBPeripheralManager?
     private var centralManager: CBCentralManager?
@@ -54,11 +57,11 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
+        
         setupElements()
         self.currentUserId = firebaseAuth.currentUser?.uid
-//        initializePermissionChangeListener()
-//        setupGNSMessageManager()
+        //        initializePermissionChangeListener()
+        //        setupGNSMessageManager()
         
         // persist uid and fetch from firestore
         print(currentUserId!)
@@ -80,7 +83,6 @@ class HomeViewController: UIViewController {
             print(User.current)
         }
         
-        
         /// FOR SIMULATION:
         /// Get all users and store in allUsers[]
         /*
@@ -96,11 +98,20 @@ class HomeViewController: UIViewController {
          }
          */
         
-        // print(User.current.dictionary)
-        // Theme.showFonts()
-        
-//        UserModelController.getUser(uid: "crLLIUZAsoQowZyijRA5NK31JC92", current: false) { (_) in }
+        /*
+         print(User.current.dictionary)
+         Theme.showFonts()
+         
+         UserModelController.getUser(uid: "crLLIUZAsoQowZyijRA5NK31JC92", current: false) { (_) in }
+         */
     }
+    
+    @objc
+    @IBAction func sideBarButtonTapped(_ sender: Any) {
+        print("Clicked")
+        sideMenuController?.revealMenu()
+    }
+    
     
     @IBAction func discoverySwitchToggled(_ sender: Any) {
         toggleStatusBarColor()
@@ -112,7 +123,7 @@ class HomeViewController: UIViewController {
             // let msg = String(format:"User %d says hi!", arc4random() % 100)
             
             /// uncomment when google nearby works
-            //            startSharing(withName: self.currentUserId)
+            // startSharing(withName: self.currentUserId)
             
             /*
              bluetoothManager.startAdvertising(with: User.current.uid)
@@ -154,7 +165,7 @@ class HomeViewController: UIViewController {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .darkContent
     }
     
     func setupElements() {
@@ -175,8 +186,27 @@ class HomeViewController: UIViewController {
         setupTableView()
         toggleStatusBarColor()
         
-        //        var customTabBarItem: UITabBarItem = UITabBarItem(title: nil, image: UIImage(named: "YOUR_IMAGE_NAME")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), selectedImage: UIImage(named: "YOUR_IMAGE_NAME"))
-        //        self.tabBarItem = customTabBarItem
+        let menuImg = UIImage(named: "baseline_menu_black_24pt")?.withRenderingMode(.alwaysOriginal)
+//        sideBarButton.setImage(menuImg, for: .normal)
+//        sideBarButton.imageView?.contentMode = .scaleAspectFill
+        sideBarButton.setBackgroundImage(menuImg, for: .normal)
+        sideBarButton.contentMode = .scaleAspectFit
+
+        /*
+         var customTabBarItem: UITabBarItem = UITabBarItem(title: nil, image: UIImage(named: "YOUR_IMAGE_NAME")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), selectedImage: UIImage(named: "YOUR_IMAGE_NAME"))
+         self.tabBarItem = customTabBarItem
+         */
+    }
+    
+    func setupNavigationBar() {
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.view.setNeedsLayout()
+        
+        let menuImg = UIImage(named: "round_menu_white_24pt")?.withRenderingMode(.alwaysTemplate)
+        
+        let menuButton = UIBarButtonItem(image: menuImg, style: .done, target: self, action: #selector(sideBarButtonTapped(_:)))
+        self.navigationItem.leftItemsSupplementBackButton = true
+        self.navigationItem.leftBarButtonItem = menuButton
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -196,7 +226,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    /** Not being used */
+    /** deprecated  **/
     func changeStatusBar() {
         if #available(iOS 13.0, *) {
             //            let app = UIApplication.shared
@@ -240,10 +270,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     /** Configure each cell - runs everytime a new cell appears */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let nearbyUser = nearbyUsers[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserContactCell") as! UserContactCell
-        
         cell.setUserContact(user: nearbyUser)
         return cell
     }
@@ -268,7 +296,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
          userContactTableView.separatorColor = Theme.Color.separator
          */
         userContactTableView.contentInsetAdjustmentBehavior = .never
-        
         let background = Theme.Color.darkBg
         userContactTableView.backgroundColor = background
         tableViewHeaderSeparator.backgroundColor = background
@@ -279,7 +306,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
  extension HomeViewController: BluetoothManagerDelegate {
  func peripheralsDidUpdate() {
  print("Peripheral Did Update: \(bluetoothManager.peripherals.mapValues{$0.name})")
- 
  }
  } */
 
@@ -291,11 +317,9 @@ extension HomeViewController: CBPeripheralManagerDelegate {
             if peripheral.isAdvertising {
                 peripheral.stopAdvertising()
             }
-            
             var advertisingData: [String : Any] = [
                 CBAdvertisementDataServiceUUIDsKey: [TransferService.serviceUUID]
             ]
-            
             advertisingData[CBAdvertisementDataLocalNameKey] = User.current.uid
             print(User.current.uid)
             //            if let uid = User.current.uid {
@@ -320,7 +344,7 @@ extension HomeViewController: CBCentralManagerDelegate {
                 central.stopScan()
             }
             
-//            central.scanForPeripherals(withServices: [TransferService.serviceUUID])
+            //            central.scanForPeripherals(withServices: [TransferService.serviceUUID])
             central.scanForPeripherals(withServices: [TransferService.serviceUUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
         } else {
             #warning("Error handling")
@@ -335,7 +359,7 @@ extension HomeViewController: CBCentralManagerDelegate {
         if let incomingUserId = incomingUserId {
             print("User \(incomingUserId) discovered")
             self.incomingUserIds.append(incomingUserId)
-
+            
             var newIncomingUser: User!
             UserModelController.getUser(uid: incomingUserId) { (response) in
                 switch response {
