@@ -28,8 +28,6 @@ class SplashViewController: UIViewController {
         } else {
             navigateToAuth()
         }
-        
-        
     }
     
     func navigateToHome() {

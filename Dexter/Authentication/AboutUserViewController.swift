@@ -17,7 +17,7 @@ class AboutUserViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     
     public var email : String? = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupElements()
@@ -51,11 +51,11 @@ class AboutUserViewController: UIViewController {
     }
     
     func setupElements() {
-        Style.aboutTextView(aboutTextView)
-        Style.styleBackButton(backButton)
-        Style.styleFilledButton(nextButton)
-        Style.labelTitle(greetingTitleLabel)
-        Style.textViewSubtitle(greetingSubtitleTextView)
+        Render.enterBioTextView(aboutTextView)
+        Render.styleBackButton(backButton)
+        Render.styleFilledButton(nextButton)
+        Render.labelTitle(greetingTitleLabel)
+        Render.textViewSubtitle(greetingSubtitleTextView)
         
         greetingTitleLabel.text = "Hey, \(User.current.firstName)."
         
@@ -68,6 +68,9 @@ class AboutUserViewController: UIViewController {
 
 extension AboutUserViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n") {
+            textView.resignFirstResponder()
+        }
         // get the current text, or use an empty string if that failed
         let currentText = aboutTextView.text ?? ""
         // attempt to read the range they are trying to change, or exit if we can't
@@ -77,6 +80,8 @@ extension AboutUserViewController: UITextViewDelegate {
         // make sure the result is under x characters
         return updatedText.count <= 350
     }
+    
+    
 }
 
 extension AboutUserViewController: UITextFieldDelegate {
@@ -110,3 +115,5 @@ extension AboutUserViewController: UITextFieldDelegate {
         }
     }
 }
+
+

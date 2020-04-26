@@ -18,6 +18,7 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +72,11 @@ class SignInViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    /* MARK: TODO */
+    @IBAction func forgotPasswordTapped(_ sender: Any) {
+        
+    }
+    
     /*
      @objc func keyboardWillShow(notification: NSNotification) {
      guard let userInfo = notification.userInfo else {return}
@@ -110,23 +116,31 @@ class SignInViewController: UIViewController {
     }
     
     func setupElements() {
-        /// Hide the error label
-        errorLabel.alpha = 0
+         self.view.backgroundColor = Theme.Color.darkBg
         
-        /// Style the elements
-        Style.styleTextField(emailTextField)
-        Style.styleTextField(passwordTextField)
-        Style.styleFilledButton(signInButton)
-        Style.setFontandSize(textView: nil, label: errorLabel, font: Theme.Font.sansSerifRegular, size: 15)
-        Style.styleBackButton(backButton)
-        Style.textFieldLabel(emailLabel)
-        Style.textFieldLabel(passwordLabel)
-        
+        /* MARK: Text Fields */
+        Render.styleTextField(emailTextField)
         emailTextField.keyboardType = .emailAddress
         
-        /// Dark mode
-        self.view.backgroundColor = Theme.Color.darkBg
+        Render.styleTextField(passwordTextField)
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.keyboardType = .default
+        passwordTextField.autocorrectionType = .no
         
+        
+        /* MARK: Buttons */
+        Render.styleFilledButton(signInButton)
+        
+        Render.styleBackButton(backButton)
+        
+        forgotPasswordButton.setTitle("Forgot password?", for: .normal)
+        forgotPasswordButton.titleLabel?.font = UIFont(name: Theme.Font.sansSerifSemiBold, size: 16)
+        forgotPasswordButton.setTitleColor(Theme.Color.dGreen, for: .normal)
+        
+        /* MARK: Labels */
+        Render.errorLabel(errorLabel)
+        Render.textFieldLabel(emailLabel)
+        Render.textFieldLabel(passwordLabel)
     }
     
 }

@@ -22,5 +22,6 @@ struct Fields {
         static let twitterHandle = "twitterHandle"
         static let instagramHandle = "instagramHandle"
         static let profilePhotoURL = "profilePhotoURL"
+        static let flagCount = "flagCount"
     }
 }

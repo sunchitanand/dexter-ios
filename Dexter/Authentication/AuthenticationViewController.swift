@@ -24,18 +24,24 @@ class AuthenticationViewController: UIViewController {
         setupElements()
     }
     
-    // Style the views
     func setupElements() {
-        Style.styleFilledButton(signUpButton)
-        Style.styleBackButton(signInButton)
-        Style.labelTitle(greetingLabel)
-        Style.textViewMessage(topMessageTextView)
+        let backgroundColor = Theme.Color.darkBg
+        self.view.backgroundColor = backgroundColor
+        topMessageTextView.backgroundColor = backgroundColor
+        
+        /* MARK: Buttons */
+        Render.styleFilledButton(signUpButton)
+        Render.signInButton(signInButton)
+        
+        /* MARK: Labels */
+        Render.labelTitle(greetingLabel)
+        
+        /* MARK: Text View */
+        Render.textViewMessage(topMessageTextView)
+        
+        /* MARK: Image View*/
         humaansCoverImageView.image = UIImage(named: "cover-dark")
         humaansCoverImageView.contentMode = .scaleAspectFill
-        
-        /// Dark Mode
-        self.view.backgroundColor = Theme.Color.darkBg
-        topMessageTextView.backgroundColor = Theme.Color.darkBg
     }
 
 }

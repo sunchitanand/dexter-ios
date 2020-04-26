@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     
-    @IBOutlet weak var signOutButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var settingsLabel: UILabel!
     @IBOutlet weak var changePhotoLabel: UILabel!
     @IBOutlet weak var profilePhotoImageView: UIImageView!
@@ -28,44 +28,23 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var twitterTextField: UITextField!
     @IBOutlet weak var instagramLabel: UILabel!
     @IBOutlet weak var instagramTextField: UITextField!
-    @IBOutlet weak var GNSLabel: UILabel!
-    @IBOutlet weak var GNSPermissionSwitch: UISwitch!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var changePhotoButton: UIButton!
     
     let firebaseAuth = Auth.auth()
     var nearbyPermission: GNSPermission!
     
+    let photoHelper = SelectPhotoHelper()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Loading Settings View Controller...")
         setupElements()
-        print("appeared")
         
-        /** Permission change listener */
-        nearbyPermission = GNSPermission(changedHandler: { [unowned self] (isGranted) in
-            print("Permission Handler in Settings [Message]: \(isGranted) ")
-            
-            /// TODO: if isGranted is true, then toggle Permission switch to ON programatically
-        })
-    }
-    
-    @IBAction func signOutTapped(_ sender: Any) {
-        do { try firebaseAuth.signOut() }
-        catch let signOutError as NSError {
-            /// TODO: Handle error
-            print(signOutError.localizedDescription)
-        }
-        transitionToAuthenticationScreen()
-    }
-    
-    
-    @IBAction func GNSPermissionSwitchToggled(_ sender: Any) {
-        if GNSPermissionSwitch.isOn {
-            GNSPermission.setGranted(true)
-            print("Permission Switch: ALLOW")
-        } else {
-            GNSPermission.setGranted(false)
-            print("Permission Switch: DENY")
+        photoHelper.completionHandler = { image in
+            self.profilePhotoImageView.image = image
+            UserModelController.updateProfilePhoto(image: image)
         }
     }
     
@@ -100,12 +79,20 @@ class SettingsViewController: UIViewController {
         
     }
     
-    func transitionToAuthenticationScreen() {
+    @IBAction func changePhotoTapped(_ sender: Any) {
+        photoHelper.presentActionSheet(from: self)
+    }
+    @IBAction func backTapped(_ sender: Any) {
+        transitionToHome()
+    }
+    
+    func transitionToHome() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         DispatchQueue.main.async {
-            let authProvidersVC = storyboard.instantiateViewController(identifier: Constants.Storyboard.authenticationNavigationController) as? UINavigationController
-            self.view.window?.rootViewController = authProvidersVC
-            self.view.window?.makeKeyAndVisible()
+            let homeVC = storyboard.instantiateViewController(identifier: Constants.Storyboard.discoveryNavigationController) as! UINavigationController
+//            self.view.window?.rootViewController = homeVC
+//            self.view.window?.makeKeyAndVisible()
+            self.sideMenuController?.setContentViewController(to: homeVC)
         }
     }
     
@@ -205,43 +192,43 @@ class SettingsViewController: UIViewController {
     }
     
     func setupElements() {
+        let backgroundColor = Theme.Color.darkBg
+        self.view.backgroundColor = backgroundColor
+        scrollView.backgroundColor = backgroundColor
+        contentView.backgroundColor = backgroundColor
         
-        self.view.backgroundColor = Theme.Color.darkBg
-        scrollView.backgroundColor = Theme.Color.darkBg
-        contentView.backgroundColor = Theme.Color.darkBg
+        /* MARK: Buttons */
+        Render.styleBackButton(backButton)
         
-        Style.styleBackButton(signOutButton)
-        Style.labelTitle(settingsLabel)
-        
-        Style.textFieldLabel(changePhotoLabel)
-        Style.profilePhotoImageView(profilePhotoImageView)
-        
-        Style.textFieldLabel(nameLabel)
-        Style.styleTextField(nameTextField)
-        
-        Style.textFieldLabel(emailLabel)
-        Style.styleTextField(emailTextField)
-        
-        Style.textFieldLabel(aboutLabel)
-        Style.aboutTextView(aboutTextView)
-        aboutTextView.font = UIFont(name: Theme.Font.sansSerifRegular, size: 17)
-        
-        Style.textFieldLabel(twitterLabel)
-        Style.styleTextField(twitterTextField)
-        
-        Style.textFieldLabel(instagramLabel)
-        Style.styleTextField(instagramTextField)
-        
-        Style.textFieldLabel(GNSLabel)
-        Style.styleSwitch(GNSPermissionSwitch)
-        
-        Style.styleFilledButton(cancelButton)
+        Render.styleFilledButton(cancelButton)
         cancelButton.backgroundColor = Theme.Color.dRed
-        Style.styleFilledButton(saveButton)
         
-        restoreUserDetails()
+        Render.styleFilledButton(saveButton)
         
+        
+        /* MARK: Labels */
+        Render.labelTitle(settingsLabel)
+        Render.textFieldLabel(changePhotoLabel)
+        Render.textFieldLabel(nameLabel)
+        Render.textFieldLabel(emailLabel)
+        Render.textFieldLabel(aboutLabel)
+        Render.textFieldLabel(twitterLabel)
+        Render.textFieldLabel(instagramLabel)
+        
+        /* MARK: Text Fields */
+        Render.styleTextField(nameTextField)
+        Render.styleTextField(emailTextField)
+        Render.styleTextField(twitterTextField)
+        Render.styleTextField(instagramTextField)
         setupTextFields()
         
+        /* MARK: Text Views */
+        Render.enterBioTextView(aboutTextView)
+        aboutTextView.font = UIFont(name: Theme.Font.sansSerifRegular, size: 17)
+        
+        /* MARK: Views*/
+        Render.profilePhotoImageView(profilePhotoImageView)
+        
+        restoreUserDetails()
     }
 }

@@ -21,6 +21,7 @@ struct User {
     private(set) var twitterHandle: String?
     private(set) var instagramHandle: String?
     private(set) var profilePhotoURL: String?
+    private(set) var flagCount: Int?
     
     static var _current: User?
     
@@ -45,7 +46,8 @@ struct User {
             Fields.User.about: about ?? "",
             Fields.User.twitterHandle: twitterHandle ?? "",
             Fields.User.instagramHandle: instagramHandle ?? "",
-            Fields.User.profilePhotoURL: profilePhotoURL ?? ""
+            Fields.User.profilePhotoURL: profilePhotoURL ?? "",
+            Fields.User.flagCount: flagCount ?? 0
         ]
     }
     
@@ -85,6 +87,10 @@ struct User {
                 _current?.profilePhotoURL = value as? String
                 print("User object: Profile photo URL updated")
                 break
+            case Fields.User.flagCount:
+                _current?.flagCount = value as? Int
+                print("User object: Flag count updated")
+                break
             default:
                 print("User object: No update")
                 break
@@ -112,6 +118,7 @@ extension User: DocumentSerializable {
         let twitterHandle = documentData[Fields.User.twitterHandle] as? String ?? ""
         let instagramHandle = documentData[Fields.User.instagramHandle] as? String ?? ""
         let profilePhotoURL = documentData[Fields.User.profilePhotoURL] as? String ?? ""
+        let flagCount = documentData[Fields.User.flagCount] as? Int ?? 0
         
         self.init(uid: uid,
                   firstName: firstName,
@@ -120,7 +127,8 @@ extension User: DocumentSerializable {
                   about: about,
                   twitterHandle: twitterHandle,
                   instagramHandle: instagramHandle,
-                  profilePhotoURL: profilePhotoURL)
+                  profilePhotoURL: profilePhotoURL,
+                  flagCount: flagCount)
     }
     
     //    init?(snapshot: DocumentSnapshot) {

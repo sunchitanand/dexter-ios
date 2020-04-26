@@ -70,7 +70,7 @@ class SignUpViewController: UIViewController {
                     // print(Fields.User.firstName, userData[Fields.User.firstName], newUser.firstName, firstName)
                     
                     /** Create user in Firestore */
-                    UserModelController.createUser(newDocumentId: authResult!.user.uid, user: newUser, current: true) { (result) in
+                    UserModelController.createUser(newDocumentId: firestoreUID, user: newUser, current: true) { (result) in
                         switch (result) {
                         case .success(let user):
                             print("current user firstname ", user.firstName)
@@ -130,29 +130,31 @@ class SignUpViewController: UIViewController {
     }
     
     func setupElements() {
-        /** Hide the error label */
-        errorLabel.alpha = 0
+        self.view.backgroundColor = Theme.Color.darkBg
         
-        /** Style the elements */
-        Style.styleTextField(fullNameTextField)
-        Style.styleTextField(emailTextField)
-        Style.styleTextField(passwordTextField)
-        Style.styleFilledButton(signUpButton)
-        Style.textFieldLabel(fullNameLabel)
-        Style.textFieldLabel(emailLabel)
-        Style.textFieldLabel(passwordLabel)
-        Style.styleBackButton(backButton)
-        errorLabel.textColor = Theme.Color.dRed
-    
+        /* MARK: Labels */
+        Render.textFieldLabel(fullNameLabel)
+        Render.textFieldLabel(emailLabel)
+        Render.textFieldLabel(passwordLabel)
+        Render.errorLabel(errorLabel)
         
+        
+        /* MARK: Text Fields */
+        Render.styleTextField(fullNameTextField)
         fullNameTextField.keyboardType = .default
         fullNameTextField.autocapitalizationType = .words
         fullNameTextField.autocorrectionType = .no
+        
+        Render.styleTextField(emailTextField)
         emailTextField.keyboardType = .emailAddress
+        
+        Render.styleTextField(passwordTextField)
         passwordTextField.textContentType = .password
         
-        /// Dark Mode
-        self.view.backgroundColor = Theme.Color.darkBg
+        
+        /* MARK: Buttons */
+        Render.styleFilledButton(signUpButton)
+        Render.styleBackButton(backButton)
     }
 }
 

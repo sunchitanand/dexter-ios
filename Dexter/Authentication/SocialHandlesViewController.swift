@@ -11,38 +11,49 @@ import FirebaseStorage
 
 class SocialHandlesViewController: UIViewController {
     
+    /* MARK: Views */
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var messageSubtitleTextView: DisplayTextView!
-    
     @IBOutlet weak var cardContainer: UIView!
-    @IBOutlet weak var profilePhotoImageView: UIImageView!
-    @IBOutlet weak var addPhotoButton: UIButton!
-    @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var separatorView: UIView!
-    @IBOutlet weak var aboutTextView: DisplayTextView!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var twitterSmallImageView: UIImageView!
-    @IBOutlet weak var instagramSmallImageView: UIImageView!
     @IBOutlet weak var twitterHandlePlaceholderView: UIView!
     @IBOutlet weak var instagramHandlePlaceholderView: UIView!
     
+    /* MARK: Image Views */
+    @IBOutlet weak var profilePhotoImageView: UIImageView!
+    @IBOutlet weak var twitterSmallImageView: UIImageView!
     @IBOutlet weak var twitterLargeImageView: UIImageView!
+    @IBOutlet weak var instagramSmallImageView: UIImageView!
     @IBOutlet weak var instagramLargeImageView: UIImageView!
-    @IBOutlet weak var twitterHandleTextField: UITextField!
-    @IBOutlet weak var instagramHandleTextField: UITextField!
+
     
+    /* MARK: Buttons */
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var addPhotoButton: UIButton!
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
+    
+    /* MARK: Labels */
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var addPhotoLabel: UILabel!
+    @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    
+    /* MARK: Text Views */
+    @IBOutlet weak var messageSubtitleTextView: DisplayTextView!
+    @IBOutlet weak var aboutTextView: DisplayTextView!
+    
+    /* MARK: Text Fields */
+    @IBOutlet weak var twitterHandleTextField: UITextField!
+    @IBOutlet weak var instagramHandleTextField: UITextField!
+
     let photoHelper = SelectPhotoHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupElements()
-        setupDummyData()
+//        setupDummyData()
         setupRecognizer()
         setupKeyboardNotifications()
         
@@ -123,45 +134,53 @@ class SocialHandlesViewController: UIViewController {
         let placeholderCornerRadius: CGFloat = 10
         twitterHandlePlaceholderView.layer.cornerRadius = placeholderCornerRadius
         twitterHandlePlaceholderView.backgroundColor = backgroundColor
+        
         instagramHandlePlaceholderView.layer.cornerRadius = placeholderCornerRadius
         instagramHandlePlaceholderView.backgroundColor = backgroundColor
 
-        Style.renderUserCardElements(cardContainer: cardContainer, separator: separatorView, profilePhoto: profilePhotoImageView, twitterLogo: twitterSmallImageView, instagramLogo: instagramSmallImageView, fullName: fullNameLabel, email: emailLabel, bio: aboutTextView, twitterHandle: nil, instagramUsername: nil)
+        Render.renderUserCardElements(cardContainer: cardContainer, separator: separatorView, profilePhoto: profilePhotoImageView, twitterLogo: twitterSmallImageView, instagramLogo: instagramSmallImageView, fullName: fullNameLabel, email: emailLabel, bio: aboutTextView, twitterHandle: nil, instagramUsername: nil)
+        
         
         /* MARK: Image Views */
         let twitterLogo = UIImage(named: "twitter-logo-blue")
-        let instagramLogo = UIImage(named: "instagram-logo")
-    
         twitterLargeImageView.image = twitterLogo
+        twitterLargeImageView.contentMode = .scaleAspectFit
+        
+        let instagramLogo = UIImage(named: "instagram-logo")
         instagramLargeImageView.image = instagramLogo
         instagramLargeImageView.contentMode = .scaleAspectFit
-        instagramSmallImageView.contentMode = .scaleAspectFit
+        
+        profilePhotoImageView.backgroundColor = backgroundColor
         
         
         /* MARK: Buttons */
-        Style.styleBackButton(backButton)
+        Render.styleBackButton(backButton)
         
-        Style.styleFilledButton(skipButton)
-        skipButton.backgroundColor = Theme.Color.redOff
-        Style.styleFilledButton(saveButton)
+        Render.styleFilledButton(skipButton)
+        skipButton.backgroundColor = Theme.Color.dRed
+        Render.styleFilledButton(saveButton)
         
         
         /* MARK: Labels */
-        Style.labelTitle(titleLabel)
+        Render.labelTitle(titleLabel)
+        
+        addPhotoLabel.font = UIFont(name: Theme.Font.sansSerifRegular, size: 17)
+        addPhotoLabel.textColor = .darkGray
+        
         
         /* MARK: Text Views */
-        Style.textViewSubtitle(messageSubtitleTextView)
+        Render.textViewSubtitle(messageSubtitleTextView)
 
         
         /*MARK: Text Fields */
         let placeholderFont = UIFont(name: Theme.Font.sansSerifRegular, size: 15)!
         let placeholderAttributes = [NSAttributedString.Key.font: placeholderFont]
         
-        Style.styleTextField(twitterHandleTextField)
-        twitterHandleTextField.attributedPlaceholder = NSAttributedString(string: "your Twitter handle", attributes: placeholderAttributes)
+        Render.styleTextField(twitterHandleTextField)
+        twitterHandleTextField.attributedPlaceholder = NSAttributedString(string: "Your Twitter handle", attributes: placeholderAttributes)
         
-        Style.styleTextField(instagramHandleTextField)
-        instagramHandleTextField.attributedPlaceholder = NSAttributedString(string: "your Instagram username", attributes: placeholderAttributes)
+        Render.styleTextField(instagramHandleTextField)
+        instagramHandleTextField.attributedPlaceholder = NSAttributedString(string: "Your Instagram username", attributes: placeholderAttributes)
         
         
         /// setup data
@@ -181,7 +200,7 @@ class SocialHandlesViewController: UIViewController {
     
     func setupDummyData() {
         fullNameLabel.text = "Sunchit Anand"
-        aboutTextView.text = "SWE at Oracle, Bay Area. Deep into skiing, chess and space. Looking to connect with PMs and professionals working on autonomous vehicles."
+        aboutTextView.text = "SWE at Oracle, Bay Area. Deep into skiing, chess and space. Looking to connect with PMs and professionals working on autonomous vehiclesSWE at Oracle, Bay Area. Deep into skiing, chess and space. Looking to connect with PMs and professionals working on autonomous vehicles."
         emailLabel.text = "sunchit.anand@gmail.com"
     }
     
@@ -218,25 +237,4 @@ extension SocialHandlesViewController: UITextFieldDelegate {
     @objc func touch() {
         self.view.endEditing(true)
     }
-    /*
-     func textFieldDidBeginEditing(_ textField: UITextField) {
-     print("Entering twitter handle...")
-     //1. Create the alert controller.
-     let alert = UIAlertController(title: "Twitter", message: "Share your Twitter handle on your Dexter", preferredStyle: .alert)
-     
-     //2. Add the text field. You can configure it however you need.
-     alert.addTextField { (textField) in
-     textField.text = ""
-     }
-     
-     // 3. Grab the value from the text field, and print it when the user clicks OK.
-     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
-     let textField = alert!.textFields![0] // Force unwrapping because we know it exists.
-     print("Text field: \(String(describing: textField.text))")
-     }))
-     // 4. Present the alert.
-     self.present(alert, animated: true, completion: nil)
-     textField.becomeFirstResponder()
-     }
-     */
 }

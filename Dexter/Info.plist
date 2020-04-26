@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIUserInterfaceStyle</key>
+	<string>Dark</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -28,12 +30,17 @@
 	<string>Microphone is required to produce near-ultrasonic sound to connect with other nearby devices. </string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Upload your profile photo.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Dexter needs camera to capture a photo for your profile.</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SF-Pro-Display-SemiboldItalic.otf</string>
+		<string>SF-Pro-Display-HeavyItalic.otf</string>
+		<string>SF-Pro-Display-RegularItalic.otf</string>
+		<string>SF-Pro-Display-MediumItalic.otf</string>
 		<string>SF-Pro-Display-Medium.otf</string>
 		<string>NewYorkExtraLarge-Semibold.otf</string>
 		<string>SF-Pro-Display-Heavy.otf</string>
-		<string>SF-Pro-Display-RegularItalic.otf</string>
 		<string>SF-Pro-Display-Regular.otf</string>
 		<string>SF-Pro-Display-Semibold.otf</string>
 		<string>NewYorkMedium-Heavy.otf</string>

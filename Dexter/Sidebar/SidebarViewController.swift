@@ -67,8 +67,10 @@ class SidebarViewController: UIViewController {
 
 extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = DisplayTextView()
-        Style.textViewSubtitle(header)
+        let header = UITextView()
+        header.isEditable = false
+        header.isUserInteractionEnabled = false
+        Render.textViewSubtitle(header)
         header.text = sectionHeaders[section]
         header.textContainerInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
         header.backgroundColor = backgroundColor
@@ -117,7 +119,30 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0:
+                print("Edit profile selected")
+                let settingsVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.settingsViewController) as! SettingsViewController
+                sideMenuController?.hideMenu(animated: true, completion: { (result) in
+                    if result {
+                        self.sideMenuController?.setContentViewController(to: settingsVC)
+                    }
+                })
+                
+            case 1:
+                print("Change password selected")
+                let changePasswordVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.changePasswordViewController) as! ChangePasswordViewController
+                sideMenuController?.hideMenu(animated: true, completion: { (result) in
+                    if result {
+                        self.sideMenuController?.setContentViewController(to: changePasswordVC)
+                    }
+                })
+            default:
+                print("Section/row does not exist")
+            }
         case 2:
+            print("Sidebar: Logout")
             do { try firebaseAuth.signOut() }
                    catch let signOutError as NSError {
                        /// TODO: Handle error

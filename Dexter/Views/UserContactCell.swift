@@ -52,7 +52,7 @@ class UserContactCell: UITableViewCell {
         aboutTextView.textContainer.lineBreakMode = .byTruncatingTail
         self.selectionStyle = .none
         
-        Style.profilePhotoImageView(profilePhotoImageView)
+        Render.profilePhotoImageView(profilePhotoImageView)
         
         self.backgroundColor = Theme.Color.darkBg
         nameTextView.backgroundColor = Theme.Color.darkBg

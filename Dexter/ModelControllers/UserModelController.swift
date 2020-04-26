@@ -22,6 +22,25 @@ class UserModelController {
     //
     /// TODO: Store firebase auth uid in User singleton and use that to reduce # of hits to auth server
     
+    static func createUser(newDocumentId: String, user: User?, current: Bool, completion: @escaping (Result<User, Error>) -> ()) {
+        if let user = user {
+            let newUserRef = Firestore.firestore().collection("users").document(newDocumentId)
+            newUserRef.setData(user.dictionary) { (err) in
+                if let err = err {
+                    completion(.failure(err))
+                    return
+                }
+                if current {
+                    User.setCurrent(user)
+                    completion(.success(User.current))
+                    return
+                }
+                completion(.success(user))
+                return
+            }
+        }
+    }
+    
     static func getCurrentUser(completion: @escaping (Result<User, Error>) -> ()) {
         //        let usersByUid = Firestore.firestore().collection("users").document(uid)
         let uid = Auth.auth().currentUser!.uid
@@ -130,28 +149,8 @@ class UserModelController {
         }
     }
     
-    static func createUser(newDocumentId: String, user: User?, current: Bool, completion: @escaping (Result<User, Error>) -> ()) {
-        if let user = user {
-            let newUserRef = Firestore.firestore().collection("users").document(newDocumentId)
-            newUserRef.setData(user.dictionary) { (err) in
-                if let err = err {
-                    completion(.failure(err))
-                    return
-                }
-                if current {
-                    User.setCurrent(user)
-                    completion(.success(User.current))
-                    return
-                }
-                completion(.success(user))
-                return
-            }
-        }
-    }
-    
     static func updateUser(newUserData: [String: Any], completion: @escaping (Result<Bool, Error>) -> ()) {
-        if let documentId = Auth.auth().currentUser?.uid {
-            let userRef = Firestore.firestore().collection("users").document(documentId)
+        let userRef = Firestore.firestore().collection("users").document(User.current.uid)
             userRef.updateData(newUserData) { (err) in
                 if let err = err {
                     print("Error updating document")
@@ -163,10 +162,6 @@ class UserModelController {
                     completion(.success(_: true))
                 }
             }
-        }
-        else {
-            print("ERROR: error updating user. User does not exist.")
-        }
     }
     
     static func updateProfilePhoto(image: UIImage) {
@@ -255,12 +250,45 @@ class UserModelController {
         
         print("URL1", localURL.path)
         if fileManager.fileExists(atPath: localURL.path) {
-            let imageData = try! Data(contentsOf: localURL)
-            image = UIImage(data: imageData)
-            print("Image1: ", image!)
-            completion(image)
+            do {
+                let imageData = try Data(contentsOf: localURL)
+                image = UIImage(data: imageData)
+                print("Image1: ", image!)
+                completion(image)
+            } catch let error as NSError {
+                let errorString = error.description
+                print(errorString)
+                return
+            }
         } else {
             print("File does not exist in file system.")
+        }
+    }
+    
+    static func flagUser(uid: String, completion: @escaping (Result<Bool, Error>) -> Void) {
+        
+        let userRef = Firestore.firestore().collection("users").document(uid)
+        
+        UserModelController.getUser(uid: uid) { (response) in
+            switch response {
+            case .success(let user):
+                print(user)
+                print("Current flag count: \(String(describing: user.flagCount))")
+                let newFlagCount = user.flagCount! + 1
+                print(newFlagCount)
+                let data = [Fields.User.flagCount: newFlagCount]
+                
+                userRef.updateData(data, completion: { (error) in
+                    if let error = error {
+                        completion(.failure(error))
+                    }
+                    else {
+                        completion(.success(true))
+                    }
+                })
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
 }

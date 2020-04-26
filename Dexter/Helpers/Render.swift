@@ -9,12 +9,13 @@
 import Foundation
 import UIKit
 
-class Style {
+class Render {
     
     struct Labels {
         
     }
     
+    /* MARK: Text Fields */
     static func styleTextField(_ textField:UITextField) {
         //        textField.backgroundColor = Theme.Color.cardBg
         textField.backgroundColor = .black
@@ -27,7 +28,7 @@ class Style {
         textField.placeholder = ""
         textField.font = UIFont(name: Theme.Font.sansSerifRegular, size: 18)
         textField.spellCheckingType = .no
-        
+                textField.returnKeyType = .done
         // Create the bottom line (*currently, height set to 0 => not visible)
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0, y: textField.frame.height - 2, width: textField.frame.width, height: 0)
@@ -36,8 +37,8 @@ class Style {
         textField.layer.addSublayer(bottomLine)
     }
     
+    /* MARK: Buttons */
     static func styleFilledButton(_ button:UIButton) {
-        
         button.backgroundColor = Theme.Color.dGreen
         button.layer.cornerRadius = button.frame.size.height / 2
         button.tintColor = UIColor.white
@@ -52,7 +53,6 @@ class Style {
     }
     
     static func styleHollowButton(_ button:UIButton) {
-        
         // Hollow rounded corner style
         button.layer.borderWidth = 4
         button.layer.borderColor = Theme.Color.buttonBlue.cgColor
@@ -61,37 +61,20 @@ class Style {
         button.titleLabel?.font = UIFont(name: Theme.Font.buttonTitle, size: 17)
     }
     
-    static func isPasswordValid(_ password : String) -> Bool {
-        
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{6,}")
-        return passwordTest.evaluate(with: password)
+    static func styleBackButton(_ backButton: UIButton) {
+        let backImg = UIImage(named: "back")?.withRenderingMode(.alwaysOriginal)
+        backButton.setImage(backImg, for: .normal)
+        backButton.contentMode = .scaleAspectFit
+        backButton.setTitle("", for: .normal)
     }
     
-    static func setFontandSize(textView: UITextView? = nil, label: UILabel? = nil, font: String, size: CGFloat) {
-        if let textView = textView {
-            textView.font = UIFont(name: font, size: size)
-        }
-        if let label = label {
-            label.font = UIFont(name: font, size: size)
-        }
+    static func signInButton(_ button: UIButton) {
+        button.titleLabel?.font = UIFont(name: Theme.Font.sansSerifHeavy, size: 20)
+        button.setTitleColor(Theme.Color.dGreen, for: .normal)
     }
     
-    static func styleSwitch(_ switchButton: UISwitch) {
-        switchButton.tintColor = Theme.Color.switchOnBlue
-        switchButton.onTintColor = Theme.Color.switchOnBlue
-        switchButton.backgroundColor = Theme.Color.darkBg
-        switchButton.layer.cornerRadius = 16
-        switchButton.layer.masksToBounds = true
-    }
-    
-    static func titleNewYork(_ textView: UITextView) {
-        textView.font = UIFont(name: "NewYorkMedium-Heavy", size: 24)
-        textView.alpha = 1
-        //        textView.textColor = Theme.Color.title
-    }
     
     /* MARK: Labels */
-    
     static func discoveryTitleLabel(_ label: UILabel) {
         label.font = UIFont(name: "NewYorkMedium-Heavy", size: 25)
         label.alpha = 1
@@ -104,9 +87,31 @@ class Style {
         label.textColor = .white
     }
     
+    static func errorLabel(_ label: UILabel) {
+        label.textColor = Theme.Color.dRed
+        label.font = UIFont(name: Theme.Font.sansSerifRegular, size: 17)
+        label.alpha = 0
+    }
+    
+    static func textFieldLabel(_ label: UILabel) {
+        label.font = UIFont(name: Theme.Font.sansSerifSemiBold, size: 17)
+        label.textColor = .white
+    }
+    
+    
+    /* MARK: Text Views */
+    static func titleNewYork(_ textView: UITextView) {
+        textView.font = UIFont(name: "NewYorkMedium-Heavy", size: 24)
+        textView.alpha = 1
+        //        textView.textColor = Theme.Color.title
+    }
+    
     static func textViewMessage(_ textView: UITextView) {
         textView.font = UIFont(name: Theme.Font.sansSerifSemiBold, size: 18)
+        textView.backgroundColor = Theme.Color.darkBg
         textView.textColor = .white
+        textView.sizeToFit()
+        textView.isScrollEnabled = false
     }
     
     static func textViewSubtitle(_ textView: UITextView) {
@@ -114,28 +119,8 @@ class Style {
         textView.textColor = .white
         textView.sizeToFit()
     }
-    
-    static func headerSubtitle(_ textView: UITextView) {
-        textView.font = UIFont(name: "SFProDisplay-Semibold", size: 14)
-        textView.alpha = 0.7
-        textView.textColor = .white
-    }
-    
-    static func headerSubtitle(_ label: UILabel) {
-        label.font = UIFont(name: "SFProDisplay-Semibold", size: 14)
-        label.alpha = 0.7
-        label.textColor = .white
-    }
-    static func styleBackButton(_ button: UIButton) {
-        button.titleLabel?.font = UIFont(name: Theme.Font.sansSerifHeavy, size: 20)
-        button.setTitleColor(Theme.Color.greenOn, for: .normal)
-    }
-    static func textFieldLabel(_ label: UILabel) {
-        label.font = UIFont(name: Theme.Font.sansSerifSemiBold, size: 17)
-        label.textColor = .white
-    }
-    
-    static func aboutTextView(_ aboutTextView: UITextView) {
+
+    static func enterBioTextView(_ aboutTextView: UITextView) {
         //        aboutTextView.backgroundColor = Theme.Color.cardBg
         aboutTextView.backgroundColor = .black
         /*
@@ -150,6 +135,7 @@ class Style {
         aboutTextView.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 5, right: 20)
         
         aboutTextView.textColor = .white
+        aboutTextView.returnKeyType = .done
         
         /*
          aboutTextView.layer.frame = CGRect(x: <#T##Double#>, y: <#T##Double#>, width: <#T##Double#>, height: <#T##Double#>)
@@ -158,14 +144,21 @@ class Style {
          aboutTextView.isScrollEnabled = false
          */
     }
-    
+    /* MARK: Views */
     static func profilePhotoImageView(_ imageView: UIImageView) {
         imageView.contentMode = UIView.ContentMode.scaleAspectFill
         imageView.layer.cornerRadius = 5
     }
     
+    static func styleSwitch(_ switchButton: UISwitch) {
+        switchButton.tintColor = Theme.Color.switchOnBlue
+        switchButton.onTintColor = Theme.Color.switchOnBlue
+        switchButton.backgroundColor = .black
+        switchButton.layer.cornerRadius = 16
+        switchButton.layer.masksToBounds = true
+    }
+    
     static func renderUserCardElements(cardContainer: UIView, separator: UIView, profilePhoto: UIImageView, twitterLogo: UIImageView, instagramLogo: UIImageView, fullName: UILabel, email: UILabel, bio: UITextView, twitterHandle: UILabel?, instagramUsername: UILabel?) {
-        
         let cardBgColor = UIColor.black
         
         cardContainer.backgroundColor = cardBgColor
@@ -175,7 +168,7 @@ class Style {
         
         separator.backgroundColor = Theme.Color.darkBg
         
-        Style.profilePhotoImageView(profilePhoto)
+        Render.profilePhotoImageView(profilePhoto)
         
         let twitterLogoImg = UIImage(named: "twitter-logo-blue")
         let instagramLogoImg = UIImage(named: "instagram-logo")
@@ -193,8 +186,16 @@ class Style {
         bio.font = UIFont(name: Theme.Font.sansSerifMedium, size: 17)
         bio.backgroundColor = cardBgColor
         bio.textColor = .white
+        bio.sizeToFit()
+        bio.isScrollEnabled = false
         
     }
+    
+    static func isPasswordValid(_ password : String) -> Bool {
+         
+         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{6,}")
+         return passwordTest.evaluate(with: password)
+     }
     
 }
 

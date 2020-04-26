@@ -28,7 +28,7 @@ class SidebarCell: UITableViewCell {
     */
     func styleCell() {
         self.backgroundColor = Theme.Color.darkBg
-        Style.textFieldLabel(label)
+        Render.textFieldLabel(label)
         label.font = UIFont(name: Theme.Font.sansSerifMedium, size: 17)
         
         switch section {

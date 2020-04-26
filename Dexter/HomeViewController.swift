@@ -38,33 +38,33 @@ class HomeViewController: UIViewController {
     var container: NSPersistentContainer!
     
     var incomingUserIds: [String] = []
-    var nearbyUsers : [User] = []
+    static var nearbyUsers : [User] = []
     var currentUserId: String!
     
     // just for simulating Google Nearby
-    var allUsers : [User] = []
+    static var allUsers : [User] = []
     var counter : Int = 0
     
-    let discoveryOffMessage = "Turn on to be discovered by people in the same room"
+    let discoveryOffMessage = "Turn on to be discovered by people around you"
     let discoveryOnMessage = "Turn off to stop discovery"
-    let emptyViewControllerMessage = "Okay, where is everyone?"
-    let emptyViewControllerSubtitle = "Swipe left to delete a card when it appears."
+    let emptyViewControllerMessage = "People around you with Dexter (turned ON) will appear here."
+    let emptyViewControllerSubtitle = "Dexter uses Bluetooth for Discovery."
     
     private var peripheralManager: CBPeripheralManager?
     private var centralManager: CBCentralManager?
     
+    static var executedOnce = false
     
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        setupElements()
+    override func awakeFromNib() {
+        if !HomeViewController.executedOnce {
+            HomeViewController.executedOnce = true
+            print("Running initial setup...")
+            initialSetup()
+        }
+    }
+    
+    func initialSetup() {
         self.currentUserId = firebaseAuth.currentUser?.uid
-        //        initializePermissionChangeListener()
-        //        setupGNSMessageManager()
-        
-        // persist uid and fetch from firestore
-        print(currentUserId!)
         
         /// Get user when app directly opens to Discovery screen
         if !User.doesCurrentUserExist() {
@@ -78,31 +78,38 @@ class HomeViewController: UIViewController {
                 }
             }
         }
-            
         else {
             print(User.current)
         }
         
+        // persist uid and fetch from firestore
+        print(currentUserId!)
+        
         /// FOR SIMULATION:
         /// Get all users and store in allUsers[]
-        /*
-         counter = 0
-         UserModelController.getAllUsers { (response) in
-         switch response {
-         case .success(let userList):
-         self.allUsers = userList
-         print("All users successfully fetched")
-         case .failure(let err):
-         print("Firestore: Error getting all users | \(err.localizedDescription)")
-         }
-         }
-         */
+        counter = 0
+        UserModelController.getAllUsers { (response) in
+            switch response {
+            case .success(let userList):
+                HomeViewController.allUsers = userList
+                print("All users successfully fetched")
+            case .failure(let err):
+                print("Firestore: Error getting all users | \(err.localizedDescription)")
+            }
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("Number of users stored: ", HomeViewController.allUsers.count)
+            setupElements()
+        
+        //        initializePermissionChangeListener()
+        //        setupGNSMessageManager()
         
         /*
          print(User.current.dictionary)
          Theme.showFonts()
-         
-         UserModelController.getUser(uid: "crLLIUZAsoQowZyijRA5NK31JC92", current: false) { (_) in }
          */
     }
     
@@ -111,8 +118,7 @@ class HomeViewController: UIViewController {
         print("Clicked")
         sideMenuController?.revealMenu()
     }
-    
-    
+
     @IBAction func discoverySwitchToggled(_ sender: Any) {
         toggleStatusBarColor()
         
@@ -122,29 +128,23 @@ class HomeViewController: UIViewController {
             discoveryStatusLabel.text = discoveryOnMessage
             // let msg = String(format:"User %d says hi!", arc4random() % 100)
             
-            /// uncomment when google nearby works
-            // startSharing(withName: self.currentUserId)
-            
+            /** Production Code */
             /*
-             bluetoothManager.startAdvertising(with: User.current.uid)
-             bluetoothManager.delegate = self
+             peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
+             centralManager = CBCentralManager(delegate: self, queue: nil)
              */
-            
-            peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
-            centralManager = CBCentralManager(delegate: self, queue: nil)
             
             /** FOR SIMULATION */
             /// Transfer a user from allUsers to nearbyUsers[] and increment pointer
-            /*
-             if counter < allUsers.count {
-             print(allUsers[counter])
-             nearbyUsers.append(allUsers[counter])
-             counter += 1
-             }
-             else {
-             print("No more users nearby")
-             }
-             */
+            
+            if counter < HomeViewController.allUsers.count {
+                print(HomeViewController.allUsers[counter])
+                HomeViewController.nearbyUsers.append(HomeViewController.allUsers[counter])
+                counter += 1
+            }
+            else {
+                print("No more users nearby")
+            }
             
             self.userContactTableView.reloadData()
         } else {
@@ -169,12 +169,29 @@ class HomeViewController: UIViewController {
     }
     
     func setupElements() {
+        /* MARK: Buttons*/
         //        Styles.styleFilledButton(permissionToggleButton)
-        Style.styleSwitch(discoverySwitch)
-        Style.discoveryTitleLabel(discoveryLabel)
-        discoveryStatusLabel.font = UIFont(name: Theme.Font.sansSerifRegular, size: 16)
+        
+        let menuImg = UIImage(named: "baseline_menu_black_24pt")?.withRenderingMode(.alwaysOriginal)
+        //        sideBarButton.setImage(menuImg, for: .normal)
+        //        sideBarButton.imageView?.contentMode = .scaleAspectFill
+        sideBarButton.setBackgroundImage(menuImg, for: .normal)
+        sideBarButton.contentMode = .scaleAspectFit
+        
+        /* MARK: Switch*/
+        Render.styleSwitch(discoverySwitch)
+        
+        
+        /* MARK: Labels*/
+        Render.discoveryTitleLabel(discoveryLabel)
+        
+        discoveryStatusLabel.font = UIFont(name: Theme.Font.sansSerifMedium, size: 16)
         discoveryStatusLabel.textColor = .black
-        //        Styles.headerSubtitle(discoveryStatusLabel)
+        discoveryStatusLabel.sizeToFit()
+        discoveryStatusLabel.numberOfLines = 0
+        
+        /* MARK: Views */
+        
         if discoverySwitch.isOn {
             userContactTableViewHeaderView.backgroundColor = Theme.Color.dGreen
             discoveryStatusLabel.text = discoveryOnMessage
@@ -183,15 +200,10 @@ class HomeViewController: UIViewController {
             userContactTableViewHeaderView.backgroundColor = Theme.Color.dRed
             discoveryStatusLabel.text = discoveryOffMessage
         }
+        
         setupTableView()
         toggleStatusBarColor()
         
-        let menuImg = UIImage(named: "baseline_menu_black_24pt")?.withRenderingMode(.alwaysOriginal)
-//        sideBarButton.setImage(menuImg, for: .normal)
-//        sideBarButton.imageView?.contentMode = .scaleAspectFill
-        sideBarButton.setBackgroundImage(menuImg, for: .normal)
-        sideBarButton.contentMode = .scaleAspectFit
-
         /*
          var customTabBarItem: UITabBarItem = UITabBarItem(title: nil, image: UIImage(named: "YOUR_IMAGE_NAME")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), selectedImage: UIImage(named: "YOUR_IMAGE_NAME"))
          self.tabBarItem = customTabBarItem
@@ -259,30 +271,41 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     /** Return how many rows the table view should show */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if nearbyUsers.count == 0 {
+        if HomeViewController.nearbyUsers.count == 0 {
             userContactTableView.setEmptyView(title: emptyViewControllerMessage, message: emptyViewControllerSubtitle)
         }
         else {
             userContactTableView.restore()
         }
-        return nearbyUsers.count
+        return HomeViewController.nearbyUsers.count
     }
     
     /** Configure each cell - runs everytime a new cell appears */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let nearbyUser = nearbyUsers[indexPath.row]
+        let nearbyUser = HomeViewController.nearbyUsers[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserContactCell") as! UserContactCell
         cell.setUserContact(user: nearbyUser)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedUser = nearbyUsers[indexPath.row]
+        let selectedUser = HomeViewController.nearbyUsers[indexPath.row]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let profileVC = storyboard.instantiateViewController(withIdentifier: "UserProfileViewController") as! UserProfileViewController
         profileVC.selectedUser = selectedUser
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(profileVC, animated: true)
+        }
+    }
+    /// Swipe to delete: delete from objects and table view
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            HomeViewController.nearbyUsers.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left)
+        }
+        else if editingStyle == .insert {
+            print("New user cell inserted in Table View")
+            tableView.insertRows(at: [indexPath], with: .left)
         }
     }
     
@@ -336,14 +359,12 @@ extension HomeViewController: CBPeripheralManagerDelegate {
 
 /* MARK: Central Manager*/
 extension HomeViewController: CBCentralManagerDelegate {
-    
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
             
             if central.isScanning {
                 central.stopScan()
             }
-            
             //            central.scanForPeripherals(withServices: [TransferService.serviceUUID])
             central.scanForPeripherals(withServices: [TransferService.serviceUUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
         } else {
@@ -352,7 +373,6 @@ extension HomeViewController: CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
-        
         //        peripherals[peripheral.identifier] = peripheral
         let incomingUserId = advertisementData[CBAdvertisementDataLocalNameKey] as? String
         
@@ -365,7 +385,7 @@ extension HomeViewController: CBCentralManagerDelegate {
                 switch response {
                 case .success(let user):
                     newIncomingUser = user
-                    self.nearbyUsers.append(newIncomingUser)
+                    HomeViewController.nearbyUsers.append(newIncomingUser)
                     print("Discovered user saved")
                     self.userContactTableView.reloadData()
                 case .failure(_):
