@@ -11,26 +11,32 @@ import Firebase
 
 class SettingsViewController: UIViewController {
     
+    /* MARK: Views */
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var profilePhotoImageView: UIImageView!
     
+    /* MARK: Buttons */
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var changePhotoButton: UIButton!
+    
+    /* MARK: Labels */
     @IBOutlet weak var settingsLabel: UILabel!
     @IBOutlet weak var changePhotoLabel: UILabel!
-    @IBOutlet weak var profilePhotoImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var aboutLabel: UILabel!
-    @IBOutlet weak var aboutTextView: UITextView!
     @IBOutlet weak var twitterLabel: UILabel!
-    @IBOutlet weak var twitterTextField: UITextField!
     @IBOutlet weak var instagramLabel: UILabel!
+    
+    /* MARK: Text Fields */
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var aboutTextView: UITextView!
+    @IBOutlet weak var twitterTextField: UITextField!
     @IBOutlet weak var instagramTextField: UITextField!
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var changePhotoButton: UIButton!
     
     let firebaseAuth = Auth.auth()
     var nearbyPermission: GNSPermission!
@@ -41,6 +47,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         print("Loading Settings View Controller...")
         setupElements()
+        aboutTextView.delegate = self
         
         photoHelper.completionHandler = { image in
             self.profilePhotoImageView.image = image
@@ -50,7 +57,8 @@ class SettingsViewController: UIViewController {
     
     @IBAction func cancelTapped(_ sender: Any) {
         restoreUserDetails()
-        self.tabBarController?.selectedIndex = 0
+//        self.tabBarController?.selectedIndex = 0
+        transitionToHome()
     }
     
     @IBAction func saveTapped(_ sender: Any) {
@@ -74,24 +82,23 @@ class SettingsViewController: UIViewController {
                 print("Error updating user settings: \(err.localizedDescription)")
             }
         }
-        
         self.tabBarController?.selectedIndex = 0
-        
     }
     
     @IBAction func changePhotoTapped(_ sender: Any) {
         photoHelper.presentActionSheet(from: self)
     }
+    
     @IBAction func backTapped(_ sender: Any) {
         transitionToHome()
     }
     
     func transitionToHome() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Discovery", bundle: nil)
         DispatchQueue.main.async {
             let homeVC = storyboard.instantiateViewController(identifier: Constants.Storyboard.discoveryNavigationController) as! UINavigationController
-//            self.view.window?.rootViewController = homeVC
-//            self.view.window?.makeKeyAndVisible()
+            //            self.view.window?.rootViewController = homeVC
+            //            self.view.window?.makeKeyAndVisible()
             self.sideMenuController?.setContentViewController(to: homeVC)
         }
     }
@@ -230,5 +237,25 @@ class SettingsViewController: UIViewController {
         Render.profilePhotoImageView(profilePhotoImageView)
         
         restoreUserDetails()
+    }
+}
+
+extension SettingsViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        print("chars \(textView.text.count) \( text)")
+        
+//        self.adjustFrames()
+        let maxTextCount = 350
+        if(textView.text.count > maxTextCount && range.length == 0) {
+            print("Please summarize in \(maxTextCount) characters or less")
+            return false;
+        }
+        return true;
+    }
+    
+    func adjustFrames() {
+        var textFrame = aboutTextView.frame
+        textFrame.size.height = aboutTextView.contentSize.height
+        aboutTextView.frame = textFrame
     }
 }

@@ -12,7 +12,7 @@ class DiscoveryNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setStatusBar(backgroundColor: Theme.Color.greenOn)
+//        setStatusBar(backgroundColor: Theme.Color.greenOn)
         // Do any additional setup after loading the view.
     }
     

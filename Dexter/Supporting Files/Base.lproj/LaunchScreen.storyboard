@@ -14,7 +14,20 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dexter-logo-white" translatesAutoresizingMaskIntoConstraints="NO" id="M0f-T7-JST">
+                                <rect key="frame" x="157" y="333" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="DEx-uM-e9m"/>
+                                    <constraint firstAttribute="width" constant="100" id="Lvj-iS-faM"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="0.037595177664974666" green="0.037595177664974666" blue="0.037595177664974666" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="M0f-T7-JST" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="lmh-uw-hjp"/>
+                            <constraint firstItem="M0f-T7-JST" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-70" id="neR-1I-QRX"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -23,4 +36,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="dexter-logo-white" width="914" height="862"/>
+    </resources>
 </document>

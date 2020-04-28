@@ -12,18 +12,28 @@ import Firebase
 import CoreData
 
 class SignUpViewController: UIViewController {
-    
+    /* MARK: Labels */
     @IBOutlet weak var fullNameLabel: UILabel!
-    @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordLabel: UILabel!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var termsAndPolicyMessageLabel: UILabel!
     
-    var isTransitioningFromBio = false
+    /* MARK: Text Fields */
+    @IBOutlet weak var fullNameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    /* MARK: Buttons */
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var termsAndPolicyButton: UIButton!
+    
+    static var isUserCreated = false
+    
+    let termsAndPolicyMessage = "By signing up, you're agreeing to our Privacy Policy and Terms of Service."
+    let createUserError = "An error occured when trying to create user. Please try again."
+    let firestoreError = "An error occured when trying to save user data."
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,15 +44,29 @@ class SignUpViewController: UIViewController {
         emailTextField.delegate = self
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print(isTransitioningFromBio)
+    @IBAction func signUpTapped(_ sender: Any) {
+        if !SignUpViewController.isUserCreated {
+            SignUpViewController.isUserCreated = true
+            createNewUser()
+        }
+        else {
+            self.pushAboutUserVC()
+        }
     }
     
-    @IBAction func signUpTapped(_ sender: Any) {
-        
+    @IBAction func termsAndPolicyTapped(_ sender: Any) {
+        /* MARK: TODO */ // open terms and policy in app browser or something
+    }
+    
+    
+    @IBAction func backTapped(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func createNewUser() {
         let error = validateFields()
         if error != nil {
-            showError(error!)
+            Render.showErrorLabel(errorLabel: self.errorLabel, message: error!)
         }
         else {
             let email = emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -53,9 +77,9 @@ class SignUpViewController: UIViewController {
             /** Create user in Firebase Authentication */
             Auth.auth().createUser(withEmail: email!, password: password!) { (authResult, error) in
                 if let error = error {
-                    let message = "Error creating user"
-                    self.showError(message)
                     print(error.localizedDescription)
+                    let message = error.localizedDescription.contains("email address is already in use") ? error.localizedDescription :self.createUserError
+                    Render.showErrorLabel(errorLabel: self.errorLabel, message: message)
                 }
                 else {
                     /// Remove last two characters of Auth UID to store in Firestore
@@ -69,15 +93,15 @@ class SignUpViewController: UIViewController {
                     let newUser = User(documentData: userData)!
                     // print(Fields.User.firstName, userData[Fields.User.firstName], newUser.firstName, firstName)
                     
-                    /** Create user in Firestore */
+                    /// Create user in Firestore
                     UserModelController.createUser(newDocumentId: firestoreUID, user: newUser, current: true) { (result) in
                         switch (result) {
                         case .success(let user):
-                            print("current user firstname ", user.firstName)
+                            print("Creating new user... \(user)")
                             self.pushAboutUserVC()
                             
                         case .failure(let err):
-                            self.showError("Error saving user data")
+                            Render.showErrorLabel(errorLabel: self.errorLabel, message: self.firestoreError )
                             print(err.localizedDescription)
                         }
                     }
@@ -85,19 +109,7 @@ class SignUpViewController: UIViewController {
             }
         }
     }
-    
-    @IBAction func backTapped(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-    }
-    /** DON'T DELETE  */
-    
-    //    func pushConfirmSignUpVC() {
-    //        // grab the navigation view controller and push confirmSignUpVC in that
-    //        let confirmSignUpViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.confirmSignUpViewController) as! AboutUserViewController
-    //        confirmSignUpViewController.email = emailTextField.text
-    //        navigationController?.pushViewController(confirmSignUpViewController, animated: true)
-    //    }
-    
+
     func transitionToHome() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         DispatchQueue.main.async {
@@ -119,14 +131,9 @@ class SignUpViewController: UIViewController {
             passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             return "Please fill in all the fields"
         }
-        
-        // Check if password is secure
-        return nil
-    }
+        /* TODO: Check if password is secure */
     
-    func showError(_ message: String) {
-        errorLabel.text = message
-        errorLabel.alpha = 0.7
+        return nil
     }
     
     func setupElements() {
@@ -137,6 +144,10 @@ class SignUpViewController: UIViewController {
         Render.textFieldLabel(emailLabel)
         Render.textFieldLabel(passwordLabel)
         Render.errorLabel(errorLabel)
+        
+        termsAndPolicyMessageLabel.text = self.termsAndPolicyMessage
+        termsAndPolicyMessageLabel.font = UIFont(name: Theme.Font.sansSerifRegular, size: 14)
+        termsAndPolicyMessageLabel.textColor = .lightGray
         
         
         /* MARK: Text Fields */
@@ -159,17 +170,12 @@ class SignUpViewController: UIViewController {
 }
 
 extension SignUpViewController: UITextFieldDelegate {
-    /**
-     * Called when 'return' key pressed. return NO to ignore.
-     */
+    /// Called when 'return' key pressed. return NO to ignore.
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-    
-    /**
-     * Called when the user click on the view (outside the UITextField).
-     */
+    /// Called when the user click on the view (outside the UITextField).
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }

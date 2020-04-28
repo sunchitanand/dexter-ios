@@ -9,10 +9,15 @@
 import UIKit
 
 class UserContactCell: UITableViewCell {
-    
-    @IBOutlet weak var profilePhotoImageView: UIImageView!
+    /* MARK: Text Views */
     @IBOutlet weak var nameTextView: DisplayTextView!
     @IBOutlet weak var aboutTextView: DisplayTextView!
+    
+    /* MARK: Labels */
+    @IBOutlet weak var timestampLabel: UILabel!
+    
+    /* MARK: Views */
+    @IBOutlet weak var profilePhotoImageView: UIImageView!
     //    @IBOutlet weak var cardView: UIView!
     
     // TODO: pass User and update all views
@@ -46,20 +51,37 @@ class UserContactCell: UITableViewCell {
     }
     
     func styleCell() {
+        let backgroundColor = Theme.Color.darkBg
+        self.backgroundColor = backgroundColor
+        self.selectionStyle = .none
+        
+        /* MARK: Text Views */
         nameTextView.font = UIFont(name: Theme.Font.sansSerifSemiBold, size: 17)
+        nameTextView.backgroundColor = backgroundColor
+        nameTextView.textColor = .white
+        
         aboutTextView.font = UIFont(name: Theme.Font.sansSerifRegular, size: 15)
         aboutTextView.textContainer.maximumNumberOfLines = 5
         aboutTextView.textContainer.lineBreakMode = .byTruncatingTail
-        self.selectionStyle = .none
-        
-        Render.profilePhotoImageView(profilePhotoImageView)
-        
-        self.backgroundColor = Theme.Color.darkBg
-        nameTextView.backgroundColor = Theme.Color.darkBg
-        nameTextView.textColor = .white
-        aboutTextView.backgroundColor = Theme.Color.darkBg
+        aboutTextView.backgroundColor = backgroundColor
         aboutTextView.textColor = .white
         
+        
+        /* MARK: Image Views */
+        Render.profilePhotoImageView(profilePhotoImageView)
+        
+        
+        /* MARK: Labels */
+        let date = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        let minutes = calendar.component(.minute, from: date)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a"
+        let dateString = formatter.string(from: date)
+        timestampLabel.text = dateString //String(hour) + ":" + String(minutes)
+        timestampLabel.font = UIFont(name: Theme.Font.sansSerifRegular, size: 11)
+        timestampLabel.textColor = .lightGray
         /*
          cardView.backgroundColor = .white
          cardView.layer.cornerRadius = 10

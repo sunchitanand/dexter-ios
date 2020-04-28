@@ -20,6 +20,7 @@ struct Constants {
         static let signUpViewController = "SignUpViewController"
         static let settingsViewController = "SettingsViewController"
         static let changePasswordViewController = "ChangePasswordViewController"
+        static let sidebarViewController = "SidebarViewController"
     }
     
     struct APIKey {

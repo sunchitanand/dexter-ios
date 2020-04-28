@@ -36,7 +36,7 @@ class SocialHandlesViewController: UIViewController {
     
     /* MARK: Labels */
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var addPhotoLabel: UILabel!
+    @IBOutlet weak var uploadPhotoLabel: UILabel!
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     
@@ -59,6 +59,7 @@ class SocialHandlesViewController: UIViewController {
         
         photoHelper.completionHandler = { image in
             self.profilePhotoImageView.image = image
+            self.uploadPhotoLabel.text = ""
             UserModelController.updateProfilePhoto(image: image)
         }
     }
@@ -164,8 +165,9 @@ class SocialHandlesViewController: UIViewController {
         /* MARK: Labels */
         Render.labelTitle(titleLabel)
         
-        addPhotoLabel.font = UIFont(name: Theme.Font.sansSerifRegular, size: 17)
-        addPhotoLabel.textColor = .darkGray
+        uploadPhotoLabel.font = UIFont(name: Theme.Font.sansSerifRegular, size: 17)
+        uploadPhotoLabel.textColor = .darkGray
+        uploadPhotoLabel.text = "Upload Photo"
         
         
         /* MARK: Text Views */
@@ -178,9 +180,11 @@ class SocialHandlesViewController: UIViewController {
         
         Render.styleTextField(twitterHandleTextField)
         twitterHandleTextField.attributedPlaceholder = NSAttributedString(string: "Your Twitter handle", attributes: placeholderAttributes)
+        twitterHandleTextField.autocorrectionType = .no
         
         Render.styleTextField(instagramHandleTextField)
         instagramHandleTextField.attributedPlaceholder = NSAttributedString(string: "Your Instagram username", attributes: placeholderAttributes)
+        instagramHandleTextField.autocorrectionType = .no
         
         
         /// setup data

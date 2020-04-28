@@ -93,15 +93,19 @@ class UserProfileViewController: UIViewController {
         
         /* MARK: Buttons */
         Render.styleBackButton(backButton)
-        
+        Render.moreButton(moreButton)
+
         
         /* MARK: Views */
         Render.renderUserCardElements(cardContainer: container, separator: separator, profilePhoto: profilePhotoImageView, twitterLogo: twitterLogo, instagramLogo: instagramLogo, fullName: fullNameLabel, email: emailLabel, bio: aboutTextView, twitterHandle: twitterUsernameLabel, instagramUsername: instagramUsernameLabel)
         
-        let moreImg = UIImage(named: "baseline_more_vert_white_24pt")?.withRenderingMode(.alwaysOriginal)
-        moreButton.setImage(moreImg, for: .normal)
-        moreButton.contentMode = .scaleAspectFit
-        moreButton.setTitle("", for: .normal)
+        if selectedUser?.twitterHandle == "" {
+            twitterLogo.alpha = 0
+        }
+        if selectedUser?.instagramHandle == "" {
+            instagramLogo.alpha = 0
+        }
+        
     }
     
     func setupData() {

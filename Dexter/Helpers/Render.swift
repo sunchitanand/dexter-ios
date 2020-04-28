@@ -16,6 +16,7 @@ class Render {
     }
     
     /* MARK: Text Fields */
+    
     static func styleTextField(_ textField:UITextField) {
         //        textField.backgroundColor = Theme.Color.cardBg
         textField.backgroundColor = .black
@@ -28,7 +29,7 @@ class Render {
         textField.placeholder = ""
         textField.font = UIFont(name: Theme.Font.sansSerifRegular, size: 18)
         textField.spellCheckingType = .no
-                textField.returnKeyType = .done
+        textField.returnKeyType = .done
         // Create the bottom line (*currently, height set to 0 => not visible)
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0, y: textField.frame.height - 2, width: textField.frame.width, height: 0)
@@ -38,6 +39,7 @@ class Render {
     }
     
     /* MARK: Buttons */
+    
     static func styleFilledButton(_ button:UIButton) {
         button.backgroundColor = Theme.Color.dGreen
         button.layer.cornerRadius = button.frame.size.height / 2
@@ -73,8 +75,16 @@ class Render {
         button.setTitleColor(Theme.Color.dGreen, for: .normal)
     }
     
+    static func moreButton(_ button: UIButton) {
+        let moreImg = UIImage(named: "baseline_more_vert_white_24pt")?.withRenderingMode(.alwaysOriginal)
+        button.setImage(moreImg, for: .normal)
+        button.contentMode = .scaleAspectFit
+        button.setTitle("", for: .normal)
+    }
+    
     
     /* MARK: Labels */
+    
     static func discoveryTitleLabel(_ label: UILabel) {
         label.font = UIFont(name: "NewYorkMedium-Heavy", size: 25)
         label.alpha = 1
@@ -90,7 +100,16 @@ class Render {
     static func errorLabel(_ label: UILabel) {
         label.textColor = Theme.Color.dRed
         label.font = UIFont(name: Theme.Font.sansSerifRegular, size: 17)
+        label.sizeToFit()
         label.alpha = 0
+    }
+    
+    static func showErrorLabel(errorLabel: UILabel, message: String) {
+        errorLabel.text = message
+        errorLabel.alpha = 1
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+            errorLabel.alpha = 0
+        }
     }
     
     static func textFieldLabel(_ label: UILabel) {
@@ -100,6 +119,7 @@ class Render {
     
     
     /* MARK: Text Views */
+    
     static func titleNewYork(_ textView: UITextView) {
         textView.font = UIFont(name: "NewYorkMedium-Heavy", size: 24)
         textView.alpha = 1
@@ -119,21 +139,20 @@ class Render {
         textView.textColor = .white
         textView.sizeToFit()
     }
-
+    
     static func enterBioTextView(_ aboutTextView: UITextView) {
-        //        aboutTextView.backgroundColor = Theme.Color.cardBg
+        aboutTextView.font = UIFont(name: Theme.Font.sansSerifRegular, size: 17)
         aboutTextView.backgroundColor = .black
         /*
          aboutTextView.layer.borderWidth = 3
          aboutTextView.layer.borderColor = Theme.Color.greenOn.cgColor
          */
         aboutTextView.layer.cornerRadius = 10
-        aboutTextView.textContainer.maximumNumberOfLines = 10
+        //        aboutTextView.textContainer.maximumNumberOfLines = 10
         aboutTextView.textAlignment = .center
-        aboutTextView.font = UIFont(name: Theme.Font.sansSerifRegular, size: 18)
-        //        aboutTextView.centerVertically()
-        aboutTextView.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 5, right: 20)
-        
+        aboutTextView.centerVertically()
+        aboutTextView.textContainerInset = UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
+        //        aboutTextView.isScrollEnabled = true
         aboutTextView.textColor = .white
         aboutTextView.returnKeyType = .done
         
@@ -144,7 +163,10 @@ class Render {
          aboutTextView.isScrollEnabled = false
          */
     }
+    
+    
     /* MARK: Views */
+    
     static func profilePhotoImageView(_ imageView: UIImageView) {
         imageView.contentMode = UIView.ContentMode.scaleAspectFill
         imageView.layer.cornerRadius = 5
@@ -191,11 +213,16 @@ class Render {
         
     }
     
-    static func isPasswordValid(_ password : String) -> Bool {
-         
-         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{6,}")
-         return passwordTest.evaluate(with: password)
-     }
+    static func dexterLogo(_ imageView: UIImageView) {
+        let dexterLogoImg = UIImage(named: "dexter-logo-white")?.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = Theme.Color.dGreen
+        imageView.image = dexterLogoImg
+    }
     
+    static func isPasswordValid(_ password : String) -> Bool {
+        
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{6,}")
+        return passwordTest.evaluate(with: password)
+    }
 }
 

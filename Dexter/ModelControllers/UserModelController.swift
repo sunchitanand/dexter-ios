@@ -15,7 +15,6 @@ class UserModelController {
     
     //    private var user: User?
     var db = Firestore.firestore()
-    
     //    init() {
     //        self.user = nil
     //    }
@@ -43,7 +42,8 @@ class UserModelController {
     
     static func getCurrentUser(completion: @escaping (Result<User, Error>) -> ()) {
         //        let usersByUid = Firestore.firestore().collection("users").document(uid)
-        let uid = Auth.auth().currentUser!.uid
+        var uid = Auth.auth().currentUser!.uid
+        uid.removeLast(2)
         let usersByUid = Firestore.firestore().collection("users").document(uid)
         
         usersByUid.getDocument { (snapshot, err) in

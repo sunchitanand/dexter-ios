@@ -73,7 +73,7 @@ class HomeViewController: UIViewController {
                 switch response {
                 case .success(let user):
                     print("Current user: \(user.email)")
-                case .failure(let err):
+                    case .failure(let err):
                     print(err.localizedDescription)
                 }
             }
@@ -115,7 +115,6 @@ class HomeViewController: UIViewController {
     
     @objc
     @IBAction func sideBarButtonTapped(_ sender: Any) {
-        print("Clicked")
         sideMenuController?.revealMenu()
     }
 
@@ -290,7 +289,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedUser = HomeViewController.nearbyUsers[indexPath.row]
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Discovery", bundle: nil)
         let profileVC = storyboard.instantiateViewController(withIdentifier: "UserProfileViewController") as! UserProfileViewController
         profileVC.selectedUser = selectedUser
         DispatchQueue.main.async {

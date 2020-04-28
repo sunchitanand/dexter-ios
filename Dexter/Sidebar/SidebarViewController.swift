@@ -13,12 +13,15 @@ import SideMenuSwift
 
 class SidebarViewController: UIViewController {
     
+    /* MARK: Views */
     @IBOutlet weak var sidebarTableView: UITableView!
     @IBOutlet weak var sidebarTableViewHeader: UIView!
+    @IBOutlet weak var dexterLogoImageView: UIImageView!
+    
+    /* MARK: Labels */
+    @IBOutlet weak var greetingLabel: UILabel!
     
     let firebaseAuth = Auth.auth()
-    
-    let backgroundColor = Theme.Color.darkBg
     
     let sectionHeaders = ["Account", "Help", ""]
     
@@ -34,23 +37,43 @@ class SidebarViewController: UIViewController {
         [UIImage(named: "exit_to_app_white_24pt")]
     ]
     
+    let backgroundColor = Theme.Color.darkBg
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = backgroundColor
         setupSidebar()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        DispatchQueue.main.async {
+            self.greetingLabel.text = "Hey,\n  \(User.current.firstName)"
+        }
     }
     
     func setupSidebar() {
         self.view.backgroundColor = backgroundColor
-        sidebarTableViewHeader.backgroundColor = backgroundColor
-        sidebarTableView.backgroundColor = backgroundColor
+        
+        SideMenuController.preferences.basic.menuWidth = 230
+        
+        /* MARK: Views */
         sidebarTableView.delegate = self
         sidebarTableView.dataSource = self
-        
+        sidebarTableView.backgroundColor = backgroundColor
         sidebarTableView.separatorStyle = .none
         sidebarTableView.tableFooterView = UIView()
         
-        SideMenuController.preferences.basic.menuWidth = 230
+        sidebarTableViewHeader.backgroundColor = backgroundColor
+        
+        Render.dexterLogo(dexterLogoImageView)
+        
+        
+        /* MARK: Labels */
+        Render.labelTitle(greetingLabel)
+        greetingLabel.text = "Hey,\n  \(User.current.firstName)"
+        //        greetingLabel.font = UIFont(name: Theme.Font.serifSemiBold, size: 27)
+        greetingLabel.numberOfLines = 0
+        greetingLabel.sizeToFit()
     }
     
     /*
@@ -144,18 +167,18 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
         case 2:
             print("Sidebar: Logout")
             do { try firebaseAuth.signOut() }
-                   catch let signOutError as NSError {
-                       /// TODO: Handle error
-                       print(signOutError.localizedDescription)
-                   }
-                   transitionToAuthenticationScreen()
+            catch let signOutError as NSError {
+                /// TODO: Handle error
+                print(signOutError.localizedDescription)
+            }
+            transitionToAuthenticationScreen()
         default:
             print("TODO")
         }
     }
     
-        func transitionToAuthenticationScreen() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    func transitionToAuthenticationScreen() {
+        let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
         DispatchQueue.main.async {
             let authProvidersVC = storyboard.instantiateViewController(identifier: Constants.Storyboard.authenticationNavigationController) as? UINavigationController
             self.view.window?.rootViewController = authProvidersVC

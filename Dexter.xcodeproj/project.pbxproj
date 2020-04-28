@@ -14,6 +14,10 @@
 		B915B00B245298740025BFB2 /* SF-Pro-Display-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B915B00A245298730025BFB2 /* SF-Pro-Display-SemiboldItalic.otf */; };
 		B915B00E2452E2910025BFB2 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B915B00D2452E2910025BFB2 /* ChangePasswordViewController.swift */; };
 		B915B0102454E8940025BFB2 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B915B00F2454E8940025BFB2 /* AlertController.swift */; };
+		B915B0142457CA570025BFB2 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B915B0132457CA560025BFB2 /* Authentication.storyboard */; };
+		B915B0162457E66B0025BFB2 /* Sidebar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B915B0152457E66B0025BFB2 /* Sidebar.storyboard */; };
+		B915B0182457E7890025BFB2 /* Discovery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B915B0172457E7890025BFB2 /* Discovery.storyboard */; };
+		B915B01A2457F2540025BFB2 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B915B0192457F2540025BFB2 /* SignUp.storyboard */; };
 		B918D47123D6A78F00864C94 /* UserContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B918D47023D6A78F00864C94 /* UserContactCell.swift */; };
 		B92686EC244BBEC40057A33E /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92686EB244BBEC40057A33E /* SidebarViewController.swift */; };
 		B9285B60241463430077F3BD /* SocialHandlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9285B5F241463430077F3BD /* SocialHandlesViewController.swift */; };
@@ -98,6 +102,10 @@
 		B915B00A245298730025BFB2 /* SF-Pro-Display-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-SemiboldItalic.otf"; sourceTree = "<group>"; };
 		B915B00D2452E2910025BFB2 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		B915B00F2454E8940025BFB2 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		B915B0132457CA560025BFB2 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
+		B915B0152457E66B0025BFB2 /* Sidebar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sidebar.storyboard; sourceTree = "<group>"; };
+		B915B0172457E7890025BFB2 /* Discovery.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Discovery.storyboard; sourceTree = "<group>"; };
+		B915B0192457F2540025BFB2 /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		B918D47023D6A78F00864C94 /* UserContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContactCell.swift; sourceTree = "<group>"; };
 		B92686EB244BBEC40057A33E /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		B9285B5F241463430077F3BD /* SocialHandlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialHandlesViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +218,18 @@
 			path = Sidebar;
 			sourceTree = "<group>";
 		};
+		B915B0122457CA200025BFB2 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				B94B1ACF23A62508001FC054 /* Main.storyboard */,
+				B915B0132457CA560025BFB2 /* Authentication.storyboard */,
+				B915B0152457E66B0025BFB2 /* Sidebar.storyboard */,
+				B915B0172457E7890025BFB2 /* Discovery.storyboard */,
+				B915B0192457F2540025BFB2 /* SignUp.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		B94AF30A23A62FF1008BE764 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,8 +293,8 @@
 		B94B1AC823A62508001FC054 /* Dexter */ = {
 			isa = PBXGroup;
 			children = (
+				B915B0122457CA200025BFB2 /* Storyboards */,
 				B97ADC2023FA8C7000AB27AE /* Fonts */,
-				B94B1ACF23A62508001FC054 /* Main.storyboard */,
 				B94AF30823A62FEA008BE764 /* SplashViewController.swift */,
 				B9EC9BCF23FE9E9900C26055 /* DiscoveryNavigationController.swift */,
 				B94AF30A23A62FF1008BE764 /* Authentication */,
@@ -315,10 +335,10 @@
 		B94ED83F23F09DE400423D6A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B94B1AD723A6250C001FC054 /* LaunchScreen.storyboard */,
 				B9A087BB2429F6D200ADC5E3 /* Podfile */,
 				B94B1AC923A62508001FC054 /* AppDelegate.swift */,
 				B94B1AD523A6250C001FC054 /* Assets.xcassets */,
-				B94B1AD723A6250C001FC054 /* LaunchScreen.storyboard */,
 				B9B548ED23D063D100D69C38 /* SceneDelegate.swift */,
 				B94AF31523A75416008BE764 /* GoogleService-Info.plist */,
 			);
@@ -488,7 +508,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B915B0142457CA570025BFB2 /* Authentication.storyboard in Resources */,
 				B9A087BC2429F6D200ADC5E3 /* Podfile in Resources */,
+				B915B01A2457F2540025BFB2 /* SignUp.storyboard in Resources */,
 				B915B0092452985A0025BFB2 /* SF-Pro-Display-MediumItalic.otf in Resources */,
 				B94B1AD923A6250D001FC054 /* LaunchScreen.storyboard in Resources */,
 				B94B1AD623A6250C001FC054 /* Assets.xcassets in Resources */,
@@ -497,6 +519,8 @@
 				B97ADCC623FA8CE100AB27AE /* SF-Pro-Display-Semibold.otf in Resources */,
 				B97ADCEB23FA8CE100AB27AE /* SF-Pro-Display-Heavy.otf in Resources */,
 				B97ADCDB23FA8CE100AB27AE /* SF-Pro-Display-Medium.otf in Resources */,
+				B915B0162457E66B0025BFB2 /* Sidebar.storyboard in Resources */,
+				B915B0182457E7890025BFB2 /* Discovery.storyboard in Resources */,
 				B915B007245296B30025BFB2 /* SF-Pro-Display-HeavyItalic.otf in Resources */,
 				B97ADCCA23FA8CE100AB27AE /* SF-Pro-Display-RegularItalic.otf in Resources */,
 				B97ADCE623FA8CE100AB27AE /* SF-Pro-Display-Regular.otf in Resources */,

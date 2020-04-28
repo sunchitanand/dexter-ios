@@ -9,12 +9,16 @@
 import UIKit
 
 class AboutUserViewController: UIViewController {
-    
+    /* MARK: Buttons */
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
+
+    /* MARK: Labels */
     @IBOutlet weak var greetingTitleLabel: UILabel!
+
+    /* MARK: Text View */
     @IBOutlet weak var greetingSubtitleTextView: DisplayTextView!
     @IBOutlet weak var aboutTextView: UITextView!
-    @IBOutlet weak var backButton: UIButton!
     
     public var email : String? = ""
     
@@ -39,9 +43,6 @@ class AboutUserViewController: UIViewController {
     }
     
     @IBAction func backTapped(_ sender: Any) {
-        /// Tell the SignUp page that back has been pressed
-        let signUpVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.signUpViewController) as! SignUpViewController
-        signUpVC.isTransitioningFromBio = true
         navigationController?.popViewController(animated: true)
     }
     
@@ -51,18 +52,21 @@ class AboutUserViewController: UIViewController {
     }
     
     func setupElements() {
-        Render.enterBioTextView(aboutTextView)
-        Render.styleBackButton(backButton)
-        Render.styleFilledButton(nextButton)
-        Render.labelTitle(greetingTitleLabel)
-        Render.textViewSubtitle(greetingSubtitleTextView)
-        
-        greetingTitleLabel.text = "Hey, \(User.current.firstName)."
-        
-        /// Dark Mode
         let bg = Theme.Color.darkBg
         self.view.backgroundColor = bg
+        
+        /* MARK: Labels*/
+        Render.labelTitle(greetingTitleLabel)
+        greetingTitleLabel.text = "Hey, \(User.current.firstName)."
         greetingSubtitleTextView.backgroundColor = bg
+        
+        /* MARK: Text View */
+        Render.enterBioTextView(aboutTextView)
+        Render.textViewSubtitle(greetingSubtitleTextView)
+
+        /* MARK: Button */
+        Render.styleBackButton(backButton)
+        Render.styleFilledButton(nextButton)
     }
 }
 
@@ -80,22 +84,15 @@ extension AboutUserViewController: UITextViewDelegate {
         // make sure the result is under x characters
         return updatedText.count <= 350
     }
-    
-    
 }
 
 extension AboutUserViewController: UITextFieldDelegate {
-    /**
-     * Called when 'return' key pressed. return NO to ignore.
-     */
+    /// Called when 'return' key pressed. return NO to ignore.
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-    
-    /**
-     * Called when the user click on the view (outside the UITextField).
-     */
+    /// Called when the user click on the view (outside the UITextField).
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }

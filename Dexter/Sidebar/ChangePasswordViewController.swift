@@ -46,7 +46,7 @@ class ChangePasswordViewController: UIViewController {
         else {
             let message = "Passwords don't match."
             print(message)
-            showError(message: message )
+            Render.showErrorLabel(errorLabel: self.errorLabel, message: message)
         }
     }
     
@@ -94,7 +94,7 @@ class ChangePasswordViewController: UIViewController {
     }
     
     func transitionToHome() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Discovery", bundle: nil)
         DispatchQueue.main.async {
             let homeVC = storyboard.instantiateViewController(identifier: Constants.Storyboard.discoveryNavigationController) as! UINavigationController
             self.sideMenuController?.setContentViewController(to: homeVC)
@@ -102,20 +102,11 @@ class ChangePasswordViewController: UIViewController {
     }
     
     func transitionToWelcome() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
         DispatchQueue.main.async {
             let authProvidersVC = storyboard.instantiateViewController(identifier: Constants.Storyboard.authenticationNavigationController) as? UINavigationController
             self.view.window?.rootViewController = authProvidersVC
             self.view.window?.makeKeyAndVisible()
-        }
-    }
-    
-    
-    func showError(message: String) {
-        errorLabel.text = message
-        errorLabel.alpha = 1
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-            self.errorLabel.alpha = 0
         }
     }
     

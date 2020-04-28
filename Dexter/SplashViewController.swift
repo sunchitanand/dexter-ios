@@ -18,7 +18,6 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /// DARK MODE
         self.view.backgroundColor = Theme.Color.darkBg
     }
     
@@ -39,7 +38,8 @@ class SplashViewController: UIViewController {
     }
     
     func navigateToAuth() {
-        let authNavigationController = storyboard?.instantiateViewController(identifier: "AuthenticationNavigationController") as! UINavigationController
+            let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
+        let authNavigationController = storyboard.instantiateViewController(identifier: "AuthenticationNavigationController") as! UINavigationController
         DispatchQueue.main.async {
             self.view.window?.rootViewController = authNavigationController
             self.view.window?.makeKeyAndVisible()
