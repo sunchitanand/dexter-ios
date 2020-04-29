@@ -63,13 +63,17 @@ class SignInViewController: UIViewController {
         let email = emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        /// TODO: Validate the text fields
+        let valid = validateFields()
+        if valid != nil {
+            Render.showErrorLabel(errorLabel: errorLabel, message: valid!)
+            return
+        }
         
         // Sign in the user
         Auth.auth().signIn(withEmail: email!, password: password!) { (result, error) in
             if error != nil {
                 print(error!.localizedDescription)
-                Render.showErrorLabel(errorLabel: self.errorLabel, message: self.errorMessage)
+                Render.showErrorLabel(errorLabel: self.errorLabel, message: error!.localizedDescription)
             }
             else {
                 // Transition to home
@@ -77,9 +81,10 @@ class SignInViewController: UIViewController {
                     switch (response) {
                     case .success(_):
                         self.transitionToHome()
+                    
                     case .failure(let err):
                         print("Login Error: \(err.localizedDescription)")
-                        Render.showErrorLabel(errorLabel: self.errorLabel, message: self.errorMessage)
+                        Render.showErrorLabel(errorLabel: self.errorLabel, message: err.localizedDescription)
                     }
                 }
             }
@@ -109,6 +114,15 @@ class SignInViewController: UIViewController {
                 completion: nil)
             }
         }
+    }
+    
+    func validateFields() -> String? {
+        // Check if all fields are filled in
+        if emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            return "Please fill in all the fields"
+        }
+        return nil
     }
     
     func setupElements() {

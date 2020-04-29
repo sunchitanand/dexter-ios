@@ -78,7 +78,7 @@ class SignUpViewController: UIViewController {
             Auth.auth().createUser(withEmail: email!, password: password!) { (authResult, error) in
                 if let error = error {
                     print(error.localizedDescription)
-                    let message = error.localizedDescription.contains("email address is already in use") ? error.localizedDescription :self.createUserError
+                    let message = error.localizedDescription
                     Render.showErrorLabel(errorLabel: self.errorLabel, message: message)
                 }
                 else {
@@ -101,7 +101,7 @@ class SignUpViewController: UIViewController {
                             self.pushAboutUserVC()
                             
                         case .failure(let err):
-                            Render.showErrorLabel(errorLabel: self.errorLabel, message: self.firestoreError )
+                            Render.showErrorLabel(errorLabel: self.errorLabel, message: err.localizedDescription)
                             print(err.localizedDescription)
                         }
                     }

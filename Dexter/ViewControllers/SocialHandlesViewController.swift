@@ -96,12 +96,16 @@ class SocialHandlesViewController: UIViewController {
         UserModelController.updateUser(newUserData: handles) { (response) in
             switch response {
             case .success( _):
-                //                User._current?.twitterHandle = self.twitterHandleTextField.text
-                //                User._current?.instagramHandle = self.instagramHandleTextField.text
                 self.transitionToDiscovery()
                 return
+            
             case .failure(let err):
                 print(err.localizedDescription)
+                let alertController = UIAlertController(title: "Error Occurred", message: "Could not save your details. Please try again.", preferredStyle: .alert)
+                let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(alertAction)
+                self.present(alertController, animated: true, completion: nil)
+                alertController.setTint(color: .white)
             }
         }
     }
@@ -207,17 +211,6 @@ class SocialHandlesViewController: UIViewController {
         aboutTextView.text = "SWE at Oracle, Bay Area. Deep into skiing, chess and space. Looking to connect with PMs and professionals working on autonomous vehiclesSWE at Oracle, Bay Area. Deep into skiing, chess and space. Looking to connect with PMs and professionals working on autonomous vehicles."
         emailLabel.text = "sunchit.anand@gmail.com"
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 
 extension SocialHandlesViewController: UITextFieldDelegate {

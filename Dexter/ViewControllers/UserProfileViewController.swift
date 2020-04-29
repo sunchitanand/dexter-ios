@@ -47,11 +47,9 @@ class UserProfileViewController: UIViewController {
         let flagAction = UIAlertAction(title: "Report as Inappropriate", style: .default) { _ in
             print("Reporting \(String(describing: self.selectedUser?.email))")
             
-            let successAlert = UIAlertController(title: "Reported", message: "The user account has been reported as inappropriate.", preferredStyle: UIAlertController.Style.alert)
-            successAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            let successAlert = Render.singleActionAlert(title: "Reported", message: "The user account has been reported as inappropriate.")
             
-            let errorAlert = UIAlertController(title: "Error Occurred", message: "There was an error reporting the user. Please try again or contact developer for more help.", preferredStyle: .alert)
-            errorAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            let errorAlert = Render.singleActionAlert(title: "Error Occurred", message: "There was an error reporting the user. Please try again or contact developer for more help.")
             
             if !UserProfileViewController.hasReportedOnce {
                 UserModelController.flagUser(uid: self.selectedUser!.uid) { (response) in
@@ -75,7 +73,7 @@ class UserProfileViewController: UIViewController {
         //        cancelAction.setValue(UIColor.black, forKey: "titleTextColor")
         alertController.addAction(cancelAction)
         
-        present(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
         
         alertController.view.tintColor = .white
         //        let subview = (alertController.view.subviews.first?.subviews.first?.subviews.first!)! as UIView

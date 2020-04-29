@@ -23,7 +23,6 @@
 		B9285B60241463430077F3BD /* SocialHandlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9285B5F241463430077F3BD /* SocialHandlesViewController.swift */; };
 		B9285B642423368C0077F3BD /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9285B632423368C0077F3BD /* MainTabBarController.swift */; };
 		B92B0EB623FE3406008D1933 /* DisplayTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92B0EB523FE3406008D1933 /* DisplayTextView.swift */; };
-		B9370D1C2440658A00AD83D2 /* ViewControViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9370D1B2440658A00AD83D2 /* ViewControViewController.swift */; };
 		B94AF30723A62F1B008BE764 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF30623A62F1B008BE764 /* AuthenticationViewController.swift */; };
 		B94AF30923A62FEA008BE764 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF30823A62FEA008BE764 /* SplashViewController.swift */; };
 		B94AF30C23A63094008BE764 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AF30B23A63094008BE764 /* SignUpViewController.swift */; };
@@ -111,7 +110,6 @@
 		B9285B5F241463430077F3BD /* SocialHandlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialHandlesViewController.swift; sourceTree = "<group>"; };
 		B9285B632423368C0077F3BD /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		B92B0EB523FE3406008D1933 /* DisplayTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayTextView.swift; sourceTree = "<group>"; };
-		B9370D1B2440658A00AD83D2 /* ViewControViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControViewController.swift; sourceTree = "<group>"; };
 		B94AF30623A62F1B008BE764 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		B94AF30823A62FEA008BE764 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		B94AF30B23A63094008BE764 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -208,16 +206,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		B915B00C2452E2330025BFB2 /* Sidebar */ = {
-			isa = PBXGroup;
-			children = (
-				B92686EB244BBEC40057A33E /* SidebarViewController.swift */,
-				B955A05223DD30BE0033AD51 /* SettingsViewController.swift */,
-				B915B00D2452E2910025BFB2 /* ChangePasswordViewController.swift */,
-			);
-			path = Sidebar;
-			sourceTree = "<group>";
-		};
 		B915B0122457CA200025BFB2 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,30 +218,13 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		B94AF30A23A62FF1008BE764 /* Authentication */ = {
-			isa = PBXGroup;
-			children = (
-				B94AF30623A62F1B008BE764 /* AuthenticationViewController.swift */,
-				B94AF30F23A6311C008BE764 /* SignInViewController.swift */,
-				B94AF30B23A63094008BE764 /* SignUpViewController.swift */,
-				B94AF30D23A630C4008BE764 /* AboutUserViewController.swift */,
-				B9285B5F241463430077F3BD /* SocialHandlesViewController.swift */,
-				B9370D1B2440658A00AD83D2 /* ViewControViewController.swift */,
-			);
-			path = Authentication;
-			sourceTree = "<group>";
-		};
 		B94AF31723A8B8DA008BE764 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				B9E58A12243E923600274A4E /* BluetoothManager.swift */,
 				B9E58A14243E934900274A4E /* CoreBluetoothManager.swift */,
 				B9A087B72427F41000ADC5E3 /* SelectPhotoHelper.swift */,
-				B94AF32323B81940008BE764 /* FirestoreSchema.swift */,
 				B94AF31823A8B942008BE764 /* Render.swift */,
-				B94AF31A23A8BB3C008BE764 /* Constants.swift */,
-				B955A05423DD500E0033AD51 /* Theme.swift */,
-				B9E58A0E243D841D00274A4E /* TransferService.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -293,20 +264,15 @@
 		B94B1AC823A62508001FC054 /* Dexter */ = {
 			isa = PBXGroup;
 			children = (
-				B915B0122457CA200025BFB2 /* Storyboards */,
-				B97ADC2023FA8C7000AB27AE /* Fonts */,
-				B94AF30823A62FEA008BE764 /* SplashViewController.swift */,
-				B9EC9BCF23FE9E9900C26055 /* DiscoveryNavigationController.swift */,
-				B94AF30A23A62FF1008BE764 /* Authentication */,
-				B9285B632423368C0077F3BD /* MainTabBarController.swift */,
-				B94AF31123A63196008BE764 /* HomeViewController.swift */,
-				B9EC9BC923FE845D00C26055 /* UserProfileViewController.swift */,
-				B915B00C2452E2330025BFB2 /* Sidebar */,
+				B9938C42245945F0009A3700 /* ViewControllers */,
 				B955A05A23E161080033AD51 /* Views */,
 				B969E8B523BB4ADA0096AF29 /* ModelControllers */,
 				B94AF31C23B59A51008BE764 /* Models */,
 				B94AF31723A8B8DA008BE764 /* Helpers */,
+				B9938C41245944B3009A3700 /* Constants */,
+				B915B0122457CA200025BFB2 /* Storyboards */,
 				B94ED83F23F09DE400423D6A /* Supporting Files */,
+				B97ADC2023FA8C7000AB27AE /* Fonts */,
 				B94B1AD223A62508001FC054 /* Dexter.xcdatamodeld */,
 				B94B1ADA23A6250D001FC054 /* Info.plist */,
 				B9B548EA23CDB22700D69C38 /* imports.h */,
@@ -381,6 +347,37 @@
 				B97ADC2523FA8C9D00AB27AE /* NewYorkExtraLarge-Semibold.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B9938C41245944B3009A3700 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				B94AF32323B81940008BE764 /* FirestoreSchema.swift */,
+				B94AF31A23A8BB3C008BE764 /* Constants.swift */,
+				B955A05423DD500E0033AD51 /* Theme.swift */,
+				B9E58A0E243D841D00274A4E /* TransferService.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		B9938C42245945F0009A3700 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B94AF30D23A630C4008BE764 /* AboutUserViewController.swift */,
+				B94AF30623A62F1B008BE764 /* AuthenticationViewController.swift */,
+				B915B00D2452E2910025BFB2 /* ChangePasswordViewController.swift */,
+				B9EC9BCF23FE9E9900C26055 /* DiscoveryNavigationController.swift */,
+				B94AF31123A63196008BE764 /* HomeViewController.swift */,
+				B9285B632423368C0077F3BD /* MainTabBarController.swift */,
+				B955A05223DD30BE0033AD51 /* SettingsViewController.swift */,
+				B92686EB244BBEC40057A33E /* SidebarViewController.swift */,
+				B94AF30F23A6311C008BE764 /* SignInViewController.swift */,
+				B94AF30B23A63094008BE764 /* SignUpViewController.swift */,
+				B9285B5F241463430077F3BD /* SocialHandlesViewController.swift */,
+				B94AF30823A62FEA008BE764 /* SplashViewController.swift */,
+				B9EC9BC923FE845D00C26055 /* UserProfileViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		D89C8A3CE6FDD398E3609D1C /* Frameworks */ = {
@@ -709,7 +706,6 @@
 				B94AF32023B818F4008BE764 /* DocumentSerializable.swift in Sources */,
 				B94AF31223A63196008BE764 /* HomeViewController.swift in Sources */,
 				B94AF31023A6311C008BE764 /* SignInViewController.swift in Sources */,
-				B9370D1C2440658A00AD83D2 /* ViewControViewController.swift in Sources */,
 				B955A05523DD500E0033AD51 /* Theme.swift in Sources */,
 				B94AF31E23B59AAD008BE764 /* User.swift in Sources */,
 				B9EB16CD23CDA16B00757817 /* DiscoveryToggleButton.swift in Sources */,

@@ -59,11 +59,11 @@ class HomeViewController: UIViewController {
         if !HomeViewController.executedOnce {
             HomeViewController.executedOnce = true
             print("Running initial setup...")
-            initialSetup()
+            oneTimeSetup()
         }
     }
     
-    func initialSetup() {
+    func oneTimeSetup() {
         self.currentUserId = firebaseAuth.currentUser?.uid
         
         /// Get user when app directly opens to Discovery screen
@@ -73,8 +73,11 @@ class HomeViewController: UIViewController {
                 switch response {
                 case .success(let user):
                     print("Current user: \(user.email)")
-                    case .failure(let err):
+                    
+                case .failure(let err):
                     print(err.localizedDescription)
+                    let errorAlert = Render.singleActionAlert(title: "Error Alert", message: "Could not fetch your details. Please try logging in again.")
+                    self.present(errorAlert, animated: true, completion: nil)
                 }
             }
         }
@@ -93,6 +96,7 @@ class HomeViewController: UIViewController {
             case .success(let userList):
                 HomeViewController.allUsers = userList
                 print("All users successfully fetched")
+                
             case .failure(let err):
                 print("Firestore: Error getting all users | \(err.localizedDescription)")
             }
@@ -102,11 +106,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Number of users stored: ", HomeViewController.allUsers.count)
-            setupElements()
-        
-        //        initializePermissionChangeListener()
-        //        setupGNSMessageManager()
-        
+        setupElements()
         /*
          print(User.current.dictionary)
          Theme.showFonts()
@@ -117,21 +117,18 @@ class HomeViewController: UIViewController {
     @IBAction func sideBarButtonTapped(_ sender: Any) {
         sideMenuController?.revealMenu()
     }
-
+    
     @IBAction func discoverySwitchToggled(_ sender: Any) {
         toggleStatusBarColor()
         
         if discoverySwitch.isOn {
             print("Discovery: On")
-            userContactTableViewHeaderView.backgroundColor = Theme.Color.dGreen
             discoveryStatusLabel.text = discoveryOnMessage
             // let msg = String(format:"User %d says hi!", arc4random() % 100)
             
             /** Production Code */
-            /*
-             peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
-             centralManager = CBCentralManager(delegate: self, queue: nil)
-             */
+//            startSharing()
+            
             
             /** FOR SIMULATION */
             /// Transfer a user from allUsers to nearbyUsers[] and increment pointer
@@ -140,28 +137,32 @@ class HomeViewController: UIViewController {
                 print(HomeViewController.allUsers[counter])
                 HomeViewController.nearbyUsers.append(HomeViewController.allUsers[counter])
                 counter += 1
-            }
-            else {
-                print("No more users nearby")
-            }
+            } else { print("No more users nearby") }
             
             self.userContactTableView.reloadData()
-        } else {
+        }
+        else {
             print("Discovery: Off")
-            userContactTableViewHeaderView.backgroundColor = Theme.Color.dGreen
             discoveryStatusLabel.text = discoveryOffMessage
-            /// uncomment for Nearby
-            //            stopSharing()
+            /** Production Code  */
+//             stopSharing()
         }
         userContactTableViewHeaderView.backgroundColor = discoverySwitch.isOn ? Theme.Color.dGreen : Theme.Color.dRed
     }
     
-    /* MARK: UI Elements Setup */
+
+    func startSharing() {
+        peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
+        centralManager = CBCentralManager(delegate: self, queue: nil)
+    }
     
     func stopSharing() {
         publication = nil
         subscription = nil
     }
+    
+    
+    /* MARK: UI Elements Setup */
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .darkContent
@@ -331,43 +332,59 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
  }
  } */
 
-/* MARK: Peripheral Manager*/
-extension HomeViewController: CBPeripheralManagerDelegate {
-    
-    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
-        if peripheral.state == .poweredOn {
-            if peripheral.isAdvertising {
-                peripheral.stopAdvertising()
-            }
-            var advertisingData: [String : Any] = [
-                CBAdvertisementDataServiceUUIDsKey: [TransferService.serviceUUID]
-            ]
-            advertisingData[CBAdvertisementDataLocalNameKey] = User.current.uid
-            print(User.current.uid)
-            //            if let uid = User.current.uid {
-            //                advertisingData[CBAdvertisementDataLocalNameKey] = uid
-            //            }
-            print("Starting Advertising")
-            self.peripheralManager?.startAdvertising(advertisingData)
-            print("Advertisement started [\(String(describing: advertisingData[CBAdvertisementDataLocalNameKey]))]")
-        } else {
-            #warning("handle other states")
-        }
-    }
-}
-
 /* MARK: Central Manager*/
 extension HomeViewController: CBCentralManagerDelegate {
+    
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        if central.state == .poweredOn {
+        
+        switch central.state {
+        case .unknown:
+            print("[CentralManager] Bluetooth state: unknown")
+            let errorAlert = Render.singleActionAlert(title: "Error Occurred", message: "An error occured while trying to use Bluetooth. Please try again.")
+            self.present(errorAlert, animated: true, completion: nil)
+        
+        case .resetting:
+            print("[CentralManager] Bluetooth state: resetting")
+            let errorAlert = Render.singleActionAlert(title: "Error Occurred", message: "Please try again.")
+            self.present(errorAlert, animated: true, completion: nil)
+        
+        case .unsupported:
+            print("[CentralManager] Bluetooth state: unsupported")
+            let errorAlert = Render.singleActionAlert(title: "Bluetooth Unsupported", message: "Bluetooth is not supported on this device.")
+            self.present(errorAlert, animated: true, completion: nil)
             
+        case .unauthorized:
+            print("[CentralManager] Bluetooth state: unauthorized")
+            let alertController = UIAlertController (title: "Bluetooth Access Required ", message: "Please allow Dexter to use Bluetooth in Settings.", preferredStyle: .alert)
+            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                    return
+                }
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                        print("Settings opened: \(success)") // Prints true
+                    })
+                }
+            }
+            alertController.addAction(settingsAction)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            alertController.setTint(color: .white)
+            present(alertController, animated: true, completion: nil)
+            
+        case .poweredOff:
+            print("[CentralManager] Bluetooth state: powered OFF")
+            
+        case .poweredOn:
+            print("[CentralManager] Bluetooth state: powered ON")
             if central.isScanning {
                 central.stopScan()
             }
-            //            central.scanForPeripherals(withServices: [TransferService.serviceUUID])
+            // central.scanForPeripherals(withServices: [TransferService.serviceUUID])
             central.scanForPeripherals(withServices: [TransferService.serviceUUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
-        } else {
-            #warning("Error handling")
+            
+        @unknown default:
+            print("[CentralManager] Bluetooth state: defaulted")
         }
     }
     
@@ -382,15 +399,74 @@ extension HomeViewController: CBCentralManagerDelegate {
             var newIncomingUser: User!
             UserModelController.getUser(uid: incomingUserId) { (response) in
                 switch response {
+                    
                 case .success(let user):
                     newIncomingUser = user
                     HomeViewController.nearbyUsers.append(newIncomingUser)
                     print("Discovered user saved")
                     self.userContactTableView.reloadData()
+                    
                 case .failure(_):
                     break
                 }
             }
+        }
+    }
+}
+
+/* MARK: Peripheral Manager*/
+extension HomeViewController: CBPeripheralManagerDelegate {
+    
+    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
+        
+        switch peripheral.state {
+        case .unknown:
+            print("[PeripheralManager] Bluetooth state: unknown")
+        case .resetting:
+            print("[PeripheralManager] Bluetooth state: resetting")
+        case .unsupported:
+            print("[PeripheralManager] Bluetooth state: unsupported")
+        case .unauthorized:
+            print("[PeripheralManager] Bluetooth state: unauthorized")
+            let alertController = UIAlertController (title: "Bluetooth Access Required ", message: "Please allow Dexter to use Bluetooth in Settings.", preferredStyle: .alert)
+            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                    return
+                }
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                        print("Settings opened: \(success)") // Prints true
+                    })
+                }
+            }
+            alertController.addAction(settingsAction)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            alertController.setTint(color: .white)
+            present(alertController, animated: true, completion: nil)
+        case .poweredOff:
+            print("[PeripheralManager] Bluetooth state: powered OFF")
+        case .poweredOn:
+            print("[PeripheralManager] Bluetooth state: powered ON")
+            if peripheral.isAdvertising {
+                peripheral.stopAdvertising()
+            }
+            var advertisingData: [String : Any] = [
+                CBAdvertisementDataServiceUUIDsKey: [TransferService.serviceUUID]
+            ]
+            advertisingData[CBAdvertisementDataLocalNameKey] = User.current.uid
+            print(User.current.uid)
+            /*
+            if let uid = User.current.uid {
+                advertisingData[CBAdvertisementDataLocalNameKey] = uid
+            }
+             */
+            print("Starting Advertising")
+            self.peripheralManager?.startAdvertising(advertisingData)
+            let advertisingString = String(describing: advertisingData[CBAdvertisementDataLocalNameKey])
+            print("Advertisement started [\(advertisingString)]")
+        @unknown default:
+            print("[PeripheralManager] Bluetooth state: defaulted")
         }
     }
 }

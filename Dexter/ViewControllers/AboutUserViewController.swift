@@ -15,7 +15,8 @@ class AboutUserViewController: UIViewController {
 
     /* MARK: Labels */
     @IBOutlet weak var greetingTitleLabel: UILabel!
-
+    @IBOutlet weak var errorLabel: UILabel!
+    
     /* MARK: Text View */
     @IBOutlet weak var greetingSubtitleTextView: DisplayTextView!
     @IBOutlet weak var aboutTextView: UITextView!
@@ -33,11 +34,12 @@ class AboutUserViewController: UIViewController {
         UserModelController.updateUser(newUserData: aboutData) { (response) in
             switch (response) {
             case .success( _):
-                //                self.transitionToDiscovery()
                 self.pushSocialHandlesViewController()
                 break
+            
             case .failure(let err):
                 print(err.localizedDescription)
+                Render.showErrorLabel(errorLabel: self.errorLabel, message: "An error occured. Please try again.")
             }
         }
     }
@@ -59,6 +61,8 @@ class AboutUserViewController: UIViewController {
         Render.labelTitle(greetingTitleLabel)
         greetingTitleLabel.text = "Hey, \(User.current.firstName)."
         greetingSubtitleTextView.backgroundColor = bg
+        
+        Render.errorLabel(errorLabel)
         
         /* MARK: Text View */
         Render.enterBioTextView(aboutTextView)

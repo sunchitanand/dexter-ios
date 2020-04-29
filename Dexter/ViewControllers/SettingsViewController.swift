@@ -57,7 +57,7 @@ class SettingsViewController: UIViewController {
     
     @IBAction func cancelTapped(_ sender: Any) {
         restoreUserDetails()
-//        self.tabBarController?.selectedIndex = 0
+        //        self.tabBarController?.selectedIndex = 0
         transitionToHome()
     }
     
@@ -78,8 +78,13 @@ class SettingsViewController: UIViewController {
             switch response {
             case .success(_):
                 print("User Settings updated!")
+                let successAlert = Render.singleActionAlert(title: "Success", message: "Your details are updated.")
+                self.present(successAlert, animated: true, completion: nil)
+                
             case .failure(let err):
                 print("Error updating user settings: \(err.localizedDescription)")
+                let errorAlert = Render.singleActionAlert(title: "Error Occurred", message: err.localizedDescription)
+                self.present(errorAlert, animated: true, completion: nil)
             }
         }
         self.tabBarController?.selectedIndex = 0
@@ -137,7 +142,10 @@ class SettingsViewController: UIViewController {
          */
         
         UserModelController.readFromFileSystem(relativePath: "profile-pictures", uid: User.current.uid) { (image) in
-            self.profilePhotoImageView.image = image
+            DispatchQueue.main.async {
+                self.profilePhotoImageView.image = image
+                
+            }
         }
         
         /* UserModelController.downloadProfilePhoto(uid: User.current.uid) { (result) in
@@ -244,7 +252,7 @@ extension SettingsViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         print("chars \(textView.text.count) \( text)")
         
-//        self.adjustFrames()
+        //        self.adjustFrames()
         let maxTextCount = 350
         if(textView.text.count > maxTextCount && range.length == 0) {
             print("Please summarize in \(maxTextCount) characters or less")

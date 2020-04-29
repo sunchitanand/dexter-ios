@@ -36,10 +36,19 @@ class ChangePasswordViewController: UIViewController {
     }
     
     @IBAction func changePasswordTapped(_ sender: Any) {
-        if newPasswordONETextField.text == newPasswordTWOTextField.text {
-            Auth.auth().currentUser?.updatePassword(to: newPasswordTWOTextField.text!) { (error) in
+        if fieldsEmpty() {
+            Render.showErrorLabel(errorLabel: errorLabel, message: "Please fill in all fields.")
+            return
+        }
+        
+        let newPasswordONE = newPasswordONETextField.text!
+        let newPasswordTWO = newPasswordTWOTextField.text!
+        
+        if newPasswordONE == newPasswordTWO {
+            Auth.auth().currentUser?.updatePassword(to: newPasswordONE) { (error) in
                 if let error = error {
                     print("Error occured while changing password. \(error.localizedDescription)")
+                    Render.showErrorLabel(errorLabel: self.errorLabel, message: error.localizedDescription)
                 }
             }
         }
@@ -50,24 +59,15 @@ class ChangePasswordViewController: UIViewController {
         }
     }
     
-    func setNewPassword() {
+    func fieldsEmpty() -> Bool {
         let newPasswordONE = newPasswordONETextField.text!
         let newPasswordTWO = newPasswordTWOTextField.text!
-        
-        if newPasswordONE == newPasswordTWO {
-            Auth.auth().currentUser?.updatePassword(to: newPasswordONE) { (error) in
-                if let error = error {
-                    print("Error updating password...\(error.localizedDescription)")
-                }
-                else {
-                    print("Password updated.")
-                }
-            }
-        }
+        let ret = newPasswordONE == "" || newPasswordTWO == "" ? true : false
+        return ret
     }
     
     @IBAction func deleteAccountTapped(_ sender: Any) {
-        let deleteAccountAlert = UIAlertController(title: "Delete account", message: "All your data will be permanently deleted from Dexter servers.", preferredStyle: UIAlertController.Style.alert)
+        let deleteAccountAlert = UIAlertController(title: "Delete Account", message: "All your data will be permanently deleted from Dexter servers.", preferredStyle: UIAlertController.Style.alert)
         
         deleteAccountAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action: UIAlertAction!) in
             print("Deleting user...")
@@ -76,8 +76,12 @@ class ChangePasswordViewController: UIViewController {
             user?.delete { error in
                 if let error = error {
                     print("Error deleting user...\(error.localizedDescription)")
-                } else {
-                    print("Account deleted.")
+                    Render.showErrorLabel(errorLabel: self.errorLabel, message: error.localizedDescription)
+                }
+                else {
+                    print("Success: Account \(User.current) deleted.")
+                    let successAlert = Render.singleActionAlert(title: "Success", message: "All details associated with this account are deleted.")
+                    self.present(successAlert, animated: true, completion: nil)
                     self.transitionToWelcome()
                 }
             }
@@ -87,6 +91,7 @@ class ChangePasswordViewController: UIViewController {
             print("Cancelled deleting user.")
         }))
         present(deleteAccountAlert, animated: true, completion: nil)
+        deleteAccountAlert.setTint(color: .white)
     }
     
     @IBAction func backTapped(_ sender: Any) {

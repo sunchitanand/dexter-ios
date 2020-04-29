@@ -168,8 +168,9 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
             print("Sidebar: Logout")
             do { try firebaseAuth.signOut() }
             catch let signOutError as NSError {
-                /// TODO: Handle error
                 print(signOutError.localizedDescription)
+                let errorAlert = Render.singleActionAlert(title: "Error Occurred", message: "There was an error trying to log you out. Please try again.")
+                self.present(errorAlert, animated: true, completion: nil)
             }
             transitionToAuthenticationScreen()
         default:

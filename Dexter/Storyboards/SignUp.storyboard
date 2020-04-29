@@ -224,6 +224,12 @@
                                     <action selector="backTapped:" destination="Fff-Cn-kG6" eventType="touchUpInside" id="Hkv-lq-VnD"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WF3-nE-tUv">
+                                <rect key="frame" x="186" y="549" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -232,6 +238,8 @@
                             <constraint firstItem="rRp-lG-1OI" firstAttribute="leading" secondItem="FmJ-Vd-hDv" secondAttribute="leading" constant="28" id="527-2Z-310"/>
                             <constraint firstItem="FmJ-Vd-hDv" firstAttribute="trailing" secondItem="WJ7-gq-hlB" secondAttribute="trailing" id="BAC-Yh-x9C"/>
                             <constraint firstItem="WJ7-gq-hlB" firstAttribute="leading" secondItem="rRp-lG-1OI" secondAttribute="trailing" constant="20" id="CdZ-d4-U0d"/>
+                            <constraint firstItem="WF3-nE-tUv" firstAttribute="centerX" secondItem="FmJ-Vd-hDv" secondAttribute="centerX" id="IIi-kC-bGR"/>
+                            <constraint firstItem="WF3-nE-tUv" firstAttribute="top" secondItem="cIf-Ts-5qM" secondAttribute="bottom" constant="57" id="IbT-7H-78I"/>
                             <constraint firstItem="A94-Rp-iOk" firstAttribute="leading" secondItem="FmJ-Vd-hDv" secondAttribute="leading" constant="50" id="gD6-OJ-VsN"/>
                             <constraint firstItem="FmJ-Vd-hDv" firstAttribute="trailing" secondItem="A94-Rp-iOk" secondAttribute="trailing" constant="50" id="ivd-Jn-Kh8"/>
                             <constraint firstItem="WJ7-gq-hlB" firstAttribute="top" secondItem="FmJ-Vd-hDv" secondAttribute="top" constant="10" id="iwZ-OM-Yzm"/>
@@ -248,6 +256,7 @@
                     <connections>
                         <outlet property="aboutTextView" destination="cIf-Ts-5qM" id="hdi-SP-qiu"/>
                         <outlet property="backButton" destination="WJ7-gq-hlB" id="u2N-df-6In"/>
+                        <outlet property="errorLabel" destination="WF3-nE-tUv" id="8qg-UG-3Sk"/>
                         <outlet property="greetingSubtitleTextView" destination="LGF-pD-aAL" id="38b-GG-bE5"/>
                         <outlet property="greetingTitleLabel" destination="rRp-lG-1OI" id="4zW-FF-AJs"/>
                         <outlet property="nextButton" destination="A94-Rp-iOk" id="GoV-y6-bNK"/>
