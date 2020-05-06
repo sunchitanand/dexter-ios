@@ -25,23 +25,34 @@ class UserContactCell: UITableViewCell {
         self.nameTextView.text = user.firstName + " " + user.lastName
         self.aboutTextView.text = user.about
         
-        /*
-         UserModelController.downloadProfilePhoto(uid: user.uid) { (result) in
-         switch result {
-         case .success(let imageFileURL):
-         let imageData = try! Data(contentsOf: imageFileURL)
-         let image = UIImage(data: imageData)
-         
-         print("IMAGE: ", image!)
-         self.profilePhotoImageView.image = image
-         case .failure(let err):
-         print("Firebase Download Error: \(err.localizedDescription)")
-         }
-         }
-         */
-        UserModelController.readFromFileSystem(relativePath: "profile-pictures", uid: user.uid) { (image) in
-            print("image: ", image.debugDescription)
-            self.profilePhotoImageView.image = image
+        
+//        UserModelController.downloadProfilePhoto(uid: user.uid) { (result) in
+//            switch result {
+//            case .success(let image):
+//                self.profilePhotoImageView.image = image
+//
+//            case .failure(let err):
+//                print("Firebase Download Error: \(err.localizedDescription)")
+//            }
+//        }
+//
+//        UserModelController.readFromFileSystem(relativePath: "profile-pictures", uid: user.uid) { (response) in
+//            switch response {
+//            case .success(let image):
+//                self.profilePhotoImageView.image = image
+//
+//            case .failure(_):
+//                self.profilePhotoImageView.backgroundColor = .black
+//            }
+//        }
+        
+        UserModelController.getProfilePhoto(uid: user.uid) { (response) in
+            switch response {
+            case .success(let image):
+                self.profilePhotoImageView.image = image
+            case .failure(_):
+                self.profilePhotoImageView.backgroundColor = .black
+            }
         }
     }
     
@@ -60,8 +71,8 @@ class UserContactCell: UITableViewCell {
         nameTextView.backgroundColor = backgroundColor
         nameTextView.textColor = .white
         
-        aboutTextView.font = UIFont(name: Theme.Font.sansSerifRegular, size: 15)
-        aboutTextView.textContainer.maximumNumberOfLines = 5
+        aboutTextView.font = UIFont(name: Theme.Font.sansSerifRegular, size: 16)
+        aboutTextView.textContainer.maximumNumberOfLines = 6
         aboutTextView.textContainer.lineBreakMode = .byTruncatingTail
         aboutTextView.backgroundColor = backgroundColor
         aboutTextView.textColor = .white

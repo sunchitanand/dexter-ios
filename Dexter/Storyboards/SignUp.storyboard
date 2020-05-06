@@ -335,7 +335,7 @@
                                                         </constraints>
                                                     </view>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7DQ-AR-uaO" customClass="DisplayTextView" customModule="Dexter" customModuleProvider="target">
-                                                        <rect key="frame" x="15" y="177" width="334" height="79"/>
+                                                        <rect key="frame" x="20" y="177" width="324" height="79"/>
                                                         <color key="backgroundColor" red="0.90196675059999998" green="0.90194988249999997" blue="0.90196138619999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <string key="text">SWE at Oracle, Bay Area. Deep into skiing, chess and space. Looking to connect with PMs and professionals working on autonomous vehicles. Hello what's going on guys? Is everything cool b/w us or not? going on. If we are adology let me know and hit me up!</string>
                                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -389,10 +389,10 @@
                                                     <constraint firstItem="Uc3-lP-i96" firstAttribute="centerX" secondItem="Tbw-Yt-3i2" secondAttribute="centerX" id="KJ9-kq-xOg"/>
                                                     <constraint firstItem="S5E-al-PKN" firstAttribute="leading" secondItem="iRT-sX-PF2" secondAttribute="trailing" constant="20" id="Kqm-Qm-5W5"/>
                                                     <constraint firstItem="S5E-al-PKN" firstAttribute="trailing" secondItem="7az-9x-Yub" secondAttribute="trailing" id="LiV-rU-51j"/>
-                                                    <constraint firstAttribute="trailing" secondItem="7DQ-AR-uaO" secondAttribute="trailing" constant="15" id="Nhc-5b-ogv"/>
+                                                    <constraint firstAttribute="trailing" secondItem="7DQ-AR-uaO" secondAttribute="trailing" constant="20" id="Nhc-5b-ogv"/>
                                                     <constraint firstItem="U8S-ZI-K2t" firstAttribute="centerY" secondItem="A0W-Yn-5nh" secondAttribute="centerY" id="QGq-II-GdC"/>
                                                     <constraint firstItem="8tO-rA-ygq" firstAttribute="centerX" secondItem="Tbw-Yt-3i2" secondAttribute="centerX" id="RJo-hU-zhr"/>
-                                                    <constraint firstItem="7DQ-AR-uaO" firstAttribute="leading" secondItem="Tbw-Yt-3i2" secondAttribute="leading" constant="15" id="WPg-jU-rsC"/>
+                                                    <constraint firstItem="7DQ-AR-uaO" firstAttribute="leading" secondItem="Tbw-Yt-3i2" secondAttribute="leading" constant="20" id="WPg-jU-rsC"/>
                                                     <constraint firstItem="zIr-ez-ela" firstAttribute="top" secondItem="Uc3-lP-i96" secondAttribute="bottom" constant="10" id="Yqp-3a-rhQ"/>
                                                     <constraint firstItem="7DQ-AR-uaO" firstAttribute="centerX" secondItem="Tbw-Yt-3i2" secondAttribute="centerX" id="ZdS-u7-fbq"/>
                                                     <constraint firstItem="dxx-eB-qKa" firstAttribute="centerX" secondItem="iRT-sX-PF2" secondAttribute="centerX" id="cll-Hg-tmv"/>

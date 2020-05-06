@@ -20,6 +20,7 @@ import Firebase
 //        UITabBar.appearance().tintColor = .red
         FirebaseApp.configure()
         UIApplication.shared.statusBarStyle = .darkContent
+        UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
 //        if let rootVC = window?.rootViewController as? SplashViewController {
 //            rootVC.container = persistentContainer
 //        }

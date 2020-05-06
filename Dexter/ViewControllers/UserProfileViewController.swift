@@ -113,6 +113,15 @@ class UserProfileViewController: UIViewController {
             emailLabel.text = selectedUser.email
             twitterUsernameLabel.text = selectedUser.twitterHandle
             instagramUsernameLabel.text = selectedUser.instagramHandle
+            
+            UserModelController.getProfilePhoto(uid: selectedUser.uid) { (response) in
+                switch response {
+                case .success(let image):
+                    self.profilePhotoImageView.image = image
+                case .failure(_):
+                    break
+                }
+            }
         }
     }
     

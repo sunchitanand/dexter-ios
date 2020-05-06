@@ -51,7 +51,15 @@ class SettingsViewController: UIViewController {
         
         photoHelper.completionHandler = { image in
             self.profilePhotoImageView.image = image
-            UserModelController.updateProfilePhoto(image: image)
+                        UserModelController.updateProfilePhoto(image: image) { (response) in
+                switch response {
+                case .success(let message):
+                    print(message)
+                case .failure(let error):
+                    let errorAlert = Render.singleActionAlert(title: "Error Occurred", message: error.localizedDescription)
+                    self.present(errorAlert, animated: true, completion: nil)
+                }
+            }
         }
     }
     
@@ -141,10 +149,22 @@ class SettingsViewController: UIViewController {
          }
          */
         
-        UserModelController.readFromFileSystem(relativePath: "profile-pictures", uid: User.current.uid) { (image) in
-            DispatchQueue.main.async {
-                self.profilePhotoImageView.image = image
-                
+//        UserModelController.readFromFileSystem(relativePath: "profile-pictures", uid: User.current.uid) { (image) in
+//            DispatchQueue.main.async {
+//                self.profilePhotoImageView.image = image
+//            }
+//        }
+        
+        UserModelController.getProfilePhoto(uid: User.current.uid) { (response) in
+            switch response {
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self.profilePhotoImageView.image = image
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.profilePhotoImageView.backgroundColor = .black
+                }
             }
         }
         
@@ -265,5 +285,11 @@ extension SettingsViewController: UITextViewDelegate {
         var textFrame = aboutTextView.frame
         textFrame.size.height = aboutTextView.contentSize.height
         aboutTextView.frame = textFrame
+    }
+}
+
+extension SettingsViewController: UIPopoverPresentationControllerDelegate {
+    func prepareForPopoverPresentation(_ popoverPresentationController: UIPopoverPresentationController) {
+        
     }
 }

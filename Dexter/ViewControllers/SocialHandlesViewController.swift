@@ -60,7 +60,15 @@ class SocialHandlesViewController: UIViewController {
         photoHelper.completionHandler = { image in
             self.profilePhotoImageView.image = image
             self.uploadPhotoLabel.text = ""
-            UserModelController.updateProfilePhoto(image: image)
+            UserModelController.updateProfilePhoto(image: image) { (response) in
+                switch response {
+                case .success(let message):
+                    print("[SocialHandlesViewController] \(message)")
+                case .failure(let error):
+                    let errorAlert = Render.singleActionAlert(title: "Error Occurred", message: error.localizedDescription)
+                    self.present(errorAlert, animated: true, completion: nil)
+                }
+            }
         }
     }
     
@@ -132,10 +140,13 @@ class SocialHandlesViewController: UIViewController {
     
     func setupElements() {
         let backgroundColor = Theme.Color.darkBg
+        self.view.backgroundColor = backgroundColor
         
         /* MARK: Views */
         scrollView.showsVerticalScrollIndicator = false
         
+        contentView.backgroundColor = backgroundColor
+                
         let placeholderCornerRadius: CGFloat = 10
         twitterHandlePlaceholderView.layer.cornerRadius = placeholderCornerRadius
         twitterHandlePlaceholderView.backgroundColor = backgroundColor
@@ -176,6 +187,8 @@ class SocialHandlesViewController: UIViewController {
         
         /* MARK: Text Views */
         Render.textViewSubtitle(messageSubtitleTextView)
+        
+        messageSubtitleTextView.backgroundColor = backgroundColor
 
         
         /*MARK: Text Fields */
@@ -198,11 +211,6 @@ class SocialHandlesViewController: UIViewController {
         
         messageSubtitleTextView.adjustsFontForContentSizeCategory = true
         //        messageSubtitleTextView.minimumZoomScale = 0.2
-        
-        /// Dark Mode
-        self.view.backgroundColor = backgroundColor
-        contentView.backgroundColor = backgroundColor
-        messageSubtitleTextView.backgroundColor = backgroundColor
         
     }
     

@@ -53,6 +53,7 @@
 		B97ADCE623FA8CE100AB27AE /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B97ADCB923FA8CDE00AB27AE /* SF-Pro-Display-Regular.otf */; };
 		B97ADCEB23FA8CE100AB27AE /* SF-Pro-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = B97ADCBE23FA8CDF00AB27AE /* SF-Pro-Display-Heavy.otf */; };
 		B98148C124031D32005E0429 /* TableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98148C024031D32005E0429 /* TableViewExtensions.swift */; };
+		B9938C44245E01DA009A3700 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9938C43245E01DA009A3700 /* ImageExtension.swift */; };
 		B9A087B82427F41000ADC5E3 /* SelectPhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A087B72427F41000ADC5E3 /* SelectPhotoHelper.swift */; };
 		B9A087BC2429F6D200ADC5E3 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = B9A087BB2429F6D200ADC5E3 /* Podfile */; };
 		B9B548EE23D063D100D69C38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B548ED23D063D100D69C38 /* SceneDelegate.swift */; };
@@ -146,6 +147,7 @@
 		B97ADCB923FA8CDE00AB27AE /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		B97ADCBE23FA8CDF00AB27AE /* SF-Pro-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Heavy.otf"; sourceTree = "<group>"; };
 		B98148C024031D32005E0429 /* TableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExtensions.swift; sourceTree = "<group>"; };
+		B9938C43245E01DA009A3700 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		B9A087B72427F41000ADC5E3 /* SelectPhotoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoHelper.swift; sourceTree = "<group>"; };
 		B9A087BB2429F6D200ADC5E3 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		B9B548EA23CDB22700D69C38 /* imports.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imports.h; sourceTree = "<group>"; };
@@ -221,10 +223,12 @@
 		B94AF31723A8B8DA008BE764 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B98148C024031D32005E0429 /* TableViewExtensions.swift */,
 				B9E58A12243E923600274A4E /* BluetoothManager.swift */,
 				B9E58A14243E934900274A4E /* CoreBluetoothManager.swift */,
 				B9A087B72427F41000ADC5E3 /* SelectPhotoHelper.swift */,
 				B94AF31823A8B942008BE764 /* Render.swift */,
+				B9938C43245E01DA009A3700 /* ImageExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -301,9 +305,9 @@
 		B94ED83F23F09DE400423D6A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B94B1AC923A62508001FC054 /* AppDelegate.swift */,
 				B94B1AD723A6250C001FC054 /* LaunchScreen.storyboard */,
 				B9A087BB2429F6D200ADC5E3 /* Podfile */,
-				B94B1AC923A62508001FC054 /* AppDelegate.swift */,
 				B94B1AD523A6250C001FC054 /* Assets.xcassets */,
 				B9B548ED23D063D100D69C38 /* SceneDelegate.swift */,
 				B94AF31523A75416008BE764 /* GoogleService-Info.plist */,
@@ -314,10 +318,9 @@
 		B955A05A23E161080033AD51 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B918D47023D6A78F00864C94 /* UserContactCell.swift */,
 				B9EB16CC23CDA16B00757817 /* DiscoveryToggleButton.swift */,
 				B92B0EB523FE3406008D1933 /* DisplayTextView.swift */,
-				B98148C024031D32005E0429 /* TableViewExtensions.swift */,
-				B918D47023D6A78F00864C94 /* UserContactCell.swift */,
 				B91313F024496E030074F9C1 /* SidebarCell.swift */,
 				B915B00F2454E8940025BFB2 /* AlertController.swift */,
 			);
@@ -694,6 +697,7 @@
 				B9E58A13243E923600274A4E /* BluetoothManager.swift in Sources */,
 				B918D47123D6A78F00864C94 /* UserContactCell.swift in Sources */,
 				B915B0102454E8940025BFB2 /* AlertController.swift in Sources */,
+				B9938C44245E01DA009A3700 /* ImageExtension.swift in Sources */,
 				B9EC9BCA23FE845D00C26055 /* UserProfileViewController.swift in Sources */,
 				B9E58A0F243D841E00274A4E /* TransferService.swift in Sources */,
 				B92B0EB623FE3406008D1933 /* DisplayTextView.swift in Sources */,

@@ -296,7 +296,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="New Password" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Hb3-Xf-fgw" customClass="DisplayTextView" customModule="Dexter" customModuleProvider="target">
-                                <rect key="frame" x="31.5" y="246" width="358" height="36"/>
+                                <rect key="frame" x="31.5" y="251" width="358" height="36"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="YB3-p5-7QZ"/>
@@ -306,23 +306,23 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First and Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mdJ-tq-cwG">
-                                <rect key="frame" x="42" y="181" width="330" height="45"/>
+                                <rect key="frame" x="42" y="181" width="330" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="qRz-yG-JDw"/>
+                                    <constraint firstAttribute="height" constant="50" id="qRz-yG-JDw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First and Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wtx-Ql-OsH">
-                                <rect key="frame" x="42" y="388" width="330" height="45"/>
+                                <rect key="frame" x="42" y="398" width="330" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="ZRs-fA-xMD"/>
+                                    <constraint firstAttribute="height" constant="50" id="ZRs-fA-xMD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter again" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXU-H6-PTU">
-                                <rect key="frame" x="42" y="352" width="163" height="26"/>
+                                <rect key="frame" x="42" y="362" width="163" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="nEX-Sc-GJz"/>
                                 </constraints>
@@ -331,7 +331,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tBA-pD-zVz">
-                                <rect key="frame" x="60" y="483" width="294" height="50"/>
+                                <rect key="frame" x="60" y="498" width="294" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="FAW-9p-RBX"/>
                                 </constraints>
@@ -341,7 +341,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eny-tA-FBB">
-                                <rect key="frame" x="67" y="613" width="280" height="30"/>
+                                <rect key="frame" x="67" y="628" width="280" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="fb9-IY-3Eu"/>
                                 </constraints>
@@ -351,9 +351,9 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First and Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7kY-J2-GBb">
-                                <rect key="frame" x="42" y="292" width="330" height="45"/>
+                                <rect key="frame" x="42" y="297" width="330" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="Fvv-Yb-bMm"/>
+                                    <constraint firstAttribute="height" constant="50" id="Fvv-Yb-bMm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
@@ -373,7 +373,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNv-yg-HGo">
-                                <rect key="frame" x="186" y="563" width="42" height="20"/>
+                                <rect key="frame" x="186" y="578" width="42" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

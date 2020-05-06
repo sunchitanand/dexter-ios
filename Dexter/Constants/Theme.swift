@@ -19,13 +19,13 @@ struct Theme {
         static let redOff = UIColor.init(red: 215/255, green: 147/255, blue: 147/255, alpha: 1)
         static let cardBg = UIColor.init(red: 248/255, green: 248/255, blue: 248/255, alpha: 1)
         
-        static let darkBg = UIColor.init(red: 28/255, green: 26/255, blue: 29/255, alpha: 1)
+//        static let darkBg = UIColor.init(red: 28/255, green: 26/255, blue: 29/255, alpha: 1)
+        static let darkBg = UIColor.init(red: 19/255, green: 18/255, blue: 20/255, alpha: 1)
 //        static let dGreen = UIColor.init(red: 123/255, green: 240/255, blue: 112/255, alpha: 1)
         static let dGreen = UIColor.init(red: 108/255, green: 224/255, blue: 98/255, alpha: 1)
-        
-        static let dRed = UIColor(red: 255/255, green: 69/255, blue: 58/255, alpha: 1)
-//        static let dRed = UIColor.coral
 //        static let dRed = UIColor(red: 255/255, green: 69/255, blue: 58/255, alpha: 1)
+//        static let dRed = UIColor.coral
+        static let dRed = UIColor(red: 255/255, green: 70/255, blue: 70/255, alpha: 1)
         static let separator = UIColor(red: 206/255, green: 206/255, blue: 206/255, alpha: 0.18)
     }
     

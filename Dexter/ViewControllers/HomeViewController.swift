@@ -47,8 +47,8 @@ class HomeViewController: UIViewController {
     
     let discoveryOffMessage = "Turn on to be discovered by people around you"
     let discoveryOnMessage = "Turn off to stop discovery"
-    let emptyViewControllerMessage = "People around you with Dexter (turned ON) will appear here."
-    let emptyViewControllerSubtitle = "Dexter uses Bluetooth for Discovery."
+    let emptyViewControllerMessage = "People in close proximity to you with Dexter (switched ON) will appear here"
+    let emptyViewControllerSubtitle = "Dexter uses Bluetooth for Discovery"
     
     private var peripheralManager: CBPeripheralManager?
     private var centralManager: CBCentralManager?
@@ -74,10 +74,19 @@ class HomeViewController: UIViewController {
                 case .success(let user):
                     print("Current user: \(user.email)")
                     
-                case .failure(let err):
-                    print(err.localizedDescription)
-                    let errorAlert = Render.singleActionAlert(title: "Error Alert", message: "Could not fetch your details. Please try logging in again.")
+                case .failure(_):
+                    /*
+                    let errorAlert = Render.singleActionAlert(title: "Error", message: "Could not fetch your details. Please try logging in again.")
                     self.present(errorAlert, animated: true, completion: nil)
+                    */
+                    print("[HomeViewController] Logging out...")
+                    do { try self.firebaseAuth.signOut() }
+                    catch let signOutError as NSError {
+                        print(signOutError.localizedDescription)
+                        let errorAlert = Render.singleActionAlert(title: "Error Occurred", message: "Could not fetch your details. Please try logging in again.")
+                        self.present(errorAlert, animated: true, completion: nil)
+                    }
+                    self.transitionToAuthenticationScreen()
                 }
             }
         }
@@ -90,6 +99,7 @@ class HomeViewController: UIViewController {
         
         /// FOR SIMULATION:
         /// Get all users and store in allUsers[]
+        /*
         counter = 0
         UserModelController.getAllUsers { (response) in
             switch response {
@@ -101,6 +111,7 @@ class HomeViewController: UIViewController {
                 print("Firestore: Error getting all users | \(err.localizedDescription)")
             }
         }
+        */
     }
     
     override func viewDidLoad() {
@@ -127,30 +138,29 @@ class HomeViewController: UIViewController {
             // let msg = String(format:"User %d says hi!", arc4random() % 100)
             
             /** Production Code */
-//            startSharing()
+            startSharing()
             
             
             /** FOR SIMULATION */
             /// Transfer a user from allUsers to nearbyUsers[] and increment pointer
-            
+            /*
             if counter < HomeViewController.allUsers.count {
                 print(HomeViewController.allUsers[counter])
                 HomeViewController.nearbyUsers.append(HomeViewController.allUsers[counter])
                 counter += 1
             } else { print("No more users nearby") }
-            
+            */
             self.userContactTableView.reloadData()
         }
         else {
             print("Discovery: Off")
             discoveryStatusLabel.text = discoveryOffMessage
             /** Production Code  */
-//             stopSharing()
+             stopSharing()
         }
         userContactTableViewHeaderView.backgroundColor = discoverySwitch.isOn ? Theme.Color.dGreen : Theme.Color.dRed
     }
     
-
     func startSharing() {
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
         centralManager = CBCentralManager(delegate: self, queue: nil)
@@ -161,6 +171,14 @@ class HomeViewController: UIViewController {
         subscription = nil
     }
     
+    func transitionToAuthenticationScreen() {
+        let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
+        DispatchQueue.main.async {
+            let authProvidersVC = storyboard.instantiateViewController(identifier: Constants.Storyboard.authenticationNavigationController) as? UINavigationController
+            self.view.window?.rootViewController = authProvidersVC
+            self.view.window?.makeKeyAndVisible()
+        }
+    }
     
     /* MARK: UI Elements Setup */
     
@@ -185,7 +203,7 @@ class HomeViewController: UIViewController {
         /* MARK: Labels*/
         Render.discoveryTitleLabel(discoveryLabel)
         
-        discoveryStatusLabel.font = UIFont(name: Theme.Font.sansSerifMedium, size: 16)
+        discoveryStatusLabel.font = UIFont(name: Theme.Font.sansSerifMedium, size: 17)
         discoveryStatusLabel.textColor = .black
         discoveryStatusLabel.sizeToFit()
         discoveryStatusLabel.numberOfLines = 0
@@ -200,7 +218,6 @@ class HomeViewController: UIViewController {
             userContactTableViewHeaderView.backgroundColor = Theme.Color.dRed
             discoveryStatusLabel.text = discoveryOffMessage
         }
-        
         setupTableView()
         toggleStatusBarColor()
         
@@ -301,6 +318,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             HomeViewController.nearbyUsers.remove(at: indexPath.row)
+            /* MARK: TODO */ // Delete saved user profile photo from File System
             tableView.deleteRows(at: [indexPath], with: .left)
         }
         else if editingStyle == .insert {
@@ -322,6 +340,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let background = Theme.Color.darkBg
         userContactTableView.backgroundColor = background
         tableViewHeaderSeparator.backgroundColor = background
+        userContactTableView.separatorColor = .darkGray
     }
 }
 

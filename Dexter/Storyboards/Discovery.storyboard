@@ -10,13 +10,12 @@
         <!--Home View Controller-->
         <scene sceneID="jZF-SB-KYn">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VKb-ZZ-uKP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="HomeViewController" id="tzs-rX-Ihe" customClass="HomeViewController" customModule="Dexter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bu6-CA-beH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="6" rowHeight="166" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7rV-9W-rHM">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="6" rowHeight="189" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7rV-9W-rHM">
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="sectionIndexBackgroundColor" systemColor="secondarySystemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
@@ -87,15 +86,15 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserContactCell" rowHeight="166" id="s2D-D2-j1n" customClass="UserContactCell" customModule="Dexter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="197" width="414" height="166"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserContactCell" rowHeight="189" id="s2D-D2-j1n" customClass="UserContactCell" customModule="Dexter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="197" width="414" height="189"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s2D-D2-j1n" id="z2j-HE-ucM">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="166"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="189"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Xx7-wQ-Ohg">
-                                                    <rect key="frame" x="125" y="10" width="269" height="149"/>
+                                                    <rect key="frame" x="125" y="10" width="269" height="172"/>
                                                     <subviews>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="username" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bfL-JG-QRN" customClass="DisplayTextView" customModule="Dexter" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="269" height="30"/>
@@ -108,7 +107,7 @@
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCI-73-F8C" customClass="DisplayTextView" customModule="Dexter" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="35" width="269" height="114"/>
+                                                            <rect key="frame" x="0.0" y="35" width="269" height="137"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             <string key="text">SWE at Oracle, Bay Area. Deep into skiing, chess and space. Looking to connect with PMs and professionals working on autonomous vehicles. Hello what's going on guys? Is everything cool b/w us or not? going on. If we areadology let me know and hit me up</string>
                                                             <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -121,7 +120,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BGq-c8-ZAx">
-                                                    <rect key="frame" x="20" y="30" width="90" height="94"/>
+                                                    <rect key="frame" x="20" y="35" width="90" height="94"/>
                                                     <color key="backgroundColor" red="0.99775820969999995" green="0.50758093599999998" blue="0.4078105688" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="90" id="rt6-1n-LP7"/>
@@ -145,7 +144,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="bl2-Hm-OgG" secondAttribute="trailing" constant="7" id="cqL-wL-PkE"/>
                                                 <constraint firstAttribute="trailing" secondItem="yCI-73-F8C" secondAttribute="trailing" constant="20" id="ePQ-We-Hwr"/>
                                                 <constraint firstAttribute="trailing" secondItem="Xx7-wQ-Ohg" secondAttribute="trailing" constant="20" id="fbY-iz-1cX"/>
-                                                <constraint firstItem="BGq-c8-ZAx" firstAttribute="top" secondItem="z2j-HE-ucM" secondAttribute="top" constant="30" id="mEm-0f-B2T"/>
+                                                <constraint firstItem="BGq-c8-ZAx" firstAttribute="top" secondItem="z2j-HE-ucM" secondAttribute="top" constant="35" id="mEm-0f-B2T"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -178,13 +177,13 @@
                         <outlet property="userContactTableViewHeaderView" destination="6uF-Uh-CEV" id="SqB-9c-3ls"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VKb-ZZ-uKP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7495.652173913044" y="257.8125"/>
         </scene>
         <!--UserProfileViewController-->
         <scene sceneID="PiA-VJ-GI7">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lrJ-uo-3Lc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="UserProfileViewController" title="UserProfileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="y58-hK-njf" customClass="UserProfileViewController" customModule="Dexter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wWf-0a-qnK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -228,7 +227,7 @@
                                         </constraints>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vtC-m2-mdv" customClass="DisplayTextView" customModule="Dexter" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="214" width="334" height="167"/>
+                                        <rect key="frame" x="20" y="214" width="324" height="167"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <string key="text">SWE at Oracle, Bay Area. Deep into skiing, chess and space. Looking to connect with PMs and professionals working on autonomous vehicles. Hello what's going on guys? Is everything cool b/w us or not? going on. If we are adology let me know and hit me up!</string>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -241,7 +240,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="@sunchitanand" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zRb-mY-cXT">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="@sunchitanand" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zRb-mY-cXT">
                                         <rect key="frame" x="132.5" y="437" width="119" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -257,7 +256,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JLw-99-vPE">
                                         <rect key="frame" x="99.5" y="474.5" width="20" height="20"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="@sunchitanand" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLY-eX-8Se">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="@sunchitanand" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLY-eX-8Se">
                                         <rect key="frame" x="132.5" y="474" width="119" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -277,13 +276,13 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="vtC-m2-mdv" firstAttribute="leading" secondItem="I4U-k5-Na7" secondAttribute="leading" constant="15" id="0YQ-iC-Nmj"/>
+                                    <constraint firstItem="vtC-m2-mdv" firstAttribute="leading" secondItem="I4U-k5-Na7" secondAttribute="leading" constant="20" id="0YQ-iC-Nmj"/>
                                     <constraint firstAttribute="trailing" secondItem="0PI-OH-ElT" secondAttribute="trailing" constant="5" id="1M6-TL-613"/>
                                     <constraint firstItem="JLw-99-vPE" firstAttribute="centerY" secondItem="HLY-eX-8Se" secondAttribute="centerY" id="3WW-p6-Ff9"/>
                                     <constraint firstItem="HLY-eX-8Se" firstAttribute="leading" secondItem="zRb-mY-cXT" secondAttribute="leading" id="99p-0D-kmf"/>
                                     <constraint firstItem="Ipv-pd-Nbv" firstAttribute="top" secondItem="rfX-NR-lHZ" secondAttribute="bottom" constant="10" id="BRH-pJ-RgB"/>
                                     <constraint firstItem="JLw-99-vPE" firstAttribute="top" secondItem="hp0-c9-cZ0" secondAttribute="bottom" constant="16.5" id="Dxj-fH-B1k"/>
-                                    <constraint firstAttribute="trailing" secondItem="vtC-m2-mdv" secondAttribute="trailing" constant="15" id="Enr-Nq-Pq6"/>
+                                    <constraint firstAttribute="trailing" secondItem="vtC-m2-mdv" secondAttribute="trailing" constant="20" id="Enr-Nq-Pq6"/>
                                     <constraint firstItem="HLY-eX-8Se" firstAttribute="centerX" secondItem="I4U-k5-Na7" secondAttribute="centerX" constant="10" id="F8F-7e-0VU"/>
                                     <constraint firstItem="rfX-NR-lHZ" firstAttribute="top" secondItem="o7C-MA-fRe" secondAttribute="bottom" constant="21" id="GZi-52-99b"/>
                                     <constraint firstItem="zRb-mY-cXT" firstAttribute="height" secondItem="HLY-eX-8Se" secondAttribute="height" multiplier="1.04762" id="Jon-j6-U5b"/>
@@ -335,13 +334,13 @@
                         <outlet property="twitterUsernameLabel" destination="zRb-mY-cXT" id="Ibg-OQ-Nu7"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lrJ-uo-3Lc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8463.7681159420299" y="256.47321428571428"/>
         </scene>
         <!--Discovery Navigation Controller-->
         <scene sceneID="b8i-S2-97s">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XVo-OR-OEd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="DiscoveryNavigationController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="m3P-LH-aW6" customClass="DiscoveryNavigationController" customModule="Dexter" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="1" title="" image="round_contacts_black_24pt" id="XdU-tm-VYo"/>
                     <toolbarItems/>
@@ -354,6 +353,7 @@
                         <segue destination="tzs-rX-Ihe" kind="relationship" relationship="rootViewController" id="Ggg-YY-bNP"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XVo-OR-OEd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6400" y="258"/>
         </scene>

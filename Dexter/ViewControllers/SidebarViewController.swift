@@ -142,6 +142,7 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.section {
+        
         case 0:
             switch indexPath.row {
             case 0:
@@ -164,6 +165,29 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
             default:
                 print("Section/row does not exist")
             }
+        
+        case 1:
+            switch indexPath.row {
+            case 0:
+                print("Opening Feedback Form on Safari...")
+                if let url = URL(string: "https://forms.gle/uA6n64HZdE1h2Bdf6") {
+                    UIApplication.shared.open(url)
+                }
+            case 1:
+                print("Opening Report a Bug Form on Safari...")
+                if let url = URL(string: "https://forms.gle/a1jH2QJQuhACtSz88") {
+                    UIApplication.shared.open(url)
+                }
+            case 2:
+                print("Opening Privacy Policy on Safari...")
+                if let url = URL(string:
+                    "https://www.notion.so/dexterapp/DEXTER-PRIVACY-POLICY-6de9eab9da514cd9ad3357d18d1b936f") {
+                    UIApplication.shared.open(url)
+                }
+            default:
+                print("Section/row does not exist")
+            }
+            
         case 2:
             print("Sidebar: Logout")
             do { try firebaseAuth.signOut() }

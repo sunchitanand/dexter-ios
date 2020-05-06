@@ -86,7 +86,7 @@ class Render {
     /* MARK: Labels */
     
     static func discoveryTitleLabel(_ label: UILabel) {
-        label.font = UIFont(name: "NewYorkMedium-Heavy", size: 25)
+        label.font = UIFont(name: "NewYorkMedium-Heavy", size: 26)
         label.alpha = 1
         //        label.textColor = Theme.Color.title
         label.textColor = Theme.Color.darkBg
@@ -155,6 +155,7 @@ class Render {
         //        aboutTextView.isScrollEnabled = true
         aboutTextView.textColor = .white
         aboutTextView.returnKeyType = .done
+        aboutTextView.sizeToFit()
         
         /*
          aboutTextView.layer.frame = CGRect(x: <#T##Double#>, y: <#T##Double#>, width: <#T##Double#>, height: <#T##Double#>)
@@ -170,6 +171,7 @@ class Render {
     static func profilePhotoImageView(_ imageView: UIImageView) {
         imageView.contentMode = UIView.ContentMode.scaleAspectFill
         imageView.layer.cornerRadius = 5
+        imageView.backgroundColor = .black
     }
     
     static func styleSwitch(_ switchButton: UISwitch) {

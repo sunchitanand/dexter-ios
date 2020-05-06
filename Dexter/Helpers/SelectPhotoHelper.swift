@@ -37,6 +37,13 @@ class SelectPhotoHelper: NSObject {
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
+        alertController.setTint(color: .white)
+        
+        if let popoverController = alertController.popoverPresentationController {
+                       popoverController.sourceView = viewController.view //to set the source of your alert
+                       popoverController.sourceRect = CGRect(x: viewController.view.bounds.midX, y: viewController.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
+                       popoverController.permittedArrowDirections = [] //to hide the arrow of any particular direction
+                   }
         
         viewController.present(alertController, animated: true)
     }
@@ -45,20 +52,24 @@ class SelectPhotoHelper: NSObject {
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = sourceType
         imagePickerController.delegate = (self as UIImagePickerControllerDelegate & UINavigationControllerDelegate)
-
+        
         viewController.present(imagePickerController, animated: true)
     }
-    
 }
 
-extension SelectPhotoHelper: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+extension SelectPhotoHelper: UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverPresentationControllerDelegate {
     
     /// called when image is selected
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            completionHandler?(selectedImage)
+            /// compress the image
+            let compressedImgData = selectedImage.jpeg(.lowest)
+            if let data = compressedImgData {
+                if let compressedImage = UIImage(data: data) {
+                    completionHandler?(compressedImage)
+                }
+            }
         }
-
         picker.dismiss(animated: true)
     }
     /// called when cancel is pressed
