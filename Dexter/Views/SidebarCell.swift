@@ -38,7 +38,6 @@ class SidebarCell: UITableViewCell {
         default:
             label.textColor = .white
         }
-        
     }
     
     func setupCellData(label: String, icon: UIImage, section: Int, row: Int) {
@@ -46,9 +45,7 @@ class SidebarCell: UITableViewCell {
         self.icon.image = icon
         self.section = section
         self.row = row
-        print(row, section)
         styleCell()
-        
     }
 
 }

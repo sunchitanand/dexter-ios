@@ -71,15 +71,27 @@ class ChangePasswordViewController: UIViewController {
         
         deleteAccountAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action: UIAlertAction!) in
             print("Deleting user...")
-            let user = Auth.auth().currentUser
             
+            UserModelController.deleteCurrentUser { (response) in
+                switch response {
+                
+                case .success(_):
+                    print("[SUCCESS] User deleted from Firestore.")
+                case .failure(let err):
+                    print("[ERROR] deleting user from Firestore. \(err.localizedDescription)")
+                    Render.showErrorLabel(errorLabel: self.errorLabel, message: err.localizedDescription)
+                    return
+                }
+            }
+            
+            let user = Auth.auth().currentUser
             user?.delete { error in
                 if let error = error {
-                    print("Error deleting user...\(error.localizedDescription)")
+                    print("[ERROR] deleting user from Auth.\(error.localizedDescription)")
                     Render.showErrorLabel(errorLabel: self.errorLabel, message: error.localizedDescription)
                 }
                 else {
-                    print("Success: Account \(User.current) deleted.")
+                    print("[SUCCESS] All account details for \(User.current) deleted.")
                     let successAlert = Render.singleActionAlert(title: "Success", message: "All details associated with this account are deleted.")
                     self.present(successAlert, animated: true, completion: nil)
                     self.transitionToWelcome()
@@ -163,15 +175,5 @@ class ChangePasswordViewController: UIViewController {
         deleteAccountButton.setTitleColor(Theme.Color.dRed, for: .normal)
         deleteAccountButton.titleLabel?.font = UIFont(name: Theme.Font.sansSerifSemiBold, size: 18)
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

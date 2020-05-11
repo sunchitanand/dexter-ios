@@ -74,6 +74,7 @@ class AboutUserViewController: UIViewController {
     }
 }
 
+/// Disable return key - collapse keyboard when clicked
 extension AboutUserViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text == "\n") {

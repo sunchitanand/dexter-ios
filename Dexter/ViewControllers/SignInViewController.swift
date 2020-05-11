@@ -95,9 +95,19 @@ class SignInViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    /* MARK: TODO */
     @IBAction func forgotPasswordTapped(_ sender: Any) {
-        
+        if emailTextField.text == "" {
+            Render.showErrorLabel(errorLabel: errorLabel, message: "Please enter your email and then click on Forgot password")
+            return
+        }
+        Auth.auth().sendPasswordReset(withEmail: emailTextField.text!) { (err) in
+            if let err = err {
+                let errorAlert = Render.singleActionAlert(title: "Error", message: err.localizedDescription)
+                self.present(errorAlert, animated: true, completion: nil)
+            }
+        }
+        let successAlert = Render.singleActionAlert(title: "Email Sent", message: "A password reset link has been sent to your email.")
+        present(successAlert, animated: true, completion: nil)
     }
     
     func transitionToHome() {

@@ -21,6 +21,7 @@ class AuthenticationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SignUpViewController.isUserCreated = false
         setupElements()
     }
     

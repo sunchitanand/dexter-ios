@@ -26,32 +26,37 @@ class UserContactCell: UITableViewCell {
         self.aboutTextView.text = user.about
         
         
-//        UserModelController.downloadProfilePhoto(uid: user.uid) { (result) in
-//            switch result {
-//            case .success(let image):
-//                self.profilePhotoImageView.image = image
-//
-//            case .failure(let err):
-//                print("Firebase Download Error: \(err.localizedDescription)")
-//            }
-//        }
-//
-//        UserModelController.readFromFileSystem(relativePath: "profile-pictures", uid: user.uid) { (response) in
-//            switch response {
-//            case .success(let image):
-//                self.profilePhotoImageView.image = image
-//
-//            case .failure(_):
-//                self.profilePhotoImageView.backgroundColor = .black
-//            }
-//        }
+        //        UserModelController.downloadProfilePhoto(uid: user.uid) { (result) in
+        //            switch result {
+        //            case .success(let image):
+        //                self.profilePhotoImageView.image = image
+        //
+        //            case .failure(let err):
+        //                print("Firebase Download Error: \(err.localizedDescription)")
+        //            }
+        //        }
+        //
+        //        UserModelController.readFromFileSystem(relativePath: "profile-pictures", uid: user.uid) { (response) in
+        //            switch response {
+        //            case .success(let image):
+        //                self.profilePhotoImageView.image = image
+        //
+        //            case .failure(_):
+        //                self.profilePhotoImageView.backgroundColor = .black
+        //            }
+        //        }
         
         UserModelController.getProfilePhoto(uid: user.uid) { (response) in
             switch response {
             case .success(let image):
-                self.profilePhotoImageView.image = image
+                print("File download finished.")
+                DispatchQueue.main.async {
+                    self.profilePhotoImageView.image = image
+                }
             case .failure(_):
-                self.profilePhotoImageView.backgroundColor = .black
+                DispatchQueue.main.async {
+                    self.profilePhotoImageView.backgroundColor = .black
+                }
             }
         }
     }

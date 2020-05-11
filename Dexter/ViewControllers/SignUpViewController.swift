@@ -55,7 +55,10 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func termsAndPolicyTapped(_ sender: Any) {
-        /* MARK: TODO */ // open terms and policy in app browser or something
+       if let url = URL(string:
+            "https://www.notion.so/dexterapp/DEXTER-PRIVACY-POLICY-6de9eab9da514cd9ad3357d18d1b936f") {
+            UIApplication.shared.open(url)
+        }
     }
     
     
@@ -71,17 +74,22 @@ class SignUpViewController: UIViewController {
         else {
             let email = emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-            let firstName = String((fullNameTextField.text?.split(separator: " ").first)!)
-            let lastName = String((fullNameTextField.text?.split(separator: " ").last)!)
+            
+            let fullName = fullNameTextField.text
+            let splitName = fullName?.split(separator: " ")
+            let firstName = String((splitName?.first!)!)
+            let lastName = splitName?.count == 1 ? "" : String((splitName?.last!)!)
+            
             
             /** Create user in Firebase Authentication */
             Auth.auth().createUser(withEmail: email!, password: password!) { (authResult, error) in
                 if let error = error {
-                    print(error.localizedDescription)
+                    print("[ERROR] \(error.localizedDescription)")
                     let message = error.localizedDescription
                     Render.showErrorLabel(errorLabel: self.errorLabel, message: message)
                 }
                 else {
+                    print("[SUCCESS] User created in Auth.")
                     /// Remove last two characters of Auth UID to store in Firestore
                     var firestoreUID = authResult!.user.uid
                     firestoreUID.removeLast(2)

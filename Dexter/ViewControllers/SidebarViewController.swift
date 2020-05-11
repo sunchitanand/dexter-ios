@@ -75,17 +75,6 @@ class SidebarViewController: UIViewController {
         greetingLabel.numberOfLines = 0
         greetingLabel.sizeToFit()
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 
 extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
@@ -190,15 +179,20 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
             
         case 2:
             print("Sidebar: Logout")
-            do { try firebaseAuth.signOut() }
+            do {
+                try firebaseAuth.signOut()
+            }
             catch let signOutError as NSError {
                 print(signOutError.localizedDescription)
                 let errorAlert = Render.singleActionAlert(title: "Error Occurred", message: "There was an error trying to log you out. Please try again.")
                 self.present(errorAlert, animated: true, completion: nil)
+                return
             }
+            print("[STATE] Logged Out")
+            HomeViewController.clearUserContactTableView()
             transitionToAuthenticationScreen()
         default:
-            print("TODO")
+            print("Section/row does not exist")
         }
     }
     

@@ -41,6 +41,10 @@ class UserProfileViewController: UIViewController {
         setupData()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+     }
+    
     @IBAction func moreTapped(_ sender: Any) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -72,6 +76,13 @@ class UserProfileViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         //        cancelAction.setValue(UIColor.black, forKey: "titleTextColor")
         alertController.addAction(cancelAction)
+        
+        /// To present popover for iPad
+        if let popoverController = alertController.popoverPresentationController {
+                       popoverController.sourceView = self.view //to set the source of your alert
+                       popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
+                       popoverController.permittedArrowDirections = [] //to hide the arrow of any particular direction
+                   }
         
         self.present(alertController, animated: true, completion: nil)
         

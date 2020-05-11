@@ -252,13 +252,22 @@ class SettingsViewController: UIViewController {
         
         /* MARK: Text Fields */
         Render.styleTextField(nameTextField)
+        nameTextField.returnKeyType = .default
+        
         Render.styleTextField(emailTextField)
+        emailTextField.returnKeyType = .default
+        
         Render.styleTextField(twitterTextField)
+        instagramTextField.returnKeyType = .default
+        
         Render.styleTextField(instagramTextField)
+        instagramTextField.returnKeyType = .default
+        
         setupTextFields()
         
         /* MARK: Text Views */
         Render.enterBioTextView(aboutTextView)
+        aboutTextView.returnKeyType = .default
         aboutTextView.font = UIFont(name: Theme.Font.sansSerifRegular, size: 17)
         
         /* MARK: Views*/
@@ -269,22 +278,25 @@ class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        print("chars \(textView.text.count) \( text)")
-        
-        //        self.adjustFrames()
-        let maxTextCount = 350
-        if(textView.text.count > maxTextCount && range.length == 0) {
-            print("Please summarize in \(maxTextCount) characters or less")
-            return false;
-        }
-        return true;
-    }
     
     func adjustFrames() {
         var textFrame = aboutTextView.frame
         textFrame.size.height = aboutTextView.contentSize.height
         aboutTextView.frame = textFrame
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n") {
+            textView.resignFirstResponder()
+        }
+        // get the current text, or use an empty string if that failed
+        let currentText = aboutTextView.text ?? ""
+        // attempt to read the range they are trying to change, or exit if we can't
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        // add their new text to the existing text
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
+        // make sure the result is under x characters
+        return updatedText.count <= 350
     }
 }
 

@@ -39,6 +39,7 @@ class SelectPhotoHelper: NSObject {
         alertController.addAction(cancelAction)
         alertController.setTint(color: .white)
         
+        /// To present popover for iPad
         if let popoverController = alertController.popoverPresentationController {
                        popoverController.sourceView = viewController.view //to set the source of your alert
                        popoverController.sourceRect = CGRect(x: viewController.view.bounds.midX, y: viewController.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.

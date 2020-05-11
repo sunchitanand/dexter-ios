@@ -11,6 +11,15 @@ import Firebase
 import FirebaseStorage
 import FirebaseFirestore
 
+enum FirestoreError: Error {
+    case userDoesNotExist
+    case noURLReceived
+}
+
+enum FileSystemError: Error {
+    case fileDoesNotExist
+}
+
 class UserModelController {
     
     //    private var user: User?
@@ -26,11 +35,13 @@ class UserModelController {
             let newUserRef = Firestore.firestore().collection("users").document(newDocumentId)
             newUserRef.setData(user.dictionary) { (err) in
                 if let err = err {
+                    print("[ERROR] creating new user in Firestore.")
                     completion(.failure(err))
                     return
                 }
                 if current {
                     User.setCurrent(user)
+                    print("[SUCCESS] New user [\(User.current.uid)] created. ")
                     completion(.success(User.current))
                     return
                 }
@@ -38,10 +49,6 @@ class UserModelController {
                 return
             }
         }
-    }
-    
-    enum FirestoreError: Error {
-        case userDoesNotExist
     }
     
     static func getCurrentUser(completion: @escaping (Result<User, Error>) -> ()) {
@@ -68,7 +75,9 @@ class UserModelController {
                     return
                 }
                 User.setCurrent(newUser)
-                downloadProfilePhoto(uid: uid) { (_) in }
+                if !doesProfilePhotoExist(uid: uid) {
+                    downloadProfilePhoto(uid: uid) { (response) in }
+                }
                 print("[SUCCESS] \(newUser) retrieved from Firestore")
                 completion(.success(newUser))
             }
@@ -84,7 +93,7 @@ class UserModelController {
         
         usersByUid.getDocuments { (snapshot, err) in
             if let err = err {
-                print("ERROR: Error retriving user from Firestore.")
+                print("[ERROR] retriving user from Firestore.")
                 completion(.failure(err))
                 return
             }
@@ -93,14 +102,15 @@ class UserModelController {
             let newUser = User(documentData: userDoc)
             
             if let newUser = newUser {
-                User.setCurrent(newUser)
-                downloadProfilePhoto(uid: uid) { (response) in }
+                if !doesProfilePhotoExist(uid: uid) {
+                    downloadProfilePhoto(uid: uid) { (response) in }
+                }
                 print("[SUCCESS] \(newUser) retrieved from Firestore")
                 completion(.success(newUser))
             }
         }
     }
-    
+    /** Used for Simulating discovery behavior **/
     static func getAllUsers(completion: @escaping (Result<[User], Error>) -> ()) {
         let usersRef = Firestore.firestore().collection("users")
         //        let query = usersRef.whereField("name.first", isEqualTo: "Sunchit")
@@ -139,90 +149,61 @@ class UserModelController {
     
     static func updateUser(newUserData: [String: Any], completion: @escaping (Result<Bool, Error>) -> ()) {
         let userRef = Firestore.firestore().collection("users").document(User.current.uid)
-            userRef.updateData(newUserData) { (err) in
-                if let err = err {
-                    print("Error updating document")
-                    completion(.failure(err))
-                }
-                else {
-                    /// update User singleton
-                    User.updateCurrent(newUserData)
-                    completion(.success(_: true))
-                }
+        userRef.updateData(newUserData) { (err) in
+            if let err = err {
+                print("[ERROR] updating document")
+                completion(.failure(err))
             }
+            else {
+                /// update User singleton
+                User.updateCurrent(newUserData)
+                completion(.success(_: true))
+            }
+        }
     }
     
-    /// Upload photo to Firebase Storage, get the URL and store in Local File System.
-    static func updateProfilePhoto(image: UIImage, completion: @escaping (Result<String, Error>) -> ()) {
-        guard let data = image.jpegData(compressionQuality: 0.0) else {
-            // present alert?
-            print("[Error] Something went wrong. Please try again.")
-            return
-        }
-        
-        let storage = Storage.storage()
-        let imageRef = storage.reference().child("profile-pictures").child(User.current.uid)
-        
-        // upload image to Firebase Storage
-        imageRef.putData(data, metadata: nil) { (metadata, err) in
+    static func deleteCurrentUser(completion: @escaping (Result<Bool, Error>) -> ()) {
+        let userRef = Firestore.firestore().collection("users").document(User.current.uid)
+        userRef.delete { (err) in
             if let err = err {
-                print("[Error] uploading data to Firebase Storage... \n\(err.localizedDescription)")
+                print("[ERROR] deleting user document from Firestore.")
                 completion(.failure(err))
                 return
             }
-            imageRef.downloadURL { (url, err) in
+            print("[SUCCESS] User document [\(User.current.uid)] deleted successfully.")
+            let storage = Storage.storage()
+            let imageRef = storage.reference().child("profile-pictures").child(User.current.uid)
+            imageRef.delete { (err) in
                 if let err = err {
-                    print("[Error] downloading profile photo URL... \n\(err.localizedDescription)")
+                    print("[ERROR] deleting profile photo from Firebase Storage.")
                     completion(.failure(err))
                     return
                 }
-                var urlString: String
-                guard url != nil else {
-                    let message = "No URL received"
-                    print(message as! Error)
-                    completion(.failure(message as! Error))
-                    return
-                }
-                urlString = url!.absoluteString
-                let photoUrlEntry = [Fields.User.profilePhotoURL: urlString]
-                
-                User.updateCurrent(photoUrlEntry)
-                
-                // upload URL to Firestore
-                updateUser(newUserData: photoUrlEntry as [String : Any]) { (response) in
-                    switch response {
-                    case .success(_):
-                        let log = "[Success] Profile photo uploaded to Firestore"
-                        print(log)
-                        completion(.success(log))
-                        return
-                    
-                    case .failure(let err):
-                        print("[Error] updating user profile photo URL in Firestore... \n\(err.localizedDescription)")
-                        completion(.failure(err))
-                        return
-                    }
-                }
-                
-                downloadProfilePhoto(uid: User.current.uid) { _ in }
+                print("[SUCCESS] Profile photo deleted from Firebase Storage.")
+                completion(.success(true))
             }
         }
     }
     
     static func getProfilePhoto(uid: String, completion: @escaping (Result<UIImage, Error>) -> ()) {
+        
         UserModelController.readFromFileSystem(relativePath: "profile-pictures", uid: uid) { (response) in
             switch response {
-                
             case .success(let image):
                 completion(.success(image))
-            
+                return
+                
             case .failure(_):
                 UserModelController.downloadProfilePhoto(uid: uid) { (response) in
                     switch response {
+                        
                     case .success(let image):
-                        completion(.success(image))
+                            completion(.success(image))
+                        return
+                        
                     case .failure(let error):
                         completion(.failure(error))
+                        return
                     }
                 }
             }
@@ -241,19 +222,79 @@ class UserModelController {
         
         let downloadTask = imageRef.write(toFile: localURL) { url, error in
             if let error = error {
-                print("[Error] downloading profile photo from Firebase. \(error.localizedDescription)")
+                print("[ERROR] downloading profile photo from Firebase. \(error.localizedDescription)")
                 completion(.failure(error))
+                return
             } else {
                 DispatchQueue.main.async {
                     localFileURL = url
-                    print("[Success] Profile photo downloaded at path: \(localFileURL.path).")
+                    print("[SUCCESS] Profile photo downloaded at path: \(localFileURL.path).")
                     let imageData = try! Data(contentsOf: localFileURL)
                     let image = UIImage(data: imageData)
                     completion(.success(image!))
+                    return
                 }
             }
         }
     }
+    
+    /// Upload photo to Firebase Storage, get the URL and store in Local File System.
+       static func updateProfilePhoto(image: UIImage, completion: @escaping (Result<String, Error>) -> ()) {
+           guard let data = image.jpegData(compressionQuality: 0.0) else {
+               // present alert?
+               print("[ERROR] Something went wrong. Please try again.")
+               return
+           }
+           
+           let storage = Storage.storage()
+           let imageRef = storage.reference().child("profile-pictures").child(User.current.uid)
+           
+           // upload image to Firebase Storage
+           imageRef.putData(data, metadata: nil) { (metadata, err) in
+               if let err = err {
+                   print("[ERROR] uploading data to Firebase Storage... \n\(err.localizedDescription)")
+                   completion(.failure(err))
+                   return
+               }
+               imageRef.downloadURL { (url, err) in
+                   if let err = err {
+                       print("[ERROR] downloading profile photo URL... \n\(err.localizedDescription)")
+                       completion(.failure(err))
+                       return
+                   }
+                   var urlString: String
+                   guard url != nil else {
+                       let log = "No URL received"
+                       print(log)
+                       let error = FirestoreError.noURLReceived
+                       completion(.failure(error))
+                       return
+                   }
+                   urlString = url!.absoluteString
+                   let photoUrlEntry = [Fields.User.profilePhotoURL: urlString]
+                   
+                   User.updateCurrent(photoUrlEntry)
+                   
+                   // upload URL to Firestore
+                   updateUser(newUserData: photoUrlEntry as [String : Any]) { (response) in
+                       switch response {
+                       case .success(_):
+                           let log = "[SUCCESS] Profile photo uploaded to Firestore"
+                           print(log)
+                           completion(.success(log))
+                           return
+                           
+                       case .failure(let err):
+                           print("[ERROR] updating user profile photo URL in Firestore... \n\(err.localizedDescription)")
+                           completion(.failure(err))
+                           return
+                       }
+                   }
+                   // Can be optimized by storing directly from user input to file system instead of downloading from Firebase and storing (after the update)
+                   downloadProfilePhoto(uid: User.current.uid) { _ in }
+               }
+           }
+       }
     
     static func readFromFileSystem(relativePath: String, uid: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
         var image : UIImage! = UIImage()
@@ -262,42 +303,57 @@ class UserModelController {
         let fullPath = relativePath + "/" + uid
         let localURL = documentsURL.appendingPathComponent(fullPath)
         
-        print("Reading from file system... /nLocal file URL: ", localURL.path)
+        print("Reading from file system... \n at URL: ", localURL.path)
         if fileManager.fileExists(atPath: localURL.path) {
             do {
                 let imageData = try Data(contentsOf: localURL)
                 image = UIImage(data: imageData)
-                print("[Success] File fetched from file system.")
+                print("[SUCCESS] File fetched from file system.")
                 completion(.success(image))
                 return
             }
             catch let error as NSError {
-                print("[Error] fetching file from file system... \(error.description)")
+                print("[ERROR] fetching file from file system... \(error.description)")
                 completion(.failure(error))
                 return
             }
         }
         else {
-            let log = "[Error] File does not exist in file system."
+            let log = "[ERROR] File does not exist in file system."
             print(log)
+            let error = FileSystemError.fileDoesNotExist
+            completion(.failure(error))
+            
         }
     }
-            
+    
+    static func doesProfilePhotoExist(uid: String) -> Bool {
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fullPath = "profile-pictures" + "/" + uid
+        let localURL = documentsURL.appendingPathComponent(fullPath)
+        return fileManager.fileExists(atPath: localURL.path) ? true : false
+    }
+    
     /// Deletes from File System and returns true if operation was successful.
     static func deleteFromFileSystem(relativePath: String, uid: String) -> Bool {
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fullPath = relativePath + "/" + uid
         let localURL = documentsURL.appendingPathComponent(fullPath)
-        
-        do {
-            try fileManager.removeItem(at: localURL)
+        if doesProfilePhotoExist(uid: uid) {
+            do {
+                try fileManager.removeItem(at: localURL)
+            }
+            catch let error as NSError {
+                print("[ERROR] deleting profile photo... \n\(error.localizedDescription)")
+                return false
+            }
+            print("[SUCCESS] Profile photo for [\(uid)] deleted from file system.")
+            return true
         }
-        catch let error as NSError {
-            print("[Error] deleting profile photo... \n\(error.localizedDescription)")
-            return false
-        }
-        return true
+        print("[ERROR] Profile photo for [\(uid)] could not be deleted because it does not exist in the file system.")
+        return false
     }
     
     static func flagUser(uid: String, completion: @escaping (Result<Bool, Error>) -> Void) {

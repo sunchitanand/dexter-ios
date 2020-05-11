@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIUserInterfaceStyle</key>
-	<string>Dark</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -17,21 +15,23 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>Bluetooth is required to discover and share information with other nearby devices. </string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>An anonymous token is advertised via Bluetooth to discover nearby devices.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Dexter needs camera to capture a photo for your profile.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location access is not required.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Microphone is required to produce near-ultrasonic sound to connect with other nearby devices. </string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Upload your profile photo.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Dexter needs camera to capture a photo for your profile.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-Pro-Display-SemiboldItalic.otf</string>
@@ -88,7 +88,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Dark</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<true/>
 </dict>
 </plist>

@@ -21,6 +21,10 @@ class SplashViewController: UIViewController {
         self.view.backgroundColor = Theme.Color.darkBg
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+         return .lightContent
+     }
+    
     override func viewDidAppear(_ animated: Bool) {
         if (Auth.auth().currentUser != nil) {
             navigateToHome()

@@ -37,7 +37,7 @@ class HomeViewController: UIViewController {
     
     var container: NSPersistentContainer!
     
-    var incomingUserIds: [String] = []
+    static var incomingUserIds: [String] = []
     static var nearbyUsers : [User] = []
     var currentUserId: String!
     
@@ -45,10 +45,12 @@ class HomeViewController: UIViewController {
     static var allUsers : [User] = []
     var counter : Int = 0
     
+    var isSimulation = false
+    
     let discoveryOffMessage = "Turn on to be discovered by people around you"
     let discoveryOnMessage = "Turn off to stop discovery"
-    let emptyViewControllerMessage = "People in close proximity to you with Dexter (switched ON) will appear here"
-    let emptyViewControllerSubtitle = "Dexter uses Bluetooth for Discovery"
+    let emptyViewControllerMessage = "People in close proximity to you with Dextr (turned ON) will appear here"
+    let emptyViewControllerSubtitle = "Dextr uses Bluetooth for Discovery"
     
     private var peripheralManager: CBPeripheralManager?
     private var centralManager: CBCentralManager?
@@ -72,14 +74,14 @@ class HomeViewController: UIViewController {
             UserModelController.getCurrentUser() { (response) in
                 switch response {
                 case .success(let user):
-                    print("Current user: \(user.email)")
+                    print("[STATE] Current user: \(user.email)")
                     
                 case .failure(_):
                     /*
                     let errorAlert = Render.singleActionAlert(title: "Error", message: "Could not fetch your details. Please try logging in again.")
                     self.present(errorAlert, animated: true, completion: nil)
                     */
-                    print("[HomeViewController] Logging out...")
+                    print("[ERROR] Could not find current user. Logging out...")
                     do { try self.firebaseAuth.signOut() }
                     catch let signOutError as NSError {
                         print(signOutError.localizedDescription)
@@ -97,21 +99,22 @@ class HomeViewController: UIViewController {
         // persist uid and fetch from firestore
         print(currentUserId!)
         
-        /// FOR SIMULATION:
-        /// Get all users and store in allUsers[]
-        /*
-        counter = 0
-        UserModelController.getAllUsers { (response) in
-            switch response {
-            case .success(let userList):
-                HomeViewController.allUsers = userList
-                print("All users successfully fetched")
-                
-            case .failure(let err):
-                print("Firestore: Error getting all users | \(err.localizedDescription)")
+        if isSimulation {
+            /// FOR SIMULATION:
+            /// Get all users and store in allUsers[]
+            
+            counter = 0
+            UserModelController.getAllUsers { (response) in
+                switch response {
+                case .success(let userList):
+                    HomeViewController.allUsers = userList
+                    print("All users successfully fetched")
+                    
+                case .failure(let err):
+                    print("Firestore: Error getting all users | \(err.localizedDescription)")
+                }
             }
         }
-        */
     }
     
     override func viewDidLoad() {
@@ -137,26 +140,27 @@ class HomeViewController: UIViewController {
             discoveryStatusLabel.text = discoveryOnMessage
             // let msg = String(format:"User %d says hi!", arc4random() % 100)
             
-            /** Production Code */
-            startSharing()
+            if !isSimulation {
+                startSharing()
+            }
+            else {
+                /** FOR SIMULATION **/ // Transfer a user from allUsers to nearbyUsers[] and increment pointer
+                
+                if counter < HomeViewController.allUsers.count {
+                    print(HomeViewController.allUsers[counter])
+                    HomeViewController.nearbyUsers.append(HomeViewController.allUsers[counter])
+                    counter += 1
+                } else { print("No more users nearby") }
+            }
             
-            
-            /** FOR SIMULATION */
-            /// Transfer a user from allUsers to nearbyUsers[] and increment pointer
-            /*
-            if counter < HomeViewController.allUsers.count {
-                print(HomeViewController.allUsers[counter])
-                HomeViewController.nearbyUsers.append(HomeViewController.allUsers[counter])
-                counter += 1
-            } else { print("No more users nearby") }
-            */
             self.userContactTableView.reloadData()
         }
         else {
             print("Discovery: Off")
             discoveryStatusLabel.text = discoveryOffMessage
-            /** Production Code  */
-             stopSharing()
+            if !isSimulation {
+                stopSharing()
+            }
         }
         userContactTableViewHeaderView.backgroundColor = discoverySwitch.isOn ? Theme.Color.dGreen : Theme.Color.dRed
     }
@@ -249,6 +253,7 @@ class HomeViewController: UIViewController {
     func toggleStatusBarColor() {
         if self.navigationController!.navigationBar.isHidden == true {
             let view = UIView(frame: CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: 50.0))
+            view.layer.cornerRadius = 3
             view.backgroundColor = discoverySwitch.isOn ? Theme.Color.dGreen : Theme.Color.dRed
             self.view.addSubview(view)
             discoveryLabel.bringSubviewToFront(view)
@@ -314,17 +319,36 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             self.navigationController?.pushViewController(profileVC, animated: true)
         }
     }
+    
     /// Swipe to delete: delete from objects and table view
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let deletedUser = HomeViewController.nearbyUsers[indexPath.row]
+            print("Deleting user: \(deletedUser.uid) ...")
+
+            if !isSimulation {
+                let deletedUid = HomeViewController.incomingUserIds[indexPath.row]
+                print("Deleting uid: \(deletedUid) ...")
+            }
+        
+            // Test if this would cause an error for multiple users
             HomeViewController.nearbyUsers.remove(at: indexPath.row)
-            /* MARK: TODO */ // Delete saved user profile photo from File System
+            if !isSimulation {
+                HomeViewController.incomingUserIds.remove(at: indexPath.row)
+            }
+            
             tableView.deleteRows(at: [indexPath], with: .left)
+            UserModelController.deleteFromFileSystem(relativePath: "profile-pictures", uid: deletedUser.uid)
         }
         else if editingStyle == .insert {
             print("New user cell inserted in Table View")
             tableView.insertRows(at: [indexPath], with: .left)
         }
+    }
+    
+    static func clearUserContactTableView() {
+        HomeViewController.incomingUserIds.removeAll()
+        HomeViewController.nearbyUsers.removeAll()
     }
     
     func setupTableView() {
@@ -340,7 +364,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let background = Theme.Color.darkBg
         userContactTableView.backgroundColor = background
         tableViewHeaderSeparator.backgroundColor = background
-        userContactTableView.separatorColor = .darkGray
+        userContactTableView.separatorColor = Theme.Color.separator
+        userContactTableViewHeaderView.layer.cornerRadius = 3
+        tableViewHeaderSeparator.layer.cornerRadius = 2
+        userContactTableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        userContactTableView.separatorStyle = .singleLine
     }
 }
 
@@ -412,8 +440,14 @@ extension HomeViewController: CBCentralManagerDelegate {
         let incomingUserId = advertisementData[CBAdvertisementDataLocalNameKey] as? String
         
         if let incomingUserId = incomingUserId {
-            print("User \(incomingUserId) discovered")
-            self.incomingUserIds.append(incomingUserId)
+            print(incomingUserId, User.current.uid)
+            print(incomingUserId == User.current.uid)
+            if !HomeViewController.incomingUserIds.contains(incomingUserId) && incomingUserId != User.current.uid {
+                print("New user [\(incomingUserId)] discovered")
+                HomeViewController.incomingUserIds.append(incomingUserId)
+            } else {
+                return
+            }
             
             var newIncomingUser: User!
             UserModelController.getUser(uid: incomingUserId) { (response) in

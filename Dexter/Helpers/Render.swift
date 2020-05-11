@@ -217,7 +217,7 @@ class Render {
     
     static func dexterLogo(_ imageView: UIImageView) {
         let dexterLogoImg = UIImage(named: "dexter-logo-white")?.withRenderingMode(.alwaysTemplate)
-        imageView.tintColor = Theme.Color.dGreen
+        imageView.tintColor = Theme.Color.separator
         imageView.image = dexterLogoImg
     }
     
@@ -225,7 +225,7 @@ class Render {
     
     static func singleActionAlert (title: String, message: String) -> UIAlertController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(alertAction)
         alertController.setTint(color: .white)
         return alertController
